@@ -1,7 +1,14 @@
 package com.jaxb.unmarshall;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.xml.bind.annotation.*;
 
+@Getter
+@Setter
+@NoArgsConstructor
 @XmlType(name = "Body")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Body {
@@ -11,24 +18,5 @@ public class Body {
 
     @XmlAttribute(name = "Id")
     private String id;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public RespuestaDeclaracion getDeclarationResponse() {
-        return declarationResponse;
-    }
-
-    public void setDeclarationResponse(RespuestaDeclaracion declarationResponse) {
-        this.declarationResponse = declarationResponse;
-    }
-
-    public Body() {
-    }
 
 }
