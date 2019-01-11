@@ -1,4 +1,4 @@
-package com.jaxb.unmarshall;
+package com.jaxb.POJOs;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,6 +10,7 @@ import javax.xml.bind.annotation.*;
 @Setter
 @NoArgsConstructor
 @XmlType(name = "RespuestaDeclaracion")
+@XmlRootElement(name="RespuestaDeclaracion")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class RespuestaDeclaracion {
 

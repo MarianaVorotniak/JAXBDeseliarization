@@ -1,12 +1,9 @@
-import com.jaxb.unmarshall.Body;
-import com.jaxb.unmarshall.Envelope;
-import com.jaxb.unmarshall.RespuestaDeclaracion;
+import com.jaxb.POJOs.RespuestaDeclaracion;
+import com.jaxb.services.ParseService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.Unmarshaller;
-import java.io.*;
+import javax.xml.bind.JAXBElement;
 
 /**
  * This is a program to parse XML elements from a SOAP response using JAXB.
@@ -21,19 +18,13 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
 
-        File responseFile = new File(filePath);
+        ParseService parsedXml = new ParseService(filePath);
 
-        JAXBContext context = JAXBContext.newInstance(Envelope.class);
-        Unmarshaller unmarshaller = context.createUnmarshaller();
-
-        Envelope response = (Envelope) unmarshaller.unmarshal(responseFile);
-
-        Body responseBody = response.getResponseBody();
-        RespuestaDeclaracion declarationResponse = responseBody.getDeclarationResponse();
-        String status = declarationResponse.getSentStatus();
+        JAXBElement<RespuestaDeclaracion> jaxbElement = parsedXml.getResponse();
+        RespuestaDeclaracion response = jaxbElement.getValue();
+        String status = response.getSentStatus();
 
         LOGGER.info("The status is [{}]", status);
-
     }
 
 }

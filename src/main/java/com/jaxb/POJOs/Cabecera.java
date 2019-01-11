@@ -1,4 +1,4 @@
-package com.jaxb.unmarshall;
+package com.jaxb.POJOs;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
