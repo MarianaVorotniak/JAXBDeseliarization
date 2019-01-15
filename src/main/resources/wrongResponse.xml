@@ -1,4 +1,4 @@
-<?xml version="1.0" encodng="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <env:Envelope xmlns:env="http://schemas.xmlsoap.org/soap/envelope/">
     <env:Header/>
     <env:Body Id="Body">
@@ -12,13 +12,13 @@
                 </ddii:Periodo>
                 <ddii:IDVersionModelo>1.0</ddii:IDVersionModelo>
                 <ddii:IDDeclarante>
-                    <ddii:NIF>B98156128</ddii:NIF>
+                    <ddii:NIF>B98156129</ddii:NIF>
                     <ddii:NombreRazon>HomeAway</ddii:NombreRazon>
                 </ddii:IDDeclarante>
             </ddiiR:Cabecera>
             <ddiiR:EstadoEnvio>Rechazo Completo</ddiiR:EstadoEnvio>
             <ddiiR:RespuestaLinea>
-                <ddiiR:IDRegistroDeclarado>000009</ddiiR:IDRegistroDeclarado>
+                <ddiiR:IDRegistroDeclarado>00009</ddiiR:IDRegistroDeclarado>
                 <ddiiR:EstadoRegistro>Rechazado</ddiiR:EstadoRegistro>
                 <ddiiR:CodigoErrorRegistro>1106</ddiiR:CodigoErrorRegistro>
                 <ddiiR:DescripcionErrorRegistro>El NIF no esta identificado. NIF: 77780619R. NOMBRE_RAZON: SunSea Costa Brava. </ddiiR:DescripcionErrorRegistro>

@@ -2,19 +2,17 @@ package com.jaxb.services;
 
 import com.jaxb.POJOs.*;
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.UnmarshalException;
+import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.*;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import javax.xml.bind.JAXBException;
+
 
 @RunWith(MockitoJUnitRunner.class)
 public class ParseServiceTest {
@@ -39,11 +37,11 @@ public class ParseServiceTest {
     @Mock
     private Header header;
 
-    @Rule
-    public ExpectedException expectedException = ExpectedException.none();
-
     private String filePath;
-    private String incorrectfilePath;
+    private String incorrectFilePath;
+    private String incorrectFile;
+    private String noXmlExtFile;
+    private String wrongXml;
 
     @Before
     public void init() {
@@ -83,8 +81,11 @@ public class ParseServiceTest {
         expectedEnvelope.setHeader(header);
         expectedEnvelope.setResponseBody(body);
 
-        filePath = "src\\main\\resources\\response.xsd";
-        incorrectfilePath = "src\\main\\resources\\responses.xsd";
+        filePath = "src\\main\\resources\\response.xml";
+        incorrectFilePath = "src\\main\\resources\\responsee.xml";
+        incorrectFile = "src\\main\\resources\\wrongResponse.xml";
+        noXmlExtFile = "src\\main\\resources\\response.xsd";
+        wrongXml = "src\\main\\resources\\wrongXml.xml";
     }
 
     @Test
@@ -126,19 +127,34 @@ public class ParseServiceTest {
     }
 
     @Test
-    public void unmarshalTest() throws JAXBException {
-        Envelope envelope = parseService.unmarshal(filePath);
-        assertEquals(expectedEnvelope, envelope);
-    }
-
-    @Test(expected = UnmarshalException.class)
-    public void unmarshalWithIncorrectPathTest() throws JAXBException {
-        Envelope envelope = parseService.unmarshal(incorrectfilePath);
-    }
-
-    @Test(expected = UnmarshalException.class)
     public void parseResponseWithIncorrectPathTest() throws JAXBException {
-        RespuestaDeclaracion envelope = parseService.parseResponse(incorrectfilePath);
+        RespuestaDeclaracion respuestaDeclaracion = parseService.parseResponse(incorrectFilePath);
+    }
+
+    @Test
+    public void parseResponseWithIncorrectFileTest() throws JAXBException {
+        RespuestaDeclaracion respuestaDeclaracion = parseService.parseResponse(incorrectFile);
+        assertThat(declarationResponse, is(not(respuestaDeclaracion)));
+    }
+
+    @Test
+    public void parseResponseWithNullPathTest() throws JAXBException {
+        RespuestaDeclaracion respuestaDeclaracion = parseService.parseResponse(null);
+    }
+
+    @Test
+    public void parseResponseWithEmptyPathTest() throws JAXBException {
+        RespuestaDeclaracion respuestaDeclaracion = parseService.parseResponse("");
+    }
+
+    @Test
+    public void parseResponseWithNoXmlExtensionTest() throws JAXBException {
+        RespuestaDeclaracion respuestaDeclaracion = parseService.parseResponse(noXmlExtFile);
+    }
+
+    @Test
+    public void parseResponseWithWrongXmlTest() {
+        RespuestaDeclaracion respuestaDeclaracion = parseService.parseResponse(wrongXml);
     }
 
 }

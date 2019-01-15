@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
  */
 public class Main {
 
-    private static String filePath = "src\\main\\resources\\response.xsd";
+    private static String filePath = "src\\main\\resources\\response.xml";
 
     private static Logger LOGGER = LoggerFactory.getLogger(Main.class);
 

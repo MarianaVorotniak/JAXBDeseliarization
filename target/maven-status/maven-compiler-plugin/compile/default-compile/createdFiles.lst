@@ -1,10 +1,1 @@
 Main.class
-com\jaxb\unmarshall\package-info.class
-com\jaxb\unmarshall\Body.class
-com\jaxb\unmarshall\Cabecera.class
-com\jaxb\unmarshall\Periodo.class
-com\jaxb\unmarshall\RespuestaDeclaracion.class
-com\jaxb\unmarshall\Envelope.class
-com\jaxb\unmarshall\Header.class
-com\jaxb\unmarshall\IDDeclarante.class
-com\jaxb\unmarshall\RespuestaLinea.class
