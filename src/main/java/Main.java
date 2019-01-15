@@ -1,3 +1,4 @@
+import com.jaxb.IncorrectFileException;
 import com.jaxb.POJOs.RespuestaDeclaracion;
 import com.jaxb.services.ParseService;
 import org.slf4j.Logger;
@@ -14,7 +15,7 @@ public class Main {
 
     private static Logger LOGGER = LoggerFactory.getLogger(Main.class);
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IncorrectFileException {
 
         ParseService  service = new ParseService();
         RespuestaDeclaracion response = service.parseResponse(filePath);

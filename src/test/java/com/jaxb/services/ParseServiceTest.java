@@ -1,8 +1,11 @@
 package com.jaxb.services;
 
+import com.jaxb.IncorrectFileException;
 import com.jaxb.POJOs.*;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -10,8 +13,6 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
-
-import javax.xml.bind.JAXBException;
 
 
 @RunWith(MockitoJUnitRunner.class)
@@ -36,6 +37,9 @@ public class ParseServiceTest {
     private Body body;
     @Mock
     private Header header;
+
+    @Rule
+    public ExpectedException expectedEx = ExpectedException.none();
 
     private String filePath;
     private String incorrectFilePath;
@@ -89,7 +93,7 @@ public class ParseServiceTest {
     }
 
     @Test
-    public void parseResponseTest() throws JAXBException {
+    public void parseResponseTest() throws IncorrectFileException {
 
         RespuestaDeclaracion respuestaDeclaracion = parseService.parseResponse(filePath);
 
@@ -123,37 +127,47 @@ public class ParseServiceTest {
         assertEquals(lineResponse.getRecordID(), respuestaDeclaracion.getLineResponse().getRecordID());
         assertEquals(lineResponse.getRecordStatus(), respuestaDeclaracion.getLineResponse().getRecordStatus());
 
-        assertTrue(head instanceof Cabecera);
     }
 
-    @Test
-    public void parseResponseWithIncorrectPathTest() throws JAXBException {
-        RespuestaDeclaracion respuestaDeclaracion = parseService.parseResponse(incorrectFilePath);
-    }
 
     @Test
-    public void parseResponseWithIncorrectFileTest() throws JAXBException {
+    public void parseResponseWithIncorrectFileContentTest() throws IncorrectFileException {
         RespuestaDeclaracion respuestaDeclaracion = parseService.parseResponse(incorrectFile);
         assertThat(declarationResponse, is(not(respuestaDeclaracion)));
     }
 
     @Test
-    public void parseResponseWithNullPathTest() throws JAXBException {
+    public void parseResponseWithIncorrectPathTest() throws IncorrectFileException {
+        expectedEx.expect(IncorrectFileException.class);
+        expectedEx.expectMessage("File does not exist or is a directory");
+        RespuestaDeclaracion respuestaDeclaracion = parseService.parseResponse(incorrectFilePath);
+    }
+
+    @Test
+    public void parseResponseWithNullPathTest() throws IncorrectFileException {
+        expectedEx.expect(IncorrectFileException.class);
+        expectedEx.expectMessage("File path is null");
         RespuestaDeclaracion respuestaDeclaracion = parseService.parseResponse(null);
     }
 
     @Test
-    public void parseResponseWithEmptyPathTest() throws JAXBException {
+    public void parseResponseWithEmptyPathTest() throws IncorrectFileException {
+        expectedEx.expect(IncorrectFileException.class);
+        expectedEx.expectMessage("File path is empty");
         RespuestaDeclaracion respuestaDeclaracion = parseService.parseResponse("");
     }
 
     @Test
-    public void parseResponseWithNoXmlExtensionTest() throws JAXBException {
+    public void parseResponseWithNoXmlExtensionTest() throws IncorrectFileException {
+        expectedEx.expect(IncorrectFileException.class);
+        expectedEx.expectMessage("File extension is not xml");
         RespuestaDeclaracion respuestaDeclaracion = parseService.parseResponse(noXmlExtFile);
     }
 
     @Test
-    public void parseResponseWithWrongXmlTest() {
+    public void parseResponseWithWrongXmlTest() throws IncorrectFileException {
+        expectedEx.expect(IncorrectFileException.class);
+        expectedEx.expectMessage("Wrong xml");
         RespuestaDeclaracion respuestaDeclaracion = parseService.parseResponse(wrongXml);
     }
 
