@@ -1,47 +1,36 @@
 package com.jaxb.services;
 
+import com.jaxb.POJOs.Body;
+import com.jaxb.POJOs.Envelope;
 import com.jaxb.POJOs.RespuestaDeclaracion;
-import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
-import javax.xml.stream.XMLInputFactory;
-import javax.xml.stream.XMLStreamException;
-import javax.xml.stream.XMLStreamReader;
-import javax.xml.transform.stream.StreamSource;
+import java.io.File;
 
-@Getter
+@NoArgsConstructor
 public class ParseService {
 
-    private JAXBElement<RespuestaDeclaracion> response;
-    private XMLStreamReader xmlStreamReader;
+    public RespuestaDeclaracion parseResponse(String filePath) throws JAXBException {
+        Envelope fullResponse = unmarshal(filePath);
 
-    public ParseService(String filePath) throws XMLStreamException, JAXBException {
-        XMLInputFactory xmlInputFactory = XMLInputFactory.newFactory();
-        StreamSource streamSource = new StreamSource(filePath);
-        xmlStreamReader = xmlInputFactory.createXMLStreamReader(streamSource);
+        Body bodyResponse = fullResponse.getResponseBody();
+        RespuestaDeclaracion declarationResponse = bodyResponse.getDeclarationResponse();
 
-        goToResponseTag();
-
-        unmarshal();
-    }
-
-    public void goToResponseTag() throws XMLStreamException {
-        xmlStreamReader.nextTag();
-
-        while(!xmlStreamReader.getLocalName().equals("RespuestaDeclaracion")) {
-            xmlStreamReader.nextTag();
-        }
-    }
-
-    public void unmarshal() throws JAXBException, XMLStreamException {
-        JAXBContext jaxbContext = JAXBContext.newInstance(RespuestaDeclaracion.class);
-        Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-        response = unmarshaller.unmarshal(xmlStreamReader, RespuestaDeclaracion.class);
-        xmlStreamReader.close();
+        return declarationResponse;
     }
 
 
+    public Envelope unmarshal(String filePath) throws JAXBException {
+        File responseFile = new File(filePath);
+
+        JAXBContext context = JAXBContext.newInstance(Envelope.class);
+        Unmarshaller unmarshaller = context.createUnmarshaller();
+
+        Envelope fullResponse = (Envelope) unmarshaller.unmarshal(responseFile);
+
+        return fullResponse;
+    }
 }

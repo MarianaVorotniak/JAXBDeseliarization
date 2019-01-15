@@ -3,8 +3,6 @@ import com.jaxb.services.ParseService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.xml.bind.JAXBElement;
-
 /**
  * This is a program to parse XML elements from a SOAP response using JAXB.
  *
@@ -18,13 +16,10 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
 
-        ParseService parsedXml = new ParseService(filePath);
+        ParseService  service = new ParseService();
+        RespuestaDeclaracion response = service.parseResponse(filePath);
 
-        JAXBElement<RespuestaDeclaracion> jaxbElement = parsedXml.getResponse();
-        RespuestaDeclaracion response = jaxbElement.getValue();
-        String status = response.getSentStatus();
-
-        LOGGER.info("The status is [{}]", status);
+        LOGGER.info("The status is [{}]", response.getSendStatus());
     }
 
 }

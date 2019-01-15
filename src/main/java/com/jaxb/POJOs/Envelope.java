@@ -1,16 +1,12 @@
 package com.jaxb.POJOs;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.Data;
 
 import javax.xml.bind.annotation.*;
 
-@Getter
-@Setter
-@NoArgsConstructor
+@Data
 @XmlType(name = "Envelope")
-//@XmlRootElement(name="Envelope")
+@XmlRootElement(name="Envelope")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Envelope {
 

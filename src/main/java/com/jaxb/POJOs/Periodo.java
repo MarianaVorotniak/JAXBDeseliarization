@@ -1,14 +1,10 @@
 package com.jaxb.POJOs;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.Data;
 
 import javax.xml.bind.annotation.*;
 
-@Getter
-@Setter
-@NoArgsConstructor
+@Data
 @XmlType(name = "Periodo")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Periodo {

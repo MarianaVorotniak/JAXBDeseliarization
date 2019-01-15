@@ -1,5 +1,5 @@
 @XmlSchema (
-        namespace="https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/RespuestaDeclaracion.xsd",
+        namespace="http://schemas.xmlsoap.org/soap/envelope/",
         elementFormDefault=XmlNsForm.QUALIFIED,
         xmlns = {
                 @XmlNs(prefix = "env", namespaceURI="http://schemas.xmlsoap.org/soap/envelope/"),

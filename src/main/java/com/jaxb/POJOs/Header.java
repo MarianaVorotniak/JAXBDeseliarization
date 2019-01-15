@@ -1,10 +1,9 @@
 package com.jaxb.POJOs;
 
-import lombok.NoArgsConstructor;
-
+import lombok.Data;
 import javax.xml.bind.annotation.XmlType;
 
-@NoArgsConstructor
+@Data
 @XmlType(name = "Header")
 public class Header {
 

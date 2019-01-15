@@ -1,14 +1,10 @@
 package com.jaxb.POJOs;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.Data;
 
 import javax.xml.bind.annotation.*;
 
-@Getter
-@Setter
-@NoArgsConstructor
+@Data
 @XmlType(name = "Cabecera")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Cabecera {
@@ -23,7 +19,7 @@ public class Cabecera {
     private Periodo period;
 
     @XmlElement(name = "IDVersionModelo", namespace="https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/DeclaracionInformativa.xsd")
-    private int modelVersionID;
+    private String modelVersionID;
 
     @XmlElement(name = "IDDeclarante", namespace="https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/DeclaracionInformativa.xsd")
     private IDDeclarante idDeclarante;

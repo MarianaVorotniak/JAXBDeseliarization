@@ -1,14 +1,10 @@
 package com.jaxb.POJOs;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.Data;
 
 import javax.xml.bind.annotation.*;
 
-@Getter
-@Setter
-@NoArgsConstructor
+@Data
 @XmlType(name = "RespuestaLinea")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class RespuestaLinea {
@@ -23,6 +19,6 @@ public class RespuestaLinea {
     private int recordCode;
 
     @XmlElement(name = "DescripcionErrorRegistro", namespace = "https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/RespuestaDeclaracion.xsd")
-    private int errorDescription;
+    private String errorDescription;
 
 }
