@@ -1,1 +1,12 @@
+com\jaxb\POJOs\IDDeclarante.class
+com\jaxb\POJOs\RespuestaDeclaracion.class
+com\jaxb\POJOs\Header.class
+com\jaxb\POJOs\RespuestaLinea.class
+com\jaxb\services\ParseService.class
 Main.class
+com\jaxb\POJOs\package-info.class
+com\jaxb\POJOs\Body.class
+com\jaxb\services\ParseService$1.class
+com\jaxb\POJOs\Cabecera.class
+com\jaxb\POJOs\Envelope.class
+com\jaxb\POJOs\Periodo.class
