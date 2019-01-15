@@ -14,7 +14,7 @@ public class Main {
 
     private static Logger LOGGER = LoggerFactory.getLogger(Main.class);
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
 
         ParseService  service = new ParseService();
         RespuestaDeclaracion response = service.parseResponse(filePath);
