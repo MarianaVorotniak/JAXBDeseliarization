@@ -68,7 +68,6 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
-
             <!-- JaCoCo plugin -->
             <plugin>
                 <groupId>org.jacoco</groupId>
