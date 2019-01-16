@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ParseService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JAXBDeseliarization</a> &gt; <a href="index.source.html" class="el_package">com.jaxb.services</a> &gt; <span class="el_source">ParseService.java</span></div><h1>ParseService.java</h1><pre class="source lang-java linenums">package com.jaxb.services;
 
-import com.jaxb.IncorrectFileException;
+import com.jaxb.exceptions.IncorrectFileException;
 import com.jaxb.POJOs.Body;
 import com.jaxb.POJOs.Envelope;
 import com.jaxb.POJOs.RespuestaDeclaracion;
@@ -11,14 +11,14 @@ import org.slf4j.LoggerFactory;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
-import java.io.File;
+import java.io.StringReader;
 
 <span class="fc" id="L16">public class ParseService {</span>
 
 <span class="fc" id="L18">    private static Logger LOGGER = LoggerFactory.getLogger(ParseService.class);</span>
 
-    public RespuestaDeclaracion parseResponse(String filePath) throws IncorrectFileException {
-<span class="fc" id="L21">        Envelope fullResponse = unmarshal(filePath);</span>
+    public RespuestaDeclaracion parseResponse(String fileContent) throws IncorrectFileException {
+<span class="fc" id="L21">        Envelope fullResponse = unmarshal(fileContent);</span>
 
 <span class="fc" id="L23">        Body bodyResponse = fullResponse.getResponseBody();</span>
 <span class="fc" id="L24">        RespuestaDeclaracion declarationResponse = bodyResponse.getDeclarationResponse();</span>
@@ -27,39 +27,27 @@ import java.io.File;
     }
 
 
-    private Envelope unmarshal(String filePath) throws IncorrectFileException {
+    private Envelope unmarshal(String fileContent) throws IncorrectFileException {
 
-<span class="fc bfc" id="L32" title="All 2 branches covered.">        if (filePath == null)</span>
-<span class="fc" id="L33">            throw new IncorrectFileException(&quot;File path is null&quot;);</span>
-<span class="fc bfc" id="L34" title="All 2 branches covered.">        else if (filePath.isEmpty())</span>
-<span class="fc" id="L35">            throw new IncorrectFileException(&quot;File path is empty&quot;);</span>
-<span class="fc bfc" id="L36" title="All 2 branches covered.">        else if (checkExtension(filePath) == false)</span>
-<span class="fc" id="L37">            throw new IncorrectFileException(&quot;File extension is not xml&quot;);</span>
+<span class="fc bfc" id="L32" title="All 2 branches covered.">        if (fileContent == null)</span>
+<span class="fc" id="L33">            throw new IncorrectFileException(&quot;File content is null&quot;);</span>
+<span class="fc bfc" id="L34" title="All 2 branches covered.">        else if (fileContent.isEmpty())</span>
+<span class="fc" id="L35">            throw new IncorrectFileException(&quot;File content is empty&quot;);</span>
 
-<span class="fc" id="L39">        Envelope fullResponse = null;</span>
+<span class="fc" id="L37">        StringReader reader = new StringReader(fileContent);</span>
 
+<span class="fc" id="L39">        JAXBContext context = null;</span>
+<span class="fc" id="L40">        Envelope fullResponse = null;</span>
         try {
-<span class="fc" id="L42">        File responseFile = new File(filePath);</span>
+<span class="fc" id="L42">            context = JAXBContext.newInstance(Envelope.class);</span>
+<span class="fc" id="L43">            Unmarshaller unmarshaller = context.createUnmarshaller();</span>
+<span class="fc" id="L44">            fullResponse = (Envelope) unmarshaller.unmarshal(reader);</span>
+<span class="fc" id="L45">        } catch (JAXBException e) {</span>
+<span class="fc" id="L46">            throw new IncorrectFileException(&quot;Wrong xml&quot;);</span>
+<span class="fc" id="L47">        }</span>
 
-<span class="pc bpc" id="L44" title="1 of 4 branches missed.">        if(!responseFile.exists() || responseFile.isDirectory()) {</span>
-<span class="fc" id="L45">            throw new IncorrectFileException(&quot;File does not exist or is a directory&quot;);</span>
-        }
-
-<span class="fc" id="L48">        JAXBContext context = JAXBContext.newInstance(Envelope.class);</span>
-<span class="fc" id="L49">        Unmarshaller unmarshaller = context.createUnmarshaller();</span>
-<span class="fc" id="L50">        fullResponse = (Envelope) unmarshaller.unmarshal(responseFile);</span>
-
-<span class="fc" id="L52">        } catch (JAXBException e) {</span>
-<span class="fc" id="L53">            throw new IncorrectFileException(&quot;Wrong xml&quot;);</span>
-<span class="fc" id="L54">        }</span>
-
-<span class="fc" id="L56">        return fullResponse;</span>
+<span class="fc" id="L49">        return fullResponse;</span>
     }
 
-    private boolean checkExtension(String filePath) {
-<span class="fc bfc" id="L60" title="All 2 branches covered.">        if (!FilenameUtils.getExtension(filePath).equals(&quot;xml&quot;))</span>
-<span class="fc" id="L61">            return false;</span>
-<span class="fc" id="L62">        return true;</span>
-    }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>

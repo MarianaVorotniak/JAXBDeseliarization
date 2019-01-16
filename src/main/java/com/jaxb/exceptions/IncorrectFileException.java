@@ -1,4 +1,4 @@
-package com.jaxb;
+package com.jaxb.exceptions;
 
 public class IncorrectFileException extends Exception {
 
