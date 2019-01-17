@@ -1,6 +1,5 @@
-package com.jaxb.services;
+package com.jaxb;
 
-import com.jaxb.Errors;
 import com.jaxb.exceptions.ParseException;
 import org.junit.Rule;
 import org.junit.Test;

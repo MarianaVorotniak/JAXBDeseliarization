@@ -40,42 +40,42 @@ import java.nio.file.Paths;
         }
 <span class="nc" id="L41">    }</span>
 
+    public static boolean isAccepted() throws ParseException {
+<span class="nc" id="L44">        String status = getResponse().getSendStatus();</span>
+<span class="nc bnc" id="L45" title="All 2 branches missed.">        if (status.equals(&quot;Aceptacion Completa&quot;))</span>
+<span class="nc" id="L46">            return true;</span>
+<span class="nc" id="L47">        return false;</span>
+    }
+
     public static RespuestaDeclaracion getResponse() throws ParseException {
-<span class="nc" id="L44">        ParseService  service = new ParseService();</span>
-<span class="nc" id="L45">        String fileContent = readFile(filePathRejected);</span>
-<span class="nc" id="L46">        RespuestaDeclaracion response = service.parseResponse(fileContent);</span>
-<span class="nc" id="L47">        return response;</span>
+<span class="nc" id="L51">        ParseService service = new ParseService();</span>
+<span class="nc" id="L52">        String fileContent = readFile(filePathRejected);</span>
+<span class="nc" id="L53">        RespuestaDeclaracion response = service.parseResponse(fileContent);</span>
+<span class="nc" id="L54">        return response;</span>
     }
 
     public static String readFile(String path) throws ParseException {
-<span class="fc" id="L51">        byte[] encoded = null;</span>
+<span class="fc" id="L58">        byte[] encoded = null;</span>
         try {
-<span class="fc" id="L53">           encoded = Files.readAllBytes(Paths.get(path));</span>
-<span class="fc" id="L54">        } catch (NoSuchFileException e) {</span>
-<span class="fc" id="L55">            throw new ParseException(&quot;File does not exist&quot;);</span>
-<span class="nc" id="L56">        } catch (IOException e) {</span>
-<span class="nc" id="L57">            throw new ParseException(&quot;IOException&quot;);</span>
-<span class="fc" id="L58">        }</span>
+<span class="fc" id="L60">            encoded = Files.readAllBytes(Paths.get(path));</span>
+<span class="fc" id="L61">        } catch (NoSuchFileException e) {</span>
+<span class="fc" id="L62">            throw new ParseException(&quot;File does not exist&quot;);</span>
+<span class="nc" id="L63">        } catch (IOException e) {</span>
+<span class="nc" id="L64">            throw new ParseException(&quot;IOException&quot;);</span>
+<span class="fc" id="L65">        }</span>
 
-<span class="fc" id="L60">        return new String(encoded);</span>
+<span class="fc" id="L67">        return new String(encoded);</span>
     }
 
     public static String translate(String wordToTranslate) throws ParseException {
-<span class="nc" id="L64">        String accepted = &quot;Fully accepted&quot;;</span>
-<span class="nc" id="L65">        String rejected = &quot;Rejected&quot;;</span>
-<span class="nc bnc" id="L66" title="All 2 branches missed.">        if (wordToTranslate.equals(&quot;Aceptacion Completa&quot;))</span>
-<span class="nc" id="L67">            return accepted;</span>
-<span class="nc bnc" id="L68" title="All 2 branches missed.">        else if (wordToTranslate.equals(&quot;Rechazo Completo&quot;))</span>
-<span class="nc" id="L69">            return rejected;</span>
-<span class="nc" id="L70">        else throw new ParseException(&quot;Word is not a correct status&quot;);</span>
+<span class="fc" id="L71">        String accepted = &quot;Fully accepted&quot;;</span>
+<span class="fc" id="L72">        String rejected = &quot;Rejected&quot;;</span>
+<span class="fc bfc" id="L73" title="All 2 branches covered.">        if (wordToTranslate.equals(&quot;Aceptacion Completa&quot;))</span>
+<span class="fc" id="L74">            return accepted;</span>
+<span class="pc bpc" id="L75" title="1 of 2 branches missed.">        else if (wordToTranslate.equals(&quot;Rechazo Completo&quot;))</span>
+<span class="nc" id="L76">            return rejected;</span>
+<span class="fc" id="L77">        else throw new ParseException(&quot;Word is not a correct status&quot;);</span>
 
-    }
-
-    public static boolean isAccepted() throws ParseException {
-<span class="nc" id="L75">        String status = getResponse().getSendStatus();</span>
-<span class="nc bnc" id="L76" title="All 2 branches missed.">        if (status.equals(&quot;Aceptacion Completa&quot;))</span>
-<span class="nc" id="L77">            return true;</span>
-<span class="nc" id="L78">        return false;</span>
     }
 
 }

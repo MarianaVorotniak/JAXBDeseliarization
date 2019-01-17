@@ -1,2 +1,3 @@
+com\jaxb\ErrorsTest.class
 com\jaxb\services\ParseServiceTest.class
-com\jaxb\services\ErrorsTest.class
+com\jaxb\MainTest.class

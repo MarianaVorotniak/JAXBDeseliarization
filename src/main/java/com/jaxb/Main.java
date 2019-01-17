@@ -30,18 +30,25 @@ public class Main {
 
         String status = translate(response.getSendStatus());
 
-        if (isAccepted())
+        if (isAccepted(response))
             LOGGER.info("The status is [{}]", status);
         else {
             RespuestaLinea lineResponse = response.getLineResponse();
             int code = lineResponse.getRecordCode();
             String errorMessage = Errors.findMessageByCode(code);
-            LOGGER.info("The status is [{}] and the arror is [{}]", status, errorMessage);
+            LOGGER.info("The status is [{}] and the error is [{}]", status, errorMessage);
         }
     }
 
+    public static boolean isAccepted(RespuestaDeclaracion response) {
+        String status = response.getSendStatus();
+        if (status.equals("Aceptacion Completa"))
+            return true;
+        return false;
+    }
+
     public static RespuestaDeclaracion getResponse() throws ParseException {
-        ParseService  service = new ParseService();
+        ParseService service = new ParseService();
         String fileContent = readFile(filePathRejected);
         RespuestaDeclaracion response = service.parseResponse(fileContent);
         return response;
@@ -50,7 +57,7 @@ public class Main {
     public static String readFile(String path) throws ParseException {
         byte[] encoded = null;
         try {
-           encoded = Files.readAllBytes(Paths.get(path));
+            encoded = Files.readAllBytes(Paths.get(path));
         } catch (NoSuchFileException e) {
             throw new ParseException("File does not exist");
         } catch (IOException e) {
@@ -69,13 +76,6 @@ public class Main {
             return rejected;
         else throw new ParseException("Word is not a correct status");
 
-    }
-
-    public static boolean isAccepted() throws ParseException {
-        String status = getResponse().getSendStatus();
-        if (status.equals("Aceptacion Completa"))
-            return true;
-        return false;
     }
 
 }

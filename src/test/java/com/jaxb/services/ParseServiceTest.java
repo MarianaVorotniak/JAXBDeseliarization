@@ -3,6 +3,7 @@ package com.jaxb.services;
 import com.jaxb.Main;
 import com.jaxb.exceptions.ParseException;
 import com.jaxb.POJOs.*;
+import com.jaxb.services.ParseService;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -127,14 +128,6 @@ public class ParseServiceTest {
         assertEquals(lineResponse.getRecordID(), respuestaDeclaracion.getLineResponse().getRecordID());
         assertEquals(lineResponse.getRecordStatus(), respuestaDeclaracion.getLineResponse().getRecordStatus());
 
-    }
-
-    @Test
-    public void parseResponseWithNoExistingFileTest() throws ParseException {
-        expectedEx.expect(ParseException.class);
-        expectedEx.expectMessage("File does not exist");
-        String fileContent = Main.readFile(incorrectFilePath);
-        RespuestaDeclaracion respuestaDeclaracion = parseService.parseResponse(fileContent);
     }
 
     @Test
