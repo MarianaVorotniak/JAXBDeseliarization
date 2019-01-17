@@ -1,10 +1,9 @@
 package com.jaxb.services;
 
-import com.jaxb.exceptions.IncorrectFileException;
+import com.jaxb.exceptions.ParseException;
 import com.jaxb.POJOs.Body;
 import com.jaxb.POJOs.Envelope;
 import com.jaxb.POJOs.RespuestaDeclaracion;
-import org.apache.commons.io.FilenameUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,7 +16,7 @@ public class ParseService {
 
     private static Logger LOGGER = LoggerFactory.getLogger(ParseService.class);
 
-    public RespuestaDeclaracion parseResponse(String fileContent) throws IncorrectFileException {
+    public RespuestaDeclaracion parseResponse(String fileContent) throws ParseException {
         Envelope fullResponse = unmarshal(fileContent);
 
         Body bodyResponse = fullResponse.getResponseBody();
@@ -27,12 +26,12 @@ public class ParseService {
     }
 
 
-    private Envelope unmarshal(String fileContent) throws IncorrectFileException {
+    private Envelope unmarshal(String fileContent) throws ParseException {
 
         if (fileContent == null)
-            throw new IncorrectFileException("File content is null");
+            throw new ParseException("File content is null");
         else if (fileContent.isEmpty())
-            throw new IncorrectFileException("File content is empty");
+            throw new ParseException("File content is empty");
 
         StringReader reader = new StringReader(fileContent);
 
@@ -43,7 +42,7 @@ public class ParseService {
             Unmarshaller unmarshaller = context.createUnmarshaller();
             fullResponse = (Envelope) unmarshaller.unmarshal(reader);
         } catch (JAXBException e) {
-            throw new IncorrectFileException("Wrong xml");
+            throw new ParseException("Wrong xml");
         }
 
         return fullResponse;

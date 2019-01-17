@@ -1,8 +1,12 @@
-<?xml version="1.0" encodng="UTF-8"?>
 <env:Envelope xmlns:env="http://schemas.xmlsoap.org/soap/envelope/">
     <env:Header/>
     <env:Body Id="Body">
         <ddiiR:RespuestaDeclaracion xmlns:ddiiR="https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/RespuestaDeclaracion.xsd" xmlns:ddii="https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/DeclaracionInformativa.xsd">
+            <ddiiR:CSV>DESARROLLOLOCAL0</ddiiR:CSV>
+            <ddiiR:DatosPresentacion>
+                <ddii:NIFPresentador>88888888H</ddii:NIFPresentador>
+                <ddii:TimestampPresentacion>01-08-2018 13:09:20</ddii:TimestampPresentacion>
+            </ddiiR:DatosPresentacion>
             <ddiiR:Cabecera>
                 <ddii:TipoComunicacion>A0</ddii:TipoComunicacion>
                 <ddii:Modelo>179</ddii:Modelo>
@@ -12,16 +16,14 @@
                 </ddii:Periodo>
                 <ddii:IDVersionModelo>1.0</ddii:IDVersionModelo>
                 <ddii:IDDeclarante>
-                    <ddii:NIF>B98156128</ddii:NIF>
-                    <ddii:NombreRazon>HomeAway</ddii:NombreRazon>
+                    <ddii:NIF>G99999999</ddii:NIF>
+                    <ddii:NombreRazon>EMPRESA FFFFFF</ddii:NombreRazon>
                 </ddii:IDDeclarante>
             </ddiiR:Cabecera>
-            <ddiiR:EstadoEnvio>Rechazo Completo</ddiiR:EstadoEnvio>
+            <ddiiR:EstadoEnvio>Aceptacion Completa</ddiiR:EstadoEnvio>
             <ddiiR:RespuestaLinea>
-                <ddiiR:IDRegistroDeclarado>000009</ddiiR:IDRegistroDeclarado>
-                <ddiiR:EstadoRegistro>Rechazado</ddiiR:EstadoRegistro>
-                <ddiiR:CodigoErrorRegistro>1106</ddiiR:CodigoErrorRegistro>
-                <ddiiR:DescripcionErrorRegistro>El NIF no esta identificado. NIF: 77780619R. NOMBRE_RAZON: SunSea Costa Brava. </ddiiR:DescripcionErrorRegistro>
+                <ddiiR:IDRegistroDeclarado>560001</ddiiR:IDRegistroDeclarado>
+                <ddiiR:EstadoRegistro>Aceptado</ddiiR:EstadoRegistro>
             </ddiiR:RespuestaLinea>
         </ddiiR:RespuestaDeclaracion>
     </env:Body>

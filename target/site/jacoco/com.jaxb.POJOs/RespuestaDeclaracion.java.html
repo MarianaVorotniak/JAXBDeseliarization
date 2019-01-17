@@ -4,7 +4,7 @@ import lombok.Data;
 
 import javax.xml.bind.annotation.*;
 
-<span class="pc bpc" id="L7" title="24 of 30 branches missed.">@Data</span>
+<span class="pc bpc" id="L7" title="40 of 46 branches missed.">@Data</span>
 @XmlType(name = &quot;RespuestaDeclaracion&quot;)
 @XmlAccessorType(XmlAccessType.FIELD)
 public class RespuestaDeclaracion {
@@ -17,6 +17,12 @@ public class RespuestaDeclaracion {
 
     @XmlElement(name = &quot;RespuestaLinea&quot;, namespace = &quot;https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/RespuestaDeclaracion.xsd&quot;)
 <span class="fc" id="L19">    private RespuestaLinea lineResponse;</span>
+
+    @XmlElement(name = &quot;CSV&quot;, namespace = &quot;https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/RespuestaDeclaracion.xsd&quot;)
+<span class="nc" id="L22">    private String csv;</span>
+
+    @XmlElement(name = &quot;DatosPresentacion&quot;, namespace = &quot;https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/RespuestaDeclaracion.xsd&quot;)
+<span class="nc" id="L25">    private DatosPresentacion presentationData;</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>

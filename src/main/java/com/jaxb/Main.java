@@ -1,7 +1,8 @@
 package com.jaxb;
 
 import com.jaxb.POJOs.RespuestaDeclaracion;
-import com.jaxb.exceptions.IncorrectFileException;
+import com.jaxb.POJOs.RespuestaLinea;
+import com.jaxb.exceptions.ParseException;
 import com.jaxb.services.ParseService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,31 +19,63 @@ import java.nio.file.Paths;
  */
 public class Main {
 
-    private static String filePath = "src\\main\\resources\\response.xml";
+    private static String filePathRejected = "src\\main\\resources\\responseRejected.xml";
+    private static String filePathAccepted = "src\\main\\resources\\responseAccepted.xml";
 
     private static Logger LOGGER = LoggerFactory.getLogger(Main.class);
 
-    public static void main(String[] args) throws IncorrectFileException, IOException {
+    public static void main(String[] args) throws ParseException {
 
-        ParseService  service = new ParseService();
-        String fileContent = readFile(filePath);
-        RespuestaDeclaracion response = service.parseResponse(fileContent);
+        RespuestaDeclaracion response = getResponse();
 
+        String status = translate(response.getSendStatus());
 
-        LOGGER.info("The status is [{}]", response.getSendStatus());
+        if (isAccepted())
+            LOGGER.info("The status is [{}]", status);
+        else {
+            RespuestaLinea lineResponse = response.getLineResponse();
+            int code = lineResponse.getRecordCode();
+            String errorMessage = Errors.findMessageByCode(code);
+            LOGGER.info("The status is [{}] and the arror is [{}]", status, errorMessage);
+        }
     }
 
-    public static String readFile(String path) throws IncorrectFileException {
+    public static RespuestaDeclaracion getResponse() throws ParseException {
+        ParseService  service = new ParseService();
+        String fileContent = readFile(filePathRejected);
+        RespuestaDeclaracion response = service.parseResponse(fileContent);
+        return response;
+    }
+
+    public static String readFile(String path) throws ParseException {
         byte[] encoded = null;
         try {
            encoded = Files.readAllBytes(Paths.get(path));
         } catch (NoSuchFileException e) {
-            throw new IncorrectFileException("File does not exist");
+            throw new ParseException("File does not exist");
         } catch (IOException e) {
-            throw new IncorrectFileException("IOException");
+            throw new ParseException("IOException");
         }
 
         return new String(encoded);
+    }
+
+    public static String translate(String wordToTranslate) throws ParseException {
+        String accepted = "Fully accepted";
+        String rejected = "Rejected";
+        if (wordToTranslate.equals("Aceptacion Completa"))
+            return accepted;
+        else if (wordToTranslate.equals("Rechazo Completo"))
+            return rejected;
+        else throw new ParseException("Word is not a correct status");
+
+    }
+
+    public static boolean isAccepted() throws ParseException {
+        String status = getResponse().getSendStatus();
+        if (status.equals("Aceptacion Completa"))
+            return true;
+        return false;
     }
 
 }
