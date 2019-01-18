@@ -33,7 +33,7 @@ public class Main {
 
     public static void main(String[] args) throws ParseException {
 
-        Object objectResponse = getResponse(filePathCancelationResponse);
+        Object objectResponse = getResponse(filePathWithFaultHeaderResponse);
 
         if (objectResponse instanceof RespuestaDeclaracion) {
             RespuestaDeclaracion response = (RespuestaDeclaracion) objectResponse;
