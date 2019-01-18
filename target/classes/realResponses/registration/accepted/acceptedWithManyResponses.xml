@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<env:Envelope xmlns:env="http://schemas.xmlsoap.org/soap/envelope/">
+    <env:Header/>
+    <env:Body Id="Body">
+        <ddiiR:RespuestaDeclaracion xmlns:ddiiR="https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/RespuestaDeclaracion.xsd" xmlns:ddii="https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/DeclaracionInformativa.xsd">
+            <ddiiR:CSV>VWD89JT3UVQZ3MNA</ddiiR:CSV>
+            <ddiiR:DatosPresentacion>
+                <ddii:NIFPresentador>B98156128</ddii:NIFPresentador>
+                <ddii:TimestampPresentacion>18-01-2019 00:16:18</ddii:TimestampPresentacion>
+            </ddiiR:DatosPresentacion>
+            <ddiiR:Cabecera>
+                <ddii:TipoComunicacion>A0</ddii:TipoComunicacion>
+                <ddii:Modelo>179</ddii:Modelo>
+                <ddii:Periodo>
+                    <ddii:Ejercicio>2018</ddii:Ejercicio>
+                    <ddii:Periodo>0A</ddii:Periodo>
+                </ddii:Periodo>
+                <ddii:IDVersionModelo>1.0</ddii:IDVersionModelo>
+                <ddii:IDDeclarante>
+                    <ddii:NIF>B98156128</ddii:NIF>
+                    <ddii:NombreRazon>HomeAway.com, Inc.</ddii:NombreRazon>
+                </ddii:IDDeclarante>
+            </ddiiR:Cabecera>
+            <ddiiR:EstadoEnvio>Aceptacion Completa</ddiiR:EstadoEnvio>
+            <ddiiR:RespuestaLinea>
+                <ddiiR:IDRegistroDeclarado>653</ddiiR:IDRegistroDeclarado>
+                <ddiiR:EstadoRegistro>Aceptado</ddiiR:EstadoRegistro>
+            </ddiiR:RespuestaLinea>
+            <ddiiR:RespuestaLinea>
+                <ddiiR:IDRegistroDeclarado>654</ddiiR:IDRegistroDeclarado>
+                <ddiiR:EstadoRegistro>Aceptado</ddiiR:EstadoRegistro>
+            </ddiiR:RespuestaLinea>
+            <ddiiR:RespuestaLinea>
+                <ddiiR:IDRegistroDeclarado>655</ddiiR:IDRegistroDeclarado>
+                <ddiiR:EstadoRegistro>Aceptado</ddiiR:EstadoRegistro>
+            </ddiiR:RespuestaLinea>
+            <ddiiR:RespuestaLinea>
+                <ddiiR:IDRegistroDeclarado>656</ddiiR:IDRegistroDeclarado>
+                <ddiiR:EstadoRegistro>Aceptado</ddiiR:EstadoRegistro>
+            </ddiiR:RespuestaLinea>
+            <ddiiR:RespuestaLinea>
+                <ddiiR:IDRegistroDeclarado>657</ddiiR:IDRegistroDeclarado>
+                <ddiiR:EstadoRegistro>Aceptado</ddiiR:EstadoRegistro>
+            </ddiiR:RespuestaLinea>
+            <ddiiR:RespuestaLinea>
+                <ddiiR:IDRegistroDeclarado>658</ddiiR:IDRegistroDeclarado>
+                <ddiiR:EstadoRegistro>Aceptado</ddiiR:EstadoRegistro>
+            </ddiiR:RespuestaLinea>
+            <ddiiR:RespuestaLinea>
+                <ddiiR:IDRegistroDeclarado>659</ddiiR:IDRegistroDeclarado>
+                <ddiiR:EstadoRegistro>Aceptado</ddiiR:EstadoRegistro>
+            </ddiiR:RespuestaLinea>
+            <ddiiR:RespuestaLinea>
+                <ddiiR:IDRegistroDeclarado>660</ddiiR:IDRegistroDeclarado>
+                <ddiiR:EstadoRegistro>Aceptado</ddiiR:EstadoRegistro>
+            </ddiiR:RespuestaLinea>
+        </ddiiR:RespuestaDeclaracion>
+    </env:Body>
+</env:Envelope>

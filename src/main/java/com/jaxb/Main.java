@@ -19,8 +19,8 @@ import java.nio.file.Paths;
  */
 public class Main {
 
-    private static String filePathRejected = "src\\main\\resources\\responseRejected.xml";
-    private static String filePathAccepted = "src\\main\\resources\\responseAccepted.xml";
+    private static String filePathRejected = "src\\main\\resources\\realResponses\\registration\\rejected\\rejectedResponse.xml";
+    private static String filePathAccepted = "src\\main\\resources\\realResponses\\registration\\accepted\\acceptedWithOneResponse.xml";
 
     private static Logger LOGGER = LoggerFactory.getLogger(Main.class);
 

@@ -1,0 +1,27 @@
+<env:Envelope xmlns:env="http://schemas.xmlsoap.org/soap/envelope/">
+    <env:Header/>
+    <env:Body Id="Body">
+        <ddiiRB:RespuestaBajaDI xmlns:ddiiRB="https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/RespuestaBajaDI.xsd" xmlns:ddii="https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/DeclaracionInformativa.xsd">
+            <ddiiRB:CSV>DESARROLLOLOCAL0</ddiiRB:CSV>
+            <ddiiRB:DatosPresentacion>
+                <ddii:NIFPresentador>88888880K</ddii:NIFPresentador>
+                <ddii:TimestampPresentacion>26-09-2018 13:21:15</ddii:TimestampPresentacion>
+            </ddiiRB:DatosPresentacion>
+            <ddiiRB:Cabecera>
+                <ddii:Modelo>179</ddii:Modelo>
+                <ddii:Periodo>
+                    <ddii:Ejercicio>2017</ddii:Ejercicio>
+                    <ddii:Periodo>0A</ddii:Periodo>
+                </ddii:Periodo>
+                <ddii:IDDeclarante>
+                    <ddii:NIF>01555555M</ddii:NIF>
+                    <ddii:NombreRazon>Martinez García</ddii:NombreRazon>
+                </ddii:IDDeclarante>
+            </ddiiRB:Cabecera>
+            <ddiiRB:Declarado>
+                <ddii:IDRegistroDeclarado>003</ddii:IDRegistroDeclarado>
+            </ddiiRB:Declarado>
+            <ddiiRB:EstadoEnvio>Aceptacion Completa</ddiiRB:EstadoEnvio>
+        </ddiiRB:RespuestaBajaDI>
+    </env:Body>
+</env:Envelope>

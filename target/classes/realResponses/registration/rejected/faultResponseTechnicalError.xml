@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<env:Envelope xmlns:env="http://schemas.xmlsoap.org/soap/envelope/">
+    <env:Body>
+        <env:Fault>
+            <faultcode>env:Client</faultcode>
+            <faultstring>Codigo[3100].Error técnico de BBDD: java.sql.SQLException: TABLA MAESTRA ORA-12899: el valor es demasiado grande para la columna "APL000"."DD_IIDETALLES_2018M179"."DET_ID_MEDIOPAGO" (real: 22, máximo: 20)
+            </faultstring>
+            <detail>
+                <callstack>Error técnico de BBDD: java.sql.SQLException: TABLA MAESTRA ORA-12899: el valor es demasiado grande para la columna "APL000"."DD_IIDETALLES_2018M179"."DET_ID_MEDIOPAGO" (real: 22, máximo: 20)
+
+                    WSExcepcion [faultcode=null, detailMap=null, version=0, faultstring=null, faultactor=null, faultSubCode=null, reasonText=null, detail=null, nameSpaceUriDetail=null]
+                    at es.aeat.ddii.enol.imp.modelo179.bd.DdiiM179SrvImpl.insertList(DdiiM179SrvImpl.java:636)
+                    at es.aeat.ddii.enol.ws.modelo179.ProcesaM179WS.procesaModelo179(ProcesaM179WS.java:193)
+                    at es.aeat.ddii.enol.ws.modelo179.VistaM179.procesaOperacion(VistaM179.java:35)
+                    at es.aeat.ddii.enol.ws.VistaMaestro.procesaCabecera(VistaMaestro.java:78)
+                    at es.aeat.ddii.enol.ws.VistaMaestro.inicializaParseaValidaProcesaCabecera(VistaMaestro.java:52)
+                    at es.aeat.ddii.enol.ws.modelo179.DdiiEnolM179V1SOAP.doPost(DdiiEnolM179V1SOAP.java:45)
+                    at javax.servlet.http.HttpServlet.service(HttpServlet.java:707)
+                    at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+                    at es.aeat.adws.jdit.imp.ws.WSFilterSrvImpl$1.doFilter(WSFilterSrvImpl.java:1349)
+                    at es.aeat.adws.jdit.imp.ws.WSFilterSrvImpl.doFilter(WSFilterSrvImpl.java:255)
+                    at es.aeat.adws.jdit.imp.ws.WSFilterSrvImpl.simulaWSFilter(WSFilterSrvImpl.java:1355)
+                    at es.aeat.ddii.enol.ws.modelo179.DdiiEnolM179V1SOAP.doPost(DdiiEnolM179V1SOAP.java:40)
+                    at javax.servlet.http.HttpServlet.service(HttpServlet.java:707)
+                    at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+                    at com.ibm.ws.webcontainer.servlet.ServletWrapper.service(ServletWrapper.java:1255)
+                    at com.ibm.ws.webcontainer.servlet.ServletWrapper.handleRequest(ServletWrapper.java:743)
+                    at com.ibm.ws.webcontainer.servlet.ServletWrapper.handleRequest(ServletWrapper.java:440)
+                    at com.ibm.ws.webcontainer.filter.WebAppFilterChain.invokeTarget(WebAppFilterChain.java:182)
+                    at com.ibm.ws.webcontainer.filter.WebAppFilterChain.doFilter(WebAppFilterChain.java:93)
+                    at com.ibm.ws.app.manager.wab.internal.OsgiDirectoryProtectionFilter.doFilter(OsgiDirectoryProtectionFilter.java:90)
+                    at com.ibm.ws.webcontainer.filter.FilterInstanceWrapper.doFilter(FilterInstanceWrapper.java:201)
+                    at com.ibm.ws.webcontainer.filter.WebAppFilterChain.doFilter(WebAppFilterChain.java:90)
+                    at es.aeat.adht.jdit.imp.infra.JDitFilterSrvImpl.filtroIni(JDitFilterSrvImpl.java:192)
+                    at es.aeat.adht.jdit.imp.infra.JDitFilterSrvImpl.doFilter(JDitFilterSrvImpl.java:87)
+                    at es.aeat.adht.jdit.imp.infra.JDitFilterSrvImpl.doFilter(JDitFilterSrvImpl.java:64)
+                    at es.aeat.adht.jdit.api.filter.JDitFilter.doFilter(JDitFilter.java:24)
+                    at com.ibm.ws.webcontainer.filter.FilterInstanceWrapper.doFilter(FilterInstanceWrapper.java:201)
+                    at com.ibm.ws.webcontainer.filter.WebAppFilterChain.doFilter(WebAppFilterChain.java:90)
+                    at com.ibm.ws.webcontainer.filter.WebAppFilterManager.doFilter(WebAppFilterManager.java:996)
+                    at com.ibm.ws.webcontainer.filter.WebAppFilterManager.invokeFilters(WebAppFilterManager.java:1134)
+                    at com.ibm.ws.webcontainer.filter.WebAppFilterManager.invokeFilters(WebAppFilterManager.java:1005)
+                    at com.ibm.ws.webcontainer.servlet.CacheServletWrapper.handleRequest(CacheServletWrapper.java:75)
+                    at com.ibm.ws.webcontainer.WebContainer.handleRequest(WebContainer.java:927)
+                    at com.ibm.ws.webcontainer.osgi.DynamicVirtualHost$2.run(DynamicVirtualHost.java:279)
+                    at com.ibm.ws.http.dispatcher.internal.channel.HttpDispatcherLink$TaskWrapper.run(HttpDispatcherLink.java:1011)
+                    at com.ibm.ws.http.dispatcher.internal.channel.HttpDispatcherLink.wrapHandlerAndExecute(HttpDispatcherLink.java:414)
+                    at com.ibm.ws.http.dispatcher.internal.channel.HttpDispatcherLink.ready(HttpDispatcherLink.java:373)
+                    at com.ibm.ws.http.channel.internal.inbound.HttpInboundLink.handleDiscrimination(HttpInboundLink.java:532)
+                    at com.ibm.ws.http.channel.internal.inbound.HttpInboundLink.handleNewRequest(HttpInboundLink.java:466)
+                    at com.ibm.ws.http.channel.internal.inbound.HttpInboundLink.processRequest(HttpInboundLink.java:331)
+                    at com.ibm.ws.http.channel.internal.inbound.HttpInboundLink.ready(HttpInboundLink.java:302)
+                    at com.ibm.ws.tcpchannel.internal.NewConnectionInitialReadCallback.sendToDiscriminators(NewConnectionInitialReadCallback.java:165)
+                    at com.ibm.ws.tcpchannel.internal.NewConnectionInitialReadCallback.complete(NewConnectionInitialReadCallback.java:74)
+                    at com.ibm.ws.tcpchannel.internal.WorkQueueManager.requestComplete(WorkQueueManager.java:501)
+                    at com.ibm.ws.tcpchannel.internal.WorkQueueManager.attemptIO(WorkQueueManager.java:571)
+                    at com.ibm.ws.tcpchannel.internal.WorkQueueManager.workerRun(WorkQueueManager.java:926)
+                    at com.ibm.ws.tcpchannel.internal.WorkQueueManager$Worker.run(WorkQueueManager.java:1015)
+                    at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1153)
+                    at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+                    at java.lang.Thread.run(Thread.java:785)
+                    Caused by: java.sql.SQLException: TABLA MAESTRA ORA-12899: el valor es demasiado grande para la columna "APL000"."DD_IIDETALLES_2018M179"."DET_ID_MEDIOPAGO" (real: 22, máximo: 20)
+
+                    at es.aeat.ddii.enol.imp.modelo179.sql.DdiiM179LlamadaJDBC.insertarListaOrig(DdiiM179LlamadaJDBC.java:316)
+                    at es.aeat.ddii.enol.imp.modelo179.sql.DdiiM179LlamadaJDBC.insertarLista(DdiiM179LlamadaJDBC.java:235)
+                    at es.aeat.ddii.enol.imp.modelo179.bd.DdiiM179SrvImpl.insertList(DdiiM179SrvImpl.java:622)
+                    ... 49 more
+                </callstack>
+            </detail>
+        </env:Fault>
+    </env:Body>
+</env:Envelope>

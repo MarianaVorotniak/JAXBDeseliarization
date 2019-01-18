@@ -15,4 +15,10 @@ public class Body {
     @XmlAttribute(name = "Id")
     private String id;
 
+    @XmlElement(name = "RespuestaConsultaDI", namespace = "https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/RespuestaConsultaDI.xsd")
+    private RespuestaConsultaDI responseConsultationDI;
+
+    @XmlElement(name = "RespuestaBajaDI", namespace = "https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/RespuestaBajaDI.xsd")
+    private RespuestaBajaDI cancelationResponseDI;
+
 }

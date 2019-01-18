@@ -1,0 +1,57 @@
+<env:Envelope xmlns:env="http://schemas.xmlsoap.org/soap/envelope/">
+    <env:Header/>
+    <env:Body Id="Body">
+        <ddiiRC:RespuestaConsultaDI xmlns:ddii="https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/DeclaracionInformativa.xsd" xmlns:ddiiRC="https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/RespuestaConsultaDI.xsd">
+            <ddiiRC:Cabecera>
+                <ddii:Modelo>179</ddii:Modelo>
+                <ddii:Periodo>
+                    <ddii:Ejercicio>2018</ddii:Ejercicio>
+                    <ddii:Periodo>0A</ddii:Periodo>
+                </ddii:Periodo>
+                <ddii:IDDeclarante>
+                    <ddii:NIF>G9999999J</ddii:NIF>
+                    <ddii:NombreRazon>EMPRESA XXXXX</ddii:NombreRazon>
+                </ddii:IDDeclarante>
+            </ddiiRC:Cabecera>
+            <ddiiRC:ResultadoConsulta>ConDatos</ddiiRC:ResultadoConsulta>
+            <ddiiRC:Declarado>
+                <ddii:IDRegistroDeclarado>500001</ddii:IDRegistroDeclarado>
+                <ddii:IDDeclarado>
+                    <ddii:Clave>T</ddii:Clave>
+                    <ddii:NombreRazon>Moreno Moreno </ddii:NombreRazon>
+                    <ddii:NIF>04444444T</ddii:NIF>
+                </ddii:IDDeclarado>
+                <ddii:Detalle>
+                    <ddii:IDCesionario>
+                        <ddii:NombreRazon>BBBBBB BBBBB B</ddii:NombreRazon>
+                        <ddii:NIF>01010101M</ddii:NIF>
+                    </ddii:IDCesionario>
+                    <ddii:IDInmueble>
+                        <ddii:SituacionInmueble>1</ddii:SituacionInmueble>
+                        <ddii:DatosInmueble>
+                            <ddii:ReferenciaCatastral>28088888888S</ddii:ReferenciaCatastral>
+                            <ddii:Direccion>
+                                <ddii:NombreMunicipio>BBBB</ddii:NombreMunicipio>
+                                <ddii:CodigoMunicipio>600</ddii:CodigoMunicipio>
+                                <ddii:CodigoProvincia>04</ddii:CodigoProvincia>
+                            </ddii:Direccion>
+                        </ddii:DatosInmueble>
+                    </ddii:IDInmueble>
+                    <ddii:DesgloseOperacion>
+                        <ddii:PeriodoCesion>
+                            <ddii:FechaIntermediacion>27-06-2017</ddii:FechaIntermediacion>
+                            <ddii:FechaInicioCesion>16-08-2018</ddii:FechaInicioCesion>
+                            <ddii:NumeroDiasDisfrute>8</ddii:NumeroDiasDisfrute>
+                        </ddii:PeriodoCesion>
+                        <ddii:Importe>388.50</ddii:Importe>
+                        <ddii:NumeroContrato>4000001</ddii:NumeroContrato>
+                        <ddii:MedioPago>
+                            <ddii:ClaveMedioPago>1</ddii:ClaveMedioPago>
+                            <ddii:IDMedioPago>Transferencia</ddii:IDMedioPago>
+                        </ddii:MedioPago>
+                    </ddii:DesgloseOperacion>
+                </ddii:Detalle>
+            </ddiiRC:Declarado>
+        </ddiiRC:RespuestaConsultaDI>
+    </env:Body>
+</env:Envelope>

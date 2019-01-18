@@ -24,4 +24,7 @@ public class RespuestaDeclaracion {
     @XmlElement(name = "DatosPresentacion", namespace = "https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/RespuestaDeclaracion.xsd")
     private DatosPresentacion presentationData;
 
+    @XmlElement(name = "Declarado", namespace = "https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/RespuestaDeclaracion.xsd")
+    private Declarado declaration;
+
 }

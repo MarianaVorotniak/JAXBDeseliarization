@@ -64,6 +64,6 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="pentium_pro+mmx pentium_pro pentium+mmx pentium i486 i386 i86"/>
   </properties>
-  <testcase classname="com.jaxb.MainTest" name="translateTest" time="0.047"/>
-  <testcase classname="com.jaxb.MainTest" name="readFileTest" time="0.016"/>
+  <testcase classname="com.jaxb.MainTest" name="translateTest" time="0.063"/>
+  <testcase classname="com.jaxb.MainTest" name="readFileTest" time="0"/>
 </testsuite>

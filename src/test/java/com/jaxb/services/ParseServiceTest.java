@@ -3,7 +3,6 @@ package com.jaxb.services;
 import com.jaxb.Main;
 import com.jaxb.exceptions.ParseException;
 import com.jaxb.POJOs.*;
-import com.jaxb.services.ParseService;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -43,7 +42,6 @@ public class ParseServiceTest {
     public ExpectedException expectedEx = ExpectedException.none();
 
     private String filePath;
-    private String incorrectFilePath;
     private String incorrectFile;
     private String wrongXml;
 
@@ -60,7 +58,7 @@ public class ParseServiceTest {
 
         head = new Cabecera();
         head.setCommunicationType("A0");
-        head.setIdDeclarante(idDeclarante);
+        head.setIdDeclaration(idDeclarante);
         head.setModelNumber(179);
         head.setModelVersionID("1.0");
         head.setPeriod(period);
@@ -85,10 +83,9 @@ public class ParseServiceTest {
         expectedEnvelope.setHeader(header);
         expectedEnvelope.setResponseBody(body);
 
-        filePath = "src\\main\\resources\\responseRejected.xml";
-        incorrectFilePath = "src\\main\\resources\\responsee.xml";
-        incorrectFile = "src\\main\\resources\\wrongResponse.xml";
-        wrongXml = "src\\main\\resources\\wrongXml.xml";
+        filePath = "src\\main\\resources\\realResponses\\registration\\rejected\\rejectedResponse.xml";
+        incorrectFile = "src\\main\\resources\\testResponses\\wrongResponse.xml";
+        wrongXml = "src\\main\\resources\\testResponses\\wrongXml.xml";
     }
 
     @Test
@@ -106,9 +103,9 @@ public class ParseServiceTest {
         assertEquals(head, respuestaDeclaracion.getCabecera());
         assertEquals(head.getCommunicationType(), respuestaDeclaracion.getCabecera().getCommunicationType());
 
-        assertEquals(head.getIdDeclarante(), respuestaDeclaracion.getCabecera().getIdDeclarante());
-        assertEquals(head.getIdDeclarante().getNif(), respuestaDeclaracion.getCabecera().getIdDeclarante().getNif());
-        assertEquals(head.getIdDeclarante().getReasonName(), respuestaDeclaracion.getCabecera().getIdDeclarante().getReasonName());
+        assertEquals(head.getIdDeclaration(), respuestaDeclaracion.getCabecera().getIdDeclaration());
+        assertEquals(head.getIdDeclaration().getNif(), respuestaDeclaracion.getCabecera().getIdDeclaration().getNif());
+        assertEquals(head.getIdDeclaration().getReasonName(), respuestaDeclaracion.getCabecera().getIdDeclaration().getReasonName());
 
         assertEquals(head.getModelNumber(), respuestaDeclaracion.getCabecera().getModelNumber());
         assertEquals(head.getModelVersionID(), respuestaDeclaracion.getCabecera().getModelVersionID());

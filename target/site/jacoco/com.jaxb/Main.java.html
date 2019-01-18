@@ -19,8 +19,8 @@ import java.nio.file.Paths;
  */
 <span class="nc" id="L20">public class Main {</span>
 
-<span class="fc" id="L22">    private static String filePathRejected = &quot;src\\main\\resources\\responseRejected.xml&quot;;</span>
-<span class="fc" id="L23">    private static String filePathAccepted = &quot;src\\main\\resources\\responseAccepted.xml&quot;;</span>
+<span class="fc" id="L22">    private static String filePathRejected = &quot;src\\main\\resources\\realResponses\\rejected\\rejectedResponse.xml&quot;;</span>
+<span class="fc" id="L23">    private static String filePathAccepted = &quot;src\\main\\resources\\realResponses\\accepted\\acceptedWithOneResponse.xml&quot;;</span>
 
 <span class="fc" id="L25">    private static Logger LOGGER = LoggerFactory.getLogger(Main.class);</span>
 
@@ -30,18 +30,18 @@ import java.nio.file.Paths;
 
 <span class="nc" id="L31">        String status = translate(response.getSendStatus());</span>
 
-<span class="nc bnc" id="L33" title="All 2 branches missed.">        if (isAccepted())</span>
+<span class="nc bnc" id="L33" title="All 2 branches missed.">        if (isAccepted(response))</span>
 <span class="nc" id="L34">            LOGGER.info(&quot;The status is [{}]&quot;, status);</span>
         else {
 <span class="nc" id="L36">            RespuestaLinea lineResponse = response.getLineResponse();</span>
 <span class="nc" id="L37">            int code = lineResponse.getRecordCode();</span>
 <span class="nc" id="L38">            String errorMessage = Errors.findMessageByCode(code);</span>
-<span class="nc" id="L39">            LOGGER.info(&quot;The status is [{}] and the arror is [{}]&quot;, status, errorMessage);</span>
+<span class="nc" id="L39">            LOGGER.info(&quot;The status is [{}] and the error is [{}]&quot;, status, errorMessage);</span>
         }
 <span class="nc" id="L41">    }</span>
 
-    public static boolean isAccepted() throws ParseException {
-<span class="nc" id="L44">        String status = getResponse().getSendStatus();</span>
+    public static boolean isAccepted(RespuestaDeclaracion response) {
+<span class="nc" id="L44">        String status = response.getSendStatus();</span>
 <span class="nc bnc" id="L45" title="All 2 branches missed.">        if (status.equals(&quot;Aceptacion Completa&quot;))</span>
 <span class="nc" id="L46">            return true;</span>
 <span class="nc" id="L47">        return false;</span>
