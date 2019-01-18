@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DesgloseOperacion.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JAXBDeseliarization</a> &gt; <a href="index.source.html" class="el_package">com.jaxb.POJOs</a> &gt; <span class="el_source">DesgloseOperacion.java</span></div><h1>DesgloseOperacion.java</h1><pre class="source lang-java linenums">package com.jaxb.POJOs;
+
+import lombok.Data;
+
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
+
+<span class="nc bnc" id="L11" title="All 32 branches missed.">@Data</span>
+@XmlType(name = &quot;DesgloseOperacion&quot;)
+@XmlAccessorType(XmlAccessType.FIELD)
+public class DesgloseOperacion {
+
+    @XmlElement(name = &quot;PeriodoCesion&quot;, namespace=&quot;https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/DeclaracionInformativa.xsd&quot;)
+<span class="nc" id="L17">    private PeriodoCesion assignmentPeriod;</span>
+
+    @XmlElement(name = &quot;Importe&quot;, namespace=&quot;https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/DeclaracionInformativa.xsd&quot;)
+<span class="nc" id="L20">    private double amount;</span>
+
+    @Size (max = 20)
+    @XmlElement(name = &quot;NumeroContrato&quot;, namespace=&quot;https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/DeclaracionInformativa.xsd&quot;)
+<span class="nc" id="L24">    private String contractNumber;</span>
+
+    @XmlElement(name = &quot;MedioPago&quot;, namespace=&quot;https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/DeclaracionInformativa.xsd&quot;)
+<span class="nc" id="L27">    private MedioPago paymentMethod;</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>

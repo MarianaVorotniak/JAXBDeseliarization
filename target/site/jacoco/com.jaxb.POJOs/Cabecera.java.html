@@ -2,27 +2,31 @@
 
 import lombok.Data;
 
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.*;
 
-<span class="pc bpc" id="L7" title="26 of 40 branches missed.">@Data</span>
+<span class="pc bpc" id="L8" title="26 of 40 branches missed.">@Data</span>
 @XmlType(name = &quot;Cabecera&quot;)
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Cabecera {
 
+    @Size(max = 2)
     @XmlElement(name = &quot;TipoComunicacion&quot;, namespace=&quot;https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/DeclaracionInformativa.xsd&quot;)
-<span class="fc" id="L13">    private String communicationType;</span>
+<span class="fc" id="L15">    private String communicationType;</span>
 
+    @Size (max = 3)
     @XmlElement(name = &quot;Modelo&quot;, namespace=&quot;https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/DeclaracionInformativa.xsd&quot;)
-<span class="fc" id="L16">    private int modelNumber;</span>
+<span class="fc" id="L19">    private int modelNumber;</span>
 
     @XmlElement(name = &quot;Periodo&quot;, namespace=&quot;https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/DeclaracionInformativa.xsd&quot;)
-<span class="fc" id="L19">    private Periodo period;</span>
+<span class="fc" id="L22">    private Periodo period;</span>
 
+    @Size (max = 3)
     @XmlElement(name = &quot;IDVersionModelo&quot;, namespace=&quot;https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/DeclaracionInformativa.xsd&quot;)
-<span class="fc" id="L22">    private String modelVersionID;</span>
+<span class="fc" id="L26">    private String modelVersionID;</span>
 
     @XmlElement(name = &quot;IDDeclarante&quot;, namespace=&quot;https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/DeclaracionInformativa.xsd&quot;)
-<span class="fc" id="L25">    private IDDeclarante idDeclarante;</span>
+<span class="fc" id="L29">    private IDDeclarante idDeclaration;</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>

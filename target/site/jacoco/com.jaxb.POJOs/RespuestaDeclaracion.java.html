@@ -3,26 +3,30 @@
 import lombok.Data;
 
 import javax.xml.bind.annotation.*;
+import java.util.List;
 
-<span class="pc bpc" id="L7" title="40 of 46 branches missed.">@Data</span>
+<span class="pc bpc" id="L8" title="48 of 54 branches missed.">@Data</span>
 @XmlType(name = &quot;RespuestaDeclaracion&quot;)
 @XmlAccessorType(XmlAccessType.FIELD)
 public class RespuestaDeclaracion {
 
     @XmlElement(name = &quot;Cabecera&quot;, namespace = &quot;https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/RespuestaDeclaracion.xsd&quot;)
-<span class="fc" id="L13">    private Cabecera cabecera;</span>
+<span class="fc" id="L14">    private Cabecera cabecera;</span>
 
     @XmlElement(name = &quot;EstadoEnvio&quot;, namespace = &quot;https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/RespuestaDeclaracion.xsd&quot;)
-<span class="fc" id="L16">    private String sendStatus;</span>
+<span class="fc" id="L17">    private String sendStatus;</span>
 
     @XmlElement(name = &quot;RespuestaLinea&quot;, namespace = &quot;https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/RespuestaDeclaracion.xsd&quot;)
-<span class="fc" id="L19">    private RespuestaLinea lineResponse;</span>
+<span class="fc" id="L20">    private List&lt;RespuestaLinea&gt; lineResponse;</span>
 
     @XmlElement(name = &quot;CSV&quot;, namespace = &quot;https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/RespuestaDeclaracion.xsd&quot;)
-<span class="nc" id="L22">    private String csv;</span>
+<span class="nc" id="L23">    private String csv;</span>
 
     @XmlElement(name = &quot;DatosPresentacion&quot;, namespace = &quot;https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/RespuestaDeclaracion.xsd&quot;)
-<span class="nc" id="L25">    private DatosPresentacion presentationData;</span>
+<span class="nc" id="L26">    private DatosPresentacion presentationData;</span>
+
+    @XmlElement(name = &quot;Declarado&quot;, namespace = &quot;https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/RespuestaDeclaracion.xsd&quot;)
+<span class="nc" id="L29">    private Declarado declaration;</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>

@@ -4,7 +4,7 @@ import lombok.*;
 
 import javax.xml.bind.annotation.*;
 
-<span class="pc bpc" id="L7" title="21 of 22 branches missed.">@Data</span>
+<span class="pc bpc" id="L7" title="37 of 38 branches missed.">@Data</span>
 @XmlType(name = &quot;Body&quot;)
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Body {
@@ -14,6 +14,12 @@ public class Body {
 
     @XmlAttribute(name = &quot;Id&quot;)
 <span class="nc" id="L16">    private String id;</span>
+
+    @XmlElement(name = &quot;RespuestaConsultaDI&quot;, namespace = &quot;https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/RespuestaConsultaDI.xsd&quot;)
+<span class="nc" id="L19">    private RespuestaConsultaDI responseConsultationDI;</span>
+
+    @XmlElement(name = &quot;RespuestaBajaDI&quot;, namespace = &quot;https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/RespuestaBajaDI.xsd&quot;)
+<span class="nc" id="L22">    private RespuestaBajaDI cancelationResponseDI;</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>

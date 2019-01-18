@@ -12,6 +12,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
 
@@ -30,7 +33,7 @@ public class ParseServiceTest {
     @Mock
     private Cabecera head;
     @Mock
-    private RespuestaLinea lineResponse;
+    private List<RespuestaLinea> lineResponses;
     @Mock
     private RespuestaDeclaracion declarationResponse;
     @Mock
@@ -63,15 +66,16 @@ public class ParseServiceTest {
         head.setModelVersionID("1.0");
         head.setPeriod(period);
 
-        lineResponse =  new RespuestaLinea();
-        lineResponse.setErrorDescription("El NIF no esta identificado. NIF: 77780619R. NOMBRE_RAZON: SunSea Costa Brava. ");
-        lineResponse.setRecordCode(1106);
-        lineResponse.setRecordID("000009");
-        lineResponse.setRecordStatus("Rechazado");
+        lineResponses =  new ArrayList<>();
+        lineResponses.add(new RespuestaLinea());
+        lineResponses.get(0).setErrorDescription("El NIF no esta identificado. NIF: 77780619R. NOMBRE_RAZON: SunSea Costa Brava. ");
+        lineResponses.get(0).setRecordCode(1106);
+        lineResponses.get(0).setRecordID("000009");
+        lineResponses.get(0).setRecordStatus("Rechazado");
 
         declarationResponse = new RespuestaDeclaracion();
         declarationResponse.setCabecera(head);
-        declarationResponse.setLineResponse(lineResponse);
+        declarationResponse.setLineResponse(lineResponses);
         declarationResponse.setSendStatus("Rechazo Completo");
 
         body = new Body();
@@ -119,11 +123,11 @@ public class ParseServiceTest {
         assertEquals(declarationResponse.getCabecera(), actualResponse.getCabecera());
         assertEquals(declarationResponse.getLineResponse(), actualResponse.getLineResponse());
 
-        assertEquals(lineResponse, respuestaDeclaracion.getLineResponse());
-        assertEquals(lineResponse.getErrorDescription(), respuestaDeclaracion.getLineResponse().getErrorDescription());
-        assertEquals(lineResponse.getRecordCode(), respuestaDeclaracion.getLineResponse().getRecordCode());
-        assertEquals(lineResponse.getRecordID(), respuestaDeclaracion.getLineResponse().getRecordID());
-        assertEquals(lineResponse.getRecordStatus(), respuestaDeclaracion.getLineResponse().getRecordStatus());
+        assertEquals(lineResponses, respuestaDeclaracion.getLineResponse());
+        assertEquals(lineResponses.get(0).getErrorDescription(), respuestaDeclaracion.getLineResponse().get(0).getErrorDescription());
+        assertEquals(lineResponses.get(0).getRecordCode(), respuestaDeclaracion.getLineResponse().get(0).getRecordCode());
+        assertEquals(lineResponses.get(0).getRecordID(), respuestaDeclaracion.getLineResponse().get(0).getRecordID());
+        assertEquals(lineResponses.get(0).getRecordStatus(), respuestaDeclaracion.getLineResponse().get(0).getRecordStatus());
 
     }
 

@@ -2,18 +2,21 @@
 
 import lombok.Data;
 
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.*;
 
-<span class="pc bpc" id="L7" title="10 of 16 branches missed.">@Data</span>
+<span class="pc bpc" id="L8" title="10 of 16 branches missed.">@Data</span>
 @XmlType(name = &quot;Periodo&quot;)
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Periodo {
 
+    @Size(max = 4)
     @XmlElement(name = &quot;Ejercicio&quot;, namespace=&quot;https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/DeclaracionInformativa.xsd&quot;)
-<span class="fc" id="L13">    private int exerciseNumber;</span>
+<span class="fc" id="L15">    private int exerciseNumber;</span>
 
+    @Size (max = 2)
     @XmlElement(name = &quot;Periodo&quot;, namespace=&quot;https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/DeclaracionInformativa.xsd&quot;)
-<span class="fc" id="L16">    private String periodCode;</span>
+<span class="fc" id="L19">    private String periodCode;</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>

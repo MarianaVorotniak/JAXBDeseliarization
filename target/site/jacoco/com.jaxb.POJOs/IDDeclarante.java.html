@@ -2,18 +2,27 @@
 
 import lombok.Data;
 
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.*;
 
-<span class="pc bpc" id="L7" title="14 of 22 branches missed.">@Data</span>
+<span class="pc bpc" id="L8" title="26 of 38 branches missed.">@Data</span>
 @XmlType(name = &quot;IDDeclarante&quot;)
 @XmlAccessorType(XmlAccessType.FIELD)
 public class IDDeclarante {
 
+    @Size (max = 9)
     @XmlElement(name = &quot;NIF&quot;, namespace=&quot;https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/DeclaracionInformativa.xsd&quot;)
-<span class="fc" id="L13">    private String nif;</span>
+<span class="fc" id="L15">    private String nif;</span>
 
+    @Size (max = 120)
     @XmlElement(name = &quot;NombreRazon&quot;, namespace=&quot;https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/DeclaracionInformativa.xsd&quot;)
-<span class="fc" id="L16">    private String reasonName;</span>
+<span class="fc" id="L19">    private String reasonName;</span>
 
+    @Size (max = 9)
+    @XmlElement(name = &quot;NIFRepresentante&quot;, namespace=&quot;https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/DeclaracionInformativa.xsd&quot;)
+<span class="fc" id="L23">    private String nifRepresentative;</span>
+
+    @XmlElement(name = &quot;PersonaContacto&quot;, namespace=&quot;https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/DeclaracionInformativa.xsd&quot;)
+<span class="fc" id="L26">    private PersonaContacto contactPerson;</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>

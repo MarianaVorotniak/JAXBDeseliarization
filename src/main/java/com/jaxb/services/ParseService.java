@@ -1,9 +1,7 @@
 package com.jaxb.services;
 
+import com.jaxb.POJOs.*;
 import com.jaxb.exceptions.ParseException;
-import com.jaxb.POJOs.Body;
-import com.jaxb.POJOs.Envelope;
-import com.jaxb.POJOs.RespuestaDeclaracion;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,16 +15,41 @@ public class ParseService {
     private static Logger LOGGER = LoggerFactory.getLogger(ParseService.class);
 
     public RespuestaDeclaracion parseResponse(String fileContent) throws ParseException {
-        Envelope fullResponse = unmarshal(fileContent);
-
-        Body bodyResponse = fullResponse.getResponseBody();
+        Body bodyResponse = getResponseBody(fileContent);
         RespuestaDeclaracion declarationResponse = bodyResponse.getDeclarationResponse();
 
         return declarationResponse;
     }
 
+    public Fault parseFaultResponse(String fileContent) throws ParseException {
+        Body bodyResponse = getResponseBody(fileContent);
+        Fault fault = bodyResponse.getFault();
 
-    private Envelope unmarshal(String fileContent) throws ParseException {
+        return fault;
+    }
+
+    public RespuestaConsultaDI parseConsultationResponse(String fileContent) throws ParseException {
+        Body bodyResponse = getResponseBody(fileContent);
+        RespuestaConsultaDI consultationResponse = bodyResponse.getResponseConsultationDI();
+
+        return consultationResponse;
+    }
+
+    public RespuestaBajaDI parseCancelationResponse(String fileContent) throws ParseException {
+        Body bodyResponse = getResponseBody(fileContent);
+        RespuestaBajaDI cancelationResponse = bodyResponse.getCancelationResponseDI();
+
+        return cancelationResponse;
+    }
+
+    public Body getResponseBody(String fileContent) throws ParseException {
+        Envelope fullResponse = unmarshal(fileContent);
+        Body bodyResponse = fullResponse.getResponseBody();
+
+        return bodyResponse;
+    }
+
+    public Envelope unmarshal(String fileContent) throws ParseException {
 
         if (fileContent == null)
             throw new ParseException("File content is null");

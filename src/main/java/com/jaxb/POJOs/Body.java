@@ -21,4 +21,7 @@ public class Body {
     @XmlElement(name = "RespuestaBajaDI", namespace = "https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/RespuestaBajaDI.xsd")
     private RespuestaBajaDI cancelationResponseDI;
 
+    @XmlElement(name="Fault", namespace = "http://schemas.xmlsoap.org/soap/envelope/")
+    private Fault fault;
+
 }
