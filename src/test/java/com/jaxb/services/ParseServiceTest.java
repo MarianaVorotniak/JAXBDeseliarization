@@ -1,6 +1,5 @@
 package com.jaxb.services;
 
-import com.jaxb.Main;
 import com.jaxb.exceptions.ParseException;
 import com.jaxb.POJOs.*;
 import org.junit.Before;
@@ -11,7 +10,10 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
+import org.xml.sax.SAXException;
 
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,6 +47,9 @@ public class ParseServiceTest {
     public ExpectedException expectedEx = ExpectedException.none();
 
     private String filePath;
+    private String filePathForConsultation;
+    private String filePathForCancelation;
+    private String filePathFault;
     private String incorrectFile;
     private String wrongXml;
 
@@ -88,6 +93,9 @@ public class ParseServiceTest {
         expectedEnvelope.setResponseBody(body);
 
         filePath = "src\\main\\resources\\realResponses\\registration\\rejected\\rejectedResponse.xml";
+        filePathForConsultation = "src\\main\\resources\\realResponses\\consultation\\consultationResponse.xml";
+        filePathForCancelation = "src\\main\\resources\\realResponses\\cancelation\\cancelationResponse.xml";
+        filePathFault = "src\\main\\resources\\realResponses\\registration\\rejected\\faultResponseHeaderError.xml";
         incorrectFile = "src\\main\\resources\\testResponses\\wrongResponse.xml";
         wrongXml = "src\\main\\resources\\testResponses\\wrongXml.xml";
     }
@@ -95,7 +103,7 @@ public class ParseServiceTest {
     @Test
     public void parseResponseTest() throws ParseException {
 
-        String fileContent = Main.readFile(filePath);
+        String fileContent = MainService.readFile(filePath);
 
         RespuestaDeclaracion respuestaDeclaracion = parseService.parseResponse(fileContent);
 
@@ -132,8 +140,38 @@ public class ParseServiceTest {
     }
 
     @Test
+    public void parseConsultationResponseTest() throws ParseException {
+        String fileContent = MainService.readFile(filePathForConsultation);
+
+        RespuestaConsultaDI respuestaConsultaDI = parseService.parseConsultationResponse(fileContent);
+
+        assertEquals("ConDatos", respuestaConsultaDI.getConsultationResult());
+        assertEquals("01010101M", respuestaConsultaDI.getDeclaration().getDetail().getIdAssignee().getNif());
+    }
+
+
+    @Test
+    public void parseCancelationResponseTest() throws ParseException {
+        String fileContent = MainService.readFile(filePathForCancelation);
+
+        RespuestaBajaDI respuestaBajaDI = parseService.parseCancelationResponse(fileContent);
+
+        assertEquals("DESARROLLOLOCAL0", respuestaBajaDI.getCsv());
+        assertNotEquals("88888880Ks", respuestaBajaDI.getPresentationDate().getNifPresenter());
+    }
+
+    @Test
+    public void parseFaultResponseTest() throws ParseException, IOException, SAXException, ParserConfigurationException {
+        String fileContent = MainService.readFile(filePathFault);
+
+        Fault fault = parseService.parseFaultResponse(fileContent);
+
+        assertEquals("env:Client", fault.getFaultcode());
+    }
+
+    @Test
     public void parseResponseWithIncorrectFileContentTest() throws ParseException {
-        String fileContent = Main.readFile(incorrectFile);
+        String fileContent = MainService.readFile(incorrectFile);
         RespuestaDeclaracion respuestaDeclaracion = parseService.parseResponse(fileContent);
         assertThat(declarationResponse, is(not(respuestaDeclaracion)));
     }
@@ -142,7 +180,7 @@ public class ParseServiceTest {
     public void parseResponseWithWrongXmlTest() throws ParseException {
         expectedEx.expect(ParseException.class);
         expectedEx.expectMessage("Wrong xml");
-        String fileContent = Main.readFile(wrongXml);
+        String fileContent = MainService.readFile(wrongXml);
         RespuestaDeclaracion respuestaDeclaracion = parseService.parseResponse(fileContent);
     }
 
@@ -160,4 +198,68 @@ public class ParseServiceTest {
         RespuestaDeclaracion respuestaDeclaracion = parseService.parseResponse(null);
     }
 
+
+
+
+    @Test
+    public void parseResponseWithIncorrectFileContentTestForConsultation() throws ParseException {
+        String fileContent = MainService.readFile(incorrectFile);
+        RespuestaConsultaDI respuestaConsultaDI = parseService.parseConsultationResponse(fileContent);
+        assertThat(declarationResponse, is(not(respuestaConsultaDI)));
+    }
+
+    @Test
+    public void parseResponseWithWrongXmlTestForConsultation() throws ParseException {
+        expectedEx.expect(ParseException.class);
+        expectedEx.expectMessage("Wrong xml");
+        String fileContent = MainService.readFile(wrongXml);
+        RespuestaConsultaDI respuestaConsultaDI = parseService.parseConsultationResponse(fileContent);
+    }
+
+    @Test
+    public void parseResponseWithEmptyContentTestForConsultation() throws ParseException {
+        expectedEx.expect(ParseException.class);
+        expectedEx.expectMessage("File content is empty");
+        RespuestaConsultaDI respuestaConsultaDI = parseService.parseConsultationResponse("");
+    }
+
+    @Test
+    public void parseResponseWithNullPathTestForConsultation() throws ParseException {
+        expectedEx.expect(ParseException.class);
+        expectedEx.expectMessage("File content is null");
+        RespuestaConsultaDI respuestaConsultaDI = parseService.parseConsultationResponse(null);
+    }
+
+
+
+
+
+    @Test
+    public void parseResponseWithIncorrectFileContentTestForCancelation() throws ParseException {
+        String fileContent = MainService.readFile(incorrectFile);
+        RespuestaBajaDI respuestaBajaDI = parseService.parseCancelationResponse(fileContent);
+        assertThat(declarationResponse, is(not(respuestaBajaDI)));
+    }
+
+    @Test
+    public void parseResponseWithWrongXmlTestForCancelation() throws ParseException {
+        expectedEx.expect(ParseException.class);
+        expectedEx.expectMessage("Wrong xml");
+        String fileContent = MainService.readFile(wrongXml);
+        RespuestaBajaDI respuestaBajaDI = parseService.parseCancelationResponse(fileContent);
+    }
+
+    @Test
+    public void parseResponseWithEmptyContentTestForCancelation() throws ParseException {
+        expectedEx.expect(ParseException.class);
+        expectedEx.expectMessage("File content is empty");
+        RespuestaBajaDI respuestaBajaDI = parseService.parseCancelationResponse("");
+    }
+
+    @Test
+    public void parseResponseWithNullPathTestForCancelation() throws ParseException {
+        expectedEx.expect(ParseException.class);
+        expectedEx.expectMessage("File content is null");
+        RespuestaBajaDI respuestaBajaDI = parseService.parseCancelationResponse(null);
+    }
 }

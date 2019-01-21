@@ -1,6 +1,7 @@
 com\jaxb\POJOs\IDDeclarado.class
 com\jaxb\POJOs\DesgloseOperacion.class
 com\jaxb\POJOs\Direccion.class
+com\jaxb\POJOs\Fault.class
 com\jaxb\POJOs\PeriodoCesion.class
 com\jaxb\services\ParseService.class
 com\jaxb\POJOs\RespuestaConsultaDI.class
@@ -14,11 +15,13 @@ com\jaxb\POJOs\IDInmueble.class
 com\jaxb\POJOs\IDDeclarante.class
 com\jaxb\POJOs\DatosPresentacion.class
 com\jaxb\POJOs\RespuestaBajaDI.class
+com\jaxb\services\MainService.class
 com\jaxb\POJOs\MedioPago.class
 com\jaxb\POJOs\RespuestaDeclaracion.class
 com\jaxb\POJOs\Header.class
 com\jaxb\Errors$1.class
 com\jaxb\exceptions\ParseException.class
+com\jaxb\POJOs\Detail.class
 com\jaxb\POJOs\RespuestaLinea.class
 com\jaxb\POJOs\IDCesionario.class
 com\jaxb\Main.class

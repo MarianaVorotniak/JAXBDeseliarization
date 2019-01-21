@@ -1,13 +1,21 @@
 package com.jaxb.services;
 
 import com.jaxb.POJOs.*;
+import com.jaxb.POJOs.Detail;
 import com.jaxb.exceptions.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.w3c.dom.Document;
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.IOException;
 import java.io.StringReader;
 
 public class ParseService {
@@ -21,9 +29,22 @@ public class ParseService {
         return declarationResponse;
     }
 
-    public Fault parseFaultResponse(String fileContent) throws ParseException {
-        Body bodyResponse = getResponseBody(fileContent);
-        Fault fault = bodyResponse.getFault();
+    public Fault parseFaultResponse(String fileContent) throws ParserConfigurationException, IOException, SAXException {
+        DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+        InputSource src = new InputSource();
+        src.setCharacterStream(new StringReader(fileContent));
+
+        Document doc = builder.parse(src);
+        String faultstring = doc.getElementsByTagName("faultstring").item(0).getTextContent();
+        String faultcode = doc.getElementsByTagName("faultcode").item(0).getTextContent();
+
+        Detail detail = new Detail();
+        detail.setCallstack(doc.getElementsByTagName("callstack").item(0).getTextContent());
+
+        Fault fault = new Fault();
+        fault.setFaultstring(faultstring);
+        fault.setFaultcode(faultcode);
+        fault.setDetail(detail);
 
         return fault;
     }

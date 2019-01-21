@@ -1,83 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Main.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JAXBDeseliarization</a> &gt; <a href="index.source.html" class="el_package">com.jaxb</a> &gt; <span class="el_source">Main.java</span></div><h1>Main.java</h1><pre class="source lang-java linenums">package com.jaxb;
 
-import com.jaxb.POJOs.RespuestaDeclaracion;
-import com.jaxb.POJOs.RespuestaLinea;
 import com.jaxb.exceptions.ParseException;
-import com.jaxb.services.ParseService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.jaxb.services.MainService;
+import org.xml.sax.SAXException;
 
+import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.NoSuchFileException;
-import java.nio.file.Paths;
 
 /**
  * This is a program to parse XML elements from a SOAP response using JAXB.
  *
  * @author Mariana Vorotniak
  */
-<span class="nc" id="L20">public class Main {</span>
+<span class="nc" id="L15">public class Main {</span>
 
-<span class="fc" id="L22">    private static String filePathRejected = &quot;src\\main\\resources\\realResponses\\registration\\rejected\\rejectedResponse.xml&quot;;</span>
-<span class="fc" id="L23">    private static String filePathAccepted = &quot;src\\main\\resources\\realResponses\\registration\\accepted\\acceptedWithOneResponse.xml&quot;;</span>
+<span class="nc" id="L17">    private static String filePathRejected = &quot;src\\main\\resources\\realResponses\\registration\\rejected\\rejectedResponse.xml&quot;;</span>
+<span class="nc" id="L18">    private static String filePathWithFaultHeaderResponse = &quot;src\\main\\resources\\realResponses\\registration\\rejected\\faultResponseHeaderError.xml&quot;;</span>
+<span class="nc" id="L19">    private static String filePathWithFaultTechnicalResponse = &quot;src\\main\\resources\\realResponses\\registration\\rejected\\faultResponseTechnicalError.xml&quot;;</span>
 
-<span class="fc" id="L25">    private static Logger LOGGER = LoggerFactory.getLogger(Main.class);</span>
+<span class="nc" id="L21">    private static String filePathAcceptedWithOne = &quot;src\\main\\resources\\realResponses\\registration\\accepted\\acceptedWithOneResponse.xml&quot;;</span>
+<span class="nc" id="L22">    private static String filePathAcceptedWithMany = &quot;src\\main\\resources\\realResponses\\registration\\accepted\\acceptedWithManyResponses.xml&quot;;</span>
 
-    public static void main(String[] args) throws ParseException {
+<span class="nc" id="L24">    private static String filePathConsultationResponse = &quot;src\\main\\resources\\realResponses\\consultation\\consultationResponse.xml&quot;;</span>
 
-<span class="nc" id="L29">        RespuestaDeclaracion response = getResponse();</span>
+<span class="nc" id="L26">    private static String filePathCancelationResponse = &quot;src\\main\\resources\\realResponses\\cancelation\\cancelationResponse.xml&quot;;</span>
 
-<span class="nc" id="L31">        String status = translate(response.getSendStatus());</span>
 
-<span class="nc bnc" id="L33" title="All 2 branches missed.">        if (isAccepted(response))</span>
-<span class="nc" id="L34">            LOGGER.info(&quot;The status is [{}]&quot;, status);</span>
-        else {
-<span class="nc bnc" id="L36" title="All 2 branches missed.">            for (RespuestaLinea lineResponse : response.getLineResponse()) {</span>
-<span class="nc" id="L37">                int code = lineResponse.getRecordCode();</span>
-<span class="nc" id="L38">                String errorMessage = Errors.findMessageByCode(code);</span>
-<span class="nc" id="L39">                LOGGER.info(&quot;The status is [{}] and the error is [{}]&quot;, status, errorMessage);</span>
-<span class="nc" id="L40">            }</span>
-        }
-<span class="nc" id="L42">    }</span>
+    public static void main(String[] args) throws ParseException, ParserConfigurationException, SAXException, IOException {
 
-    public static boolean isAccepted(RespuestaDeclaracion response) {
-<span class="nc" id="L45">        String status = response.getSendStatus();</span>
-<span class="nc bnc" id="L46" title="All 2 branches missed.">        if (status.equals(&quot;Aceptacion Completa&quot;))</span>
-<span class="nc" id="L47">            return true;</span>
-<span class="nc" id="L48">        return false;</span>
-    }
+<span class="nc" id="L31">        MainService service = new MainService();</span>
 
-    public static RespuestaDeclaracion getResponse() throws ParseException {
-<span class="nc" id="L52">        ParseService service = new ParseService();</span>
-<span class="nc" id="L53">        String fileContent = readFile(filePathRejected);</span>
-<span class="nc" id="L54">        RespuestaDeclaracion response = service.parseResponse(fileContent);</span>
-<span class="nc" id="L55">        return response;</span>
-    }
+<span class="nc" id="L33">        Object objectResponse = service.getResponse(filePathWithFaultTechnicalResponse);</span>
 
-    public static String readFile(String path) throws ParseException {
-<span class="fc" id="L59">        byte[] encoded = null;</span>
-        try {
-<span class="fc" id="L61">            encoded = Files.readAllBytes(Paths.get(path));</span>
-<span class="fc" id="L62">        } catch (NoSuchFileException e) {</span>
-<span class="fc" id="L63">            throw new ParseException(&quot;File does not exist&quot;);</span>
-<span class="nc" id="L64">        } catch (IOException e) {</span>
-<span class="nc" id="L65">            throw new ParseException(&quot;IOException&quot;);</span>
-<span class="fc" id="L66">        }</span>
-
-<span class="fc" id="L68">        return new String(encoded);</span>
-    }
-
-    public static String translate(String wordToTranslate) throws ParseException {
-<span class="fc" id="L72">        String accepted = &quot;Fully accepted&quot;;</span>
-<span class="fc" id="L73">        String rejected = &quot;Rejected&quot;;</span>
-<span class="fc bfc" id="L74" title="All 2 branches covered.">        if (wordToTranslate.equals(&quot;Aceptacion Completa&quot;))</span>
-<span class="fc" id="L75">            return accepted;</span>
-<span class="pc bpc" id="L76" title="1 of 2 branches missed.">        else if (wordToTranslate.equals(&quot;Rechazo Completo&quot;))</span>
-<span class="nc" id="L77">            return rejected;</span>
-<span class="fc" id="L78">        else throw new ParseException(&quot;Word is not a correct status&quot;);</span>
-
-    }
+<span class="nc" id="L35">        service.checkResponseType(objectResponse);</span>
+<span class="nc" id="L36">    }</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>

@@ -9,12 +9,13 @@ import javax.xml.bind.annotation.*;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Fault {
 
-    @XmlElement(name = "faultcode")
+    @XmlElement
     private String faultcode;
 
-    @XmlElement(name = "faultstring")
+    @XmlElement
     private String faultstring;
 
-    @XmlElement(name = "detail")
+    @XmlElement
     private Detail detail;
+
 }

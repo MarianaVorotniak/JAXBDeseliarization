@@ -12,6 +12,6 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Detail {
 
-    @XmlElement(name = "callstack")
+    @XmlElement
     private String callstack;
 }
