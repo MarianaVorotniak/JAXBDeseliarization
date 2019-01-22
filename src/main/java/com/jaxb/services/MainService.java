@@ -20,9 +20,7 @@ public class MainService {
     public void checkResponseType(Object objectResponse) throws ParseException {
         if (objectResponse instanceof RespuestaDeclaracion) {
             RespuestaDeclaracion response = (RespuestaDeclaracion) objectResponse;
-            String status = translate(response.getSendStatus());
-
-            acceptedOrRejectedMessage(response, status);
+            acceptedOrRejectedMessage(response);
         }
         else if (objectResponse instanceof Fault){
             Fault faultResponse = (Fault) objectResponse;
@@ -30,15 +28,18 @@ public class MainService {
         }
         else if (objectResponse instanceof RespuestaBajaDI) {
             RespuestaBajaDI cancelationResponse = (RespuestaBajaDI) objectResponse;
-            LOGGER.info("The response is [{}]", cancelationResponse);
+            LOGGER.info("The response is [{}]", cancelationResponse.getSendStatus());
         }
         else if (objectResponse instanceof RespuestaConsultaDI) {
             RespuestaConsultaDI consultationResponse = (RespuestaConsultaDI) objectResponse;
-            LOGGER.info("The response is [{}]", consultationResponse);
+            LOGGER.info("The consultation result is [{}]", consultationResponse.getConsultationResult());
         }
+        LOGGER.info("There is no response.");
     }
 
-    public void acceptedOrRejectedMessage(RespuestaDeclaracion response, String status) throws ParseException {
+    public void acceptedOrRejectedMessage(RespuestaDeclaracion response) throws ParseException {
+        String status = translate(response.getSendStatus());
+
         if (isAccepted(response))
             LOGGER.info("The status is [{}]", status);
         else {
@@ -72,7 +73,7 @@ public class MainService {
     }
 
     public static String readFile(String path) throws ParseException {
-        byte[] encoded = null;
+        byte[] encoded;
         try {
             encoded = Files.readAllBytes(Paths.get(path));
         } catch (NoSuchFileException e) {

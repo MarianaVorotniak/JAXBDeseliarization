@@ -3,8 +3,6 @@ package com.jaxb.services;
 import com.jaxb.POJOs.*;
 import com.jaxb.POJOs.Detail;
 import com.jaxb.exceptions.ParseException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
@@ -20,8 +18,6 @@ import java.io.StringReader;
 
 public class ParseService {
 
-    private static Logger LOGGER = LoggerFactory.getLogger(ParseService.class);
-
     public RespuestaDeclaracion parseResponse(String fileContent) throws ParseException {
         Body bodyResponse = getResponseBody(fileContent);
         RespuestaDeclaracion declarationResponse = bodyResponse.getDeclarationResponse();
@@ -34,12 +30,12 @@ public class ParseService {
         InputSource src = new InputSource();
         src.setCharacterStream(new StringReader(fileContent));
 
-        Document doc = builder.parse(src);
-        String faultstring = doc.getElementsByTagName("faultstring").item(0).getTextContent();
-        String faultcode = doc.getElementsByTagName("faultcode").item(0).getTextContent();
+        Document document = builder.parse(src);
+        String faultstring = document.getElementsByTagName("faultstring").item(0).getTextContent();
+        String faultcode = document.getElementsByTagName("faultcode").item(0).getTextContent();
 
         Detail detail = new Detail();
-        detail.setCallstack(doc.getElementsByTagName("callstack").item(0).getTextContent());
+        detail.setCallstack(document.getElementsByTagName("callstack").item(0).getTextContent());
 
         Fault fault = new Fault();
         fault.setFaultstring(faultstring);
@@ -79,8 +75,9 @@ public class ParseService {
 
         StringReader reader = new StringReader(fileContent);
 
-        JAXBContext context = null;
-        Envelope fullResponse = null;
+        JAXBContext context;
+        Envelope fullResponse;
+
         try {
             context = JAXBContext.newInstance(Envelope.class);
             Unmarshaller unmarshaller = context.createUnmarshaller();

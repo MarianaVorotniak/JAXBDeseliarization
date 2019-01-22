@@ -66,6 +66,12 @@ public class MainServiceTest {
         fault = new Fault();
         fault.setFaultcode("env:Client");
 
+        cancelationResponse = new RespuestaBajaDI();
+        cancelationResponse.setSendStatus("Aceptacion Completa");
+
+        consultationResponse = new RespuestaConsultaDI();
+        consultationResponse.setConsultationResult("ConDatos");
+
         lineResponse = new ArrayList<>();
         RespuestaLinea firstElemOfLineResponseList = new RespuestaLinea();
         firstElemOfLineResponseList.setRecordStatus("Rechazado");
@@ -126,15 +132,15 @@ public class MainServiceTest {
     @Test
     public void acceptedOrRejectedMessageTest() throws ParseException {
 
-        mainService.acceptedOrRejectedMessage(responseAccepted, responseAccepted.getSendStatus());
+        mainService.acceptedOrRejectedMessage(responseAccepted);
         String logMsgAccepted = out.toString();
         assertNotNull(logMsgAccepted);
-        assertTrue(logMsgAccepted.contains("The status is [Aceptacion Completa]"));
+        assertTrue(logMsgAccepted.contains("The status is [Fully accepted]"));
 
-        mainService.acceptedOrRejectedMessage(responseRejected, responseRejected.getSendStatus());
+        mainService.acceptedOrRejectedMessage(responseRejected);
         String logMsgRejected = out.toString();
         assertNotNull(logMsgRejected);
-        assertTrue(logMsgRejected.contains("[Rechazo Completo]"));
+        assertTrue(logMsgRejected.contains("[Rejected]"));
     }
 
     @Test
@@ -169,13 +175,12 @@ public class MainServiceTest {
 
         mainService.checkResponseType(consultationResponse);
         String logMsgConsultation = out.toString();
-        assertTrue(logMsgConsultation.contains("The response is"));
+        assertTrue(logMsgConsultation.contains("The consultation result is"));
     }
 
     @After
     public void destroy() {
         logger.removeAppender(appender);
     }
-
 
 }

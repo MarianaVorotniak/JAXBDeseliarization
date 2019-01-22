@@ -30,7 +30,7 @@ public class Main {
 
         MainService service = new MainService();
 
-        Object objectResponse = service.getResponse(filePathWithFaultTechnicalResponse);
+        Object objectResponse = service.getResponse(filePathCancelationResponse);
 
         service.checkResponseType(objectResponse);
     }
