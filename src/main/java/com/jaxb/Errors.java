@@ -1,12 +1,10 @@
 package com.jaxb;
 
 import com.jaxb.exceptions.ParseException;
-import lombok.NoArgsConstructor;
 
 import java.util.HashMap;
 import java.util.Map;
 
-@NoArgsConstructor
 public class Errors {
 
     private static Map<Integer, String> mapOfErrors = new HashMap<Integer, String>()

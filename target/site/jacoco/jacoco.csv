@@ -24,7 +24,7 @@ JAXBDeseliarization,com.jaxb.POJOs,RespuestaConsultaDI,160,9,30,0,1,3,23,3,8,3
 JAXBDeseliarization,com.jaxb.POJOs,Header,30,3,6,0,0,1,7,1,4,1
 JAXBDeseliarization,com.jaxb.POJOs,Body,230,25,45,1,2,4,31,7,8,7
 JAXBDeseliarization,com.jaxb.POJOs,Envelope,112,14,22,0,1,2,16,4,5,4
-JAXBDeseliarization,com.jaxb.services,MainService,113,69,17,7,33,22,11,9,2,6
+JAXBDeseliarization,com.jaxb.services,MainService,6,184,1,25,2,55,1,20,0,8
 JAXBDeseliarization,com.jaxb.services,ParseService,0,150,0,4,0,41,0,10,0,8
 JAXBDeseliarization,com.jaxb,Errors,3,20,0,2,1,5,1,3,1,2
 JAXBDeseliarization,com.jaxb,Main,30,0,0,0,12,0,3,0,3,0

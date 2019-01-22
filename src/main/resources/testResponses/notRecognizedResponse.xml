@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<env:Envelope xmlns:env="http://schemas.xmlsoap.org/soap/envelope/">
+    <env:Header/>
+    <env:Body Id="Body">
+        <ddiiR:RespuestaTest xmlns:ddiiR="https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/RespuestaTest.xsd" xmlns:ddii="https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/DeclaracionInformativa.xsd">
+            <ddiiR:Cabecera>
+                <ddii:TipoComunicacion>A0</ddii:TipoComunicacion>
+                <ddii:Modelo>179</ddii:Modelo>
+                <ddii:Periodo>
+                    <ddii:Ejercicio>2018</ddii:Ejercicio>
+                    <ddii:Periodo>0A</ddii:Periodo>
+                </ddii:Periodo>
+                <ddii:IDVersionModelo>1.0</ddii:IDVersionModelo>
+                <ddii:IDDeclarante>
+                    <ddii:NIF>B98156128</ddii:NIF>
+                    <ddii:NombreRazon>HomeAway</ddii:NombreRazon>
+                </ddii:IDDeclarante>
+            </ddiiR:Cabecera>
+            <ddiiR:EstadoEnvio>Rechazo Completo</ddiiR:EstadoEnvio>
+            <ddiiR:RespuestaLinea>
+                <ddiiR:IDRegistroDeclarado>000009</ddiiR:IDRegistroDeclarado>
+                <ddiiR:EstadoRegistro>Rechazado</ddiiR:EstadoRegistro>
+                <ddiiR:CodigoErrorRegistro>1106</ddiiR:CodigoErrorRegistro>
+                <ddiiR:DescripcionErrorRegistro>El NIF no esta identificado. NIF: 77780619R. NOMBRE_RAZON: SunSea Costa Brava. </ddiiR:DescripcionErrorRegistro>
+            </ddiiR:RespuestaLinea>
+        </ddiiR:RespuestaTest>
+    </env:Body>
+</env:Envelope>

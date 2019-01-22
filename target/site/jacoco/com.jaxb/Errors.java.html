@@ -1,88 +1,86 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Errors.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JAXBDeseliarization</a> &gt; <a href="index.source.html" class="el_package">com.jaxb</a> &gt; <span class="el_source">Errors.java</span></div><h1>Errors.java</h1><pre class="source lang-java linenums">package com.jaxb;
 
 import com.jaxb.exceptions.ParseException;
-import lombok.NoArgsConstructor;
 
 import java.util.HashMap;
 import java.util.Map;
 
-<span class="nc" id="L9">@NoArgsConstructor</span>
-public class Errors {
+<span class="nc" id="L8">public class Errors {</span>
 
-<span class="fc" id="L12">    private static Map&lt;Integer, String&gt; mapOfErrors = new HashMap&lt;Integer, String&gt;()</span>
-<span class="fc" id="L13">    {{</span>
-<span class="fc" id="L14">        put(1100, &quot;The XML does not comply with the schema. Need to report as mandatory field.&quot;);</span>
-<span class="fc" id="L15">        put(1101, &quot;Error when reporting characters whose encoding is not UTF-8.&quot;);</span>
-<span class="fc" id="L16">        put(1102, &quot;Technical error when recording in inbox&quot;);</span>
-<span class="fc" id="L17">        put(1103, &quot;Unexpected error when parsing the XML&quot;);</span>
-<span class="fc" id="L18">        put(1104, &quot;Error in the date format.&quot;);</span>
-<span class="fc" id="L19">        put(1105, &quot;Technical error when obtaining the CSV (Código Seguro de Verificación [Secure Verification Code]).&quot;);</span>
-<span class="fc" id="L20">        put(1106, &quot;The Tax ID is not identified&quot;);</span>
-<span class="fc" id="L21">        put(1107, &quot;The Tax ID has an incorrect format&quot;);</span>
-<span class="fc" id="L22">        put(1108, &quot;The RepresentativeTaxID has an incorrect format.&quot;);</span>
-<span class="fc" id="L23">        put(1109, &quot;The RepresentativeTaxID has an invalid format.&quot;);</span>
-<span class="fc" id="L24">        put(1110, &quot;Failed to get the certificate&quot;);</span>
-<span class="fc" id="L25">        put(1111, &quot;Technical error when checking powers of attorney&quot;);</span>
-<span class="fc" id="L26">        put(1112, &quot;Technical error when creating the procedure&quot;);</span>
-<span class="fc" id="L27">        put(1113, &quot;The certificate holder must be the Taxpayer, Company Representative or Proxy&quot;);</span>
-<span class="fc" id="L28">        put(1114, &quot;The XML does not comply with the schema. The maximum allowed limit of reported events to register has been exceeded&quot;);</span>
-<span class="fc" id="L29">        put(1115, &quot;Error The address does not correspond to the input file&quot;);</span>
+<span class="fc" id="L10">    private static Map&lt;Integer, String&gt; mapOfErrors = new HashMap&lt;Integer, String&gt;()</span>
+<span class="fc" id="L11">    {{</span>
+<span class="fc" id="L12">        put(1100, &quot;The XML does not comply with the schema. Need to report as mandatory field.&quot;);</span>
+<span class="fc" id="L13">        put(1101, &quot;Error when reporting characters whose encoding is not UTF-8.&quot;);</span>
+<span class="fc" id="L14">        put(1102, &quot;Technical error when recording in inbox&quot;);</span>
+<span class="fc" id="L15">        put(1103, &quot;Unexpected error when parsing the XML&quot;);</span>
+<span class="fc" id="L16">        put(1104, &quot;Error in the date format.&quot;);</span>
+<span class="fc" id="L17">        put(1105, &quot;Technical error when obtaining the CSV (Código Seguro de Verificación [Secure Verification Code]).&quot;);</span>
+<span class="fc" id="L18">        put(1106, &quot;The Tax ID is not identified&quot;);</span>
+<span class="fc" id="L19">        put(1107, &quot;The Tax ID has an incorrect format&quot;);</span>
+<span class="fc" id="L20">        put(1108, &quot;The RepresentativeTaxID has an incorrect format.&quot;);</span>
+<span class="fc" id="L21">        put(1109, &quot;The RepresentativeTaxID has an invalid format.&quot;);</span>
+<span class="fc" id="L22">        put(1110, &quot;Failed to get the certificate&quot;);</span>
+<span class="fc" id="L23">        put(1111, &quot;Technical error when checking powers of attorney&quot;);</span>
+<span class="fc" id="L24">        put(1112, &quot;Technical error when creating the procedure&quot;);</span>
+<span class="fc" id="L25">        put(1113, &quot;The certificate holder must be the Taxpayer, Company Representative or Proxy&quot;);</span>
+<span class="fc" id="L26">        put(1114, &quot;The XML does not comply with the schema. The maximum allowed limit of reported events to register has been exceeded&quot;);</span>
+<span class="fc" id="L27">        put(1115, &quot;Error The address does not correspond to the input file&quot;);</span>
 
-<span class="fc" id="L31">        put(4100, &quot;Error in the header. The content of the CommunicationType field is not valid&quot;);</span>
-<span class="fc" id="L32">        put(4101, &quot;Error in the header. The content of the Model field is not valid&quot;);</span>
-<span class="fc" id="L33">        put(4102, &quot;Error in the header. The content of the Fiscal Year field is not valid&quot;);</span>
-<span class="fc" id="L34">        put(4103, &quot;Error in the header. The content of the Period field is not valid&quot;);</span>
-<span class="fc" id="L35">        put(4104, &quot;Error in the header. The content of the IDVersionModel field is not valid&quot;);</span>
-<span class="fc" id="L36">        put(4105, &quot;Error in the header. The Tax ID of the taxpayer is invalid&quot;);</span>
-<span class="fc" id="L37">        put(4106, &quot;Error in the header. The RepresentativeTaxID of the taxpayer is invalid&quot;);</span>
-<span class="fc" id="L38">        put(4107, &quot;Error in the header. The Tax ID of the taxpayer has an incorrect format&quot;);</span>
-<span class="fc" id="L39">        put(4108, &quot;Error in the header. The RepresentativeTaxID of the taxpayer has an incorrect format&quot;);</span>
-<span class="fc" id="L40">        put(4109, &quot;Error in the header. The Tax ID of the taxpayer cannot belong to a minor&quot;);</span>
-<span class="fc" id="L41">        put(4110, &quot;Error in the header. The RepresentativeTaxID of the taxpayer cannot belong to a minor&quot;);</span>
+<span class="fc" id="L29">        put(4100, &quot;Error in the header. The content of the CommunicationType field is not valid&quot;);</span>
+<span class="fc" id="L30">        put(4101, &quot;Error in the header. The content of the Model field is not valid&quot;);</span>
+<span class="fc" id="L31">        put(4102, &quot;Error in the header. The content of the Fiscal Year field is not valid&quot;);</span>
+<span class="fc" id="L32">        put(4103, &quot;Error in the header. The content of the Period field is not valid&quot;);</span>
+<span class="fc" id="L33">        put(4104, &quot;Error in the header. The content of the IDVersionModel field is not valid&quot;);</span>
+<span class="fc" id="L34">        put(4105, &quot;Error in the header. The Tax ID of the taxpayer is invalid&quot;);</span>
+<span class="fc" id="L35">        put(4106, &quot;Error in the header. The RepresentativeTaxID of the taxpayer is invalid&quot;);</span>
+<span class="fc" id="L36">        put(4107, &quot;Error in the header. The Tax ID of the taxpayer has an incorrect format&quot;);</span>
+<span class="fc" id="L37">        put(4108, &quot;Error in the header. The RepresentativeTaxID of the taxpayer has an incorrect format&quot;);</span>
+<span class="fc" id="L38">        put(4109, &quot;Error in the header. The Tax ID of the taxpayer cannot belong to a minor&quot;);</span>
+<span class="fc" id="L39">        put(4110, &quot;Error in the header. The RepresentativeTaxID of the taxpayer cannot belong to a minor&quot;);</span>
 
 
-<span class="fc" id="L44">        put(2100, &quot;Incorrect value or type of the field&quot;);</span>
-<span class="fc" id="L45">        put(2101, &quot;The Return field contains characters that are not UTH-8&quot;);</span>
-<span class="fc" id="L46">        put(2102, &quot;The value of the ID field must be the Tax ID of a natural person when the value of the IDType field is ‘07’&quot;);</span>
-<span class="fc" id="L47">        put(2103, &quot;User not authorised to perform this action&quot;);</span>
-<span class="fc" id="L48">        put(2104, &quot;Incorrect value of the CountryCode field&quot;);</span>
-<span class="fc" id="L49">        put(2105, &quot;Incorrect valued of the IDType field&quot;);</span>
-<span class="fc" id="L50">        put(2106, &quot;Incorrect valued of the ID field&quot;);</span>
-<span class="fc" id="L51">        put(2107, &quot;The Tax ID is not identified&quot;);</span>
-<span class="fc" id="L52">        put(2108, &quot;The Tax ID is not identified&quot;);</span>
-<span class="fc" id="L53">        put(2109, &quot;Incorrect value of the Fiscal Year field. It must be this year or earlier&quot;);</span>
-<span class="fc" id="L54">        put(2110, &quot;Country code is mandatory when Identification Type is different to TaxID-VAT&quot;);</span>
-<span class="fc" id="L55">        put(2111, &quot;Error in the Return block. Incorrect value of the Name field&quot;);</span>
-<span class="fc" id="L56">        put(2112, &quot;The ID field is not identified&quot;);</span>
-<span class="fc" id="L57">        put(2113, &quot;The indicated CountryCode field does not match the first two digits of the identifier&quot;);</span>
-<span class="fc" id="L58">        put(2114, &quot;The value of the Country Code can only be ‘ES’ when the IDType is ‘07’&quot;);</span>
-<span class="fc" id="L59">        put(2115, &quot;The ID field does not contain a correctly formatted Tax ID&quot;);</span>
-<span class="fc" id="L60">        put(2116, &quot;The Tax ID has an incorrect format&quot;);</span>
-<span class="fc" id="L61">        put(2117, &quot;The Tax ID of the Representative has an incorrect format&quot;);</span>
+<span class="fc" id="L42">        put(2100, &quot;Incorrect value or type of the field&quot;);</span>
+<span class="fc" id="L43">        put(2101, &quot;The Return field contains characters that are not UTH-8&quot;);</span>
+<span class="fc" id="L44">        put(2102, &quot;The value of the ID field must be the Tax ID of a natural person when the value of the IDType field is ‘07’&quot;);</span>
+<span class="fc" id="L45">        put(2103, &quot;User not authorised to perform this action&quot;);</span>
+<span class="fc" id="L46">        put(2104, &quot;Incorrect value of the CountryCode field&quot;);</span>
+<span class="fc" id="L47">        put(2105, &quot;Incorrect valued of the IDType field&quot;);</span>
+<span class="fc" id="L48">        put(2106, &quot;Incorrect valued of the ID field&quot;);</span>
+<span class="fc" id="L49">        put(2107, &quot;The Tax ID is not identified&quot;);</span>
+<span class="fc" id="L50">        put(2108, &quot;The Tax ID is not identified&quot;);</span>
+<span class="fc" id="L51">        put(2109, &quot;Incorrect value of the Fiscal Year field. It must be this year or earlier&quot;);</span>
+<span class="fc" id="L52">        put(2110, &quot;Country code is mandatory when Identification Type is different to TaxID-VAT&quot;);</span>
+<span class="fc" id="L53">        put(2111, &quot;Error in the Return block. Incorrect value of the Name field&quot;);</span>
+<span class="fc" id="L54">        put(2112, &quot;The ID field is not identified&quot;);</span>
+<span class="fc" id="L55">        put(2113, &quot;The indicated CountryCode field does not match the first two digits of the identifier&quot;);</span>
+<span class="fc" id="L56">        put(2114, &quot;The value of the Country Code can only be ‘ES’ when the IDType is ‘07’&quot;);</span>
+<span class="fc" id="L57">        put(2115, &quot;The ID field does not contain a correctly formatted Tax ID&quot;);</span>
+<span class="fc" id="L58">        put(2116, &quot;The Tax ID has an incorrect format&quot;);</span>
+<span class="fc" id="L59">        put(2117, &quot;The Tax ID of the Representative has an incorrect format&quot;);</span>
 
-<span class="fc" id="L63">        put(3100, &quot;DB technical error&quot;);</span>
-<span class="fc" id="L64">        put(3101, &quot;Duplicate reported event.&quot;);</span>
-<span class="fc" id="L65">        put(3102, &quot;The reported event to modify does not exist in our DB&quot;);</span>
-<span class="fc" id="L66">        put(3103, &quot;DB technical error. Error in the Integrity of the Information&quot;);</span>
-<span class="fc" id="L67">        put(3104, &quot;The reported event has already been cancelled&quot;);</span>
+<span class="fc" id="L61">        put(3100, &quot;DB technical error&quot;);</span>
+<span class="fc" id="L62">        put(3101, &quot;Duplicate reported event.&quot;);</span>
+<span class="fc" id="L63">        put(3102, &quot;The reported event to modify does not exist in our DB&quot;);</span>
+<span class="fc" id="L64">        put(3103, &quot;DB technical error. Error in the Integrity of the Information&quot;);</span>
+<span class="fc" id="L65">        put(3104, &quot;The reported event has already been cancelled&quot;);</span>
 
-<span class="fc" id="L69">        put(5101, &quot;Incorrect value of the Key field&quot;);</span>
-<span class="fc" id="L70">        put(5102, &quot;In the case of a minor, the Tax ID of the representative must have a value&quot;);</span>
-<span class="fc" id="L71">        put(5103, &quot;In the case of a minor, the Tax ID of the representative can’t match the Tax ID of the Taxpayer reported in the Reported Event&quot;);</span>
-<span class="fc" id="L72">        put(5104, &quot;Incorrect value of the Property Location field&quot;);</span>
-<span class="fc" id="L73">        put(5105, &quot;Incorrect value of the Province Code field&quot;);</span>
-<span class="fc" id="L74">        put(5106, &quot;Incorrect value of the Road Type field&quot;);</span>
-<span class="fc" id="L75">        put(5107, &quot;Incorrect value of the Numbering Type field&quot;);</span>
-<span class="fc" id="L76">        put(5108, &quot;Incorrect value of the Payment Method field&quot;);</span>
-<span class="fc" id="L77">    }};</span>
+<span class="fc" id="L67">        put(5101, &quot;Incorrect value of the Key field&quot;);</span>
+<span class="fc" id="L68">        put(5102, &quot;In the case of a minor, the Tax ID of the representative must have a value&quot;);</span>
+<span class="fc" id="L69">        put(5103, &quot;In the case of a minor, the Tax ID of the representative can’t match the Tax ID of the Taxpayer reported in the Reported Event&quot;);</span>
+<span class="fc" id="L70">        put(5104, &quot;Incorrect value of the Property Location field&quot;);</span>
+<span class="fc" id="L71">        put(5105, &quot;Incorrect value of the Province Code field&quot;);</span>
+<span class="fc" id="L72">        put(5106, &quot;Incorrect value of the Road Type field&quot;);</span>
+<span class="fc" id="L73">        put(5107, &quot;Incorrect value of the Numbering Type field&quot;);</span>
+<span class="fc" id="L74">        put(5108, &quot;Incorrect value of the Payment Method field&quot;);</span>
+<span class="fc" id="L75">    }};</span>
 
     public static String findMessageByCode(int code) throws ParseException {
-<span class="fc" id="L80">        String message = mapOfErrors.get(code);</span>
+<span class="fc" id="L78">        String message = mapOfErrors.get(code);</span>
 
-<span class="fc bfc" id="L82" title="All 2 branches covered.">        if (message == null)</span>
-<span class="fc" id="L83">            throw new ParseException(&quot;Incorrect code&quot;);</span>
+<span class="fc bfc" id="L80" title="All 2 branches covered.">        if (message == null)</span>
+<span class="fc" id="L81">            throw new ParseException(&quot;Incorrect code&quot;);</span>
 
-<span class="fc" id="L85">        return message;</span>
+<span class="fc" id="L83">        return message;</span>
     }
 
 }

@@ -66,8 +66,9 @@ public class MainService {
             return service.parseFaultResponse(fileContent);
         else if (fileContent.contains("RespuestaConsultaDI"))
             return service.parseConsultationResponse(fileContent);
-        else
+        else if (fileContent.contains("RespuestaBajaDI"))
             return service.parseCancelationResponse(fileContent);
+        else return new Object();
     }
 
     public static String readFile(String path) throws ParseException {

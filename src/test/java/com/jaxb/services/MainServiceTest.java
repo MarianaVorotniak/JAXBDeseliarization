@@ -1,6 +1,6 @@
 package com.jaxb.services;
 
-import com.jaxb.POJOs.RespuestaDeclaracion;
+import com.jaxb.POJOs.*;
 import com.jaxb.exceptions.ParseException;
 import org.apache.log4j.*;
 import org.junit.After;
@@ -9,13 +9,16 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
-import org.mockito.ArgumentCaptor;
-import org.mockito.Captor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
+import org.xml.sax.SAXException;
 
+import javax.xml.parsers.ParserConfigurationException;
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -25,12 +28,19 @@ public class MainServiceTest {
     @InjectMocks
     private MainService mainService;
     @Mock
-    private RespuestaDeclaracion response;
+    private RespuestaDeclaracion responseAccepted;
+    @Mock
+    private RespuestaDeclaracion responseRejected;
+    @Mock
+    private Fault fault;
+    @Mock
+    private RespuestaBajaDI cancelationResponse;
+    @Mock
+    private RespuestaConsultaDI consultationResponse;
+    @Mock
+    private List<RespuestaLinea> lineResponse;
     @Mock
     private Appender mockAppender;
-
-    @Captor
-    private ArgumentCaptor captorLoggingEvent;
 
     @Rule
     public ExpectedException expectedEx = ExpectedException.none();
@@ -39,18 +49,47 @@ public class MainServiceTest {
     private static ByteArrayOutputStream out;
     private static Appender appender;
 
+    private static String filePathWithFaultHeaderResponse;
+    private static String filePathAcceptedWithOne;
+    private static String filePathConsultationResponse;
+    private static String filePathCancelationResponse;
+    private static String filePathWithTestResponse;
+
     @Before
     public void init() {
-        response = new RespuestaDeclaracion();
-        response.setSendStatus("Aceptacion Completa");
+        responseAccepted = new RespuestaDeclaracion();
+        responseAccepted.setSendStatus("Aceptacion Completa");
+
+        responseRejected= new RespuestaDeclaracion();
+        responseRejected.setSendStatus("Rechazo Completo");
+
+        fault = new Fault();
+        fault.setFaultcode("env:Client");
+
+        lineResponse = new ArrayList<>();
+        RespuestaLinea firstElemOfLineResponseList = new RespuestaLinea();
+        firstElemOfLineResponseList.setRecordStatus("Rechazado");
+        firstElemOfLineResponseList.setRecordID("000009");
+        firstElemOfLineResponseList.setRecordCode(1106);
+        firstElemOfLineResponseList.setErrorDescription("El NIF no esta identificado. NIF: 77780619R. NOMBRE_RAZON: SunSea Costa Brava. ");
+        lineResponse.add(firstElemOfLineResponseList);
+
+        responseRejected.setLineResponse(lineResponse);
 
         LogManager.getRootLogger().addAppender(mockAppender);
 
+        Layout layout = new SimpleLayout();
+
         logger = Logger.getLogger(MainService.class);
         out = new ByteArrayOutputStream();
-        Layout layout = new SimpleLayout();
         appender = new WriterAppender(layout, out);
         logger.addAppender(appender);
+
+        filePathWithFaultHeaderResponse = "src\\main\\resources\\realResponses\\registration\\rejected\\faultResponseHeaderError.xml";
+        filePathAcceptedWithOne = "src\\main\\resources\\realResponses\\registration\\accepted\\acceptedWithOneResponse.xml";
+        filePathConsultationResponse = "src\\main\\resources\\realResponses\\consultation\\consultationResponse.xml";
+        filePathCancelationResponse = "src\\main\\resources\\realResponses\\cancelation\\cancelationResponse.xml";
+        filePathWithTestResponse = "src\\main\\resources\\testResponses\\notRecognizedResponse.xml";
     }
 
     @Test
@@ -77,28 +116,60 @@ public class MainServiceTest {
 
     @Test
     public void isAcceptedTest() {
-        boolean isAccepted = mainService.isAccepted(response);
+        boolean isAccepted = mainService.isAccepted(responseAccepted);
         assertEquals(true, isAccepted);
 
-        response.setSendStatus("Aceptacion Parcial");
-        boolean isPartiallyAccepted = mainService.isAccepted(response);
+        boolean isPartiallyAccepted = mainService.isAccepted(responseRejected);
         assertEquals(false, isPartiallyAccepted);
     }
 
     @Test
     public void acceptedOrRejectedMessageTest() throws ParseException {
 
-        mainService.acceptedOrRejectedMessage(response, response.getSendStatus());
+        mainService.acceptedOrRejectedMessage(responseAccepted, responseAccepted.getSendStatus());
+        String logMsgAccepted = out.toString();
+        assertNotNull(logMsgAccepted);
+        assertTrue(logMsgAccepted.contains("The status is [Aceptacion Completa]"));
 
-        String logMsg = out.toString();
-
-        assertNotNull(logMsg);
-        assertTrue(logMsg.contains("The status is [Aceptacion Completa]"));
+        mainService.acceptedOrRejectedMessage(responseRejected, responseRejected.getSendStatus());
+        String logMsgRejected = out.toString();
+        assertNotNull(logMsgRejected);
+        assertTrue(logMsgRejected.contains("[Rechazo Completo]"));
     }
 
     @Test
-    public void getResponseTest() {
+    public void getResponseTest() throws SAXException, ParserConfigurationException, ParseException, IOException {
 
+        Object registration = mainService.getResponse(filePathAcceptedWithOne);
+        Object fault = mainService.getResponse(filePathWithFaultHeaderResponse);
+        Object consultation = mainService.getResponse(filePathConsultationResponse);
+        Object cancelation = mainService.getResponse(filePathCancelationResponse);
+        Object testObj = mainService.getResponse(filePathWithTestResponse);
+
+        assertTrue(registration instanceof RespuestaDeclaracion);
+        assertTrue(fault instanceof  Fault);
+        assertTrue(consultation instanceof RespuestaConsultaDI);
+        assertTrue(cancelation instanceof RespuestaBajaDI);
+        assertTrue(testObj.getClass().getName().contains("Object"));
+    }
+
+    @Test
+    public void checkResponseTypeTest() throws ParseException {
+        mainService.checkResponseType(responseAccepted);
+        String logMsgRegistration = out.toString();
+        assertTrue(logMsgRegistration.contains("[Fully accepted]"));
+
+        mainService.checkResponseType(fault);
+        String logMsgFault = out.toString();
+        assertTrue(logMsgFault.contains("env:Client"));
+
+        mainService.checkResponseType(cancelationResponse);
+        String logMsgCancelation = out.toString();
+        assertTrue(logMsgCancelation.contains("The response is"));
+
+        mainService.checkResponseType(consultationResponse);
+        String logMsgConsultation = out.toString();
+        assertTrue(logMsgConsultation.contains("The response is"));
     }
 
     @After
