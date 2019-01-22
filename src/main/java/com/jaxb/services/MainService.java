@@ -33,8 +33,9 @@ public class MainService {
         else if (objectResponse instanceof RespuestaConsultaDI) {
             RespuestaConsultaDI consultationResponse = (RespuestaConsultaDI) objectResponse;
             LOGGER.info("The consultation result is [{}]", consultationResponse.getConsultationResult());
+        } else if (objectResponse == null) {
+            LOGGER.info("There is no response.");
         }
-        LOGGER.info("There is no response.");
     }
 
     public void acceptedOrRejectedMessage(RespuestaDeclaracion response) throws ParseException {
