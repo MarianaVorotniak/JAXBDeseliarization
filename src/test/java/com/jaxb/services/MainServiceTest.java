@@ -17,10 +17,16 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.*;
+import static org.mockito.Matchers.anyString;
+import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class MainServiceTest {
@@ -176,6 +182,10 @@ public class MainServiceTest {
         mainService.checkResponseType(consultationResponse);
         String logMsgConsultation = out.toString();
         assertTrue(logMsgConsultation.contains("The consultation result is"));
+
+        mainService.checkResponseType(null);
+        String logMsgNull = out.toString();
+        assertTrue(logMsgNull.contains("There is no response."));
     }
 
     @After

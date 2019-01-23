@@ -30,69 +30,78 @@ import java.nio.file.Paths;
 <span class="fc" id="L30">            RespuestaBajaDI cancelationResponse = (RespuestaBajaDI) objectResponse;</span>
 <span class="fc" id="L31">            LOGGER.info(&quot;The response is [{}]&quot;, cancelationResponse.getSendStatus());</span>
 <span class="fc" id="L32">        }</span>
-<span class="pc bpc" id="L33" title="1 of 2 branches missed.">        else if (objectResponse instanceof RespuestaConsultaDI) {</span>
+<span class="fc bfc" id="L33" title="All 2 branches covered.">        else if (objectResponse instanceof RespuestaConsultaDI) {</span>
 <span class="fc" id="L34">            RespuestaConsultaDI consultationResponse = (RespuestaConsultaDI) objectResponse;</span>
 <span class="fc" id="L35">            LOGGER.info(&quot;The consultation result is [{}]&quot;, consultationResponse.getConsultationResult());</span>
+<span class="pc bpc" id="L36" title="1 of 2 branches missed.">        } else if (objectResponse == null) {</span>
+<span class="fc" id="L37">            LOGGER.info(&quot;There is no response.&quot;);</span>
         }
-<span class="fc" id="L37">        LOGGER.info(&quot;There is no response.&quot;);</span>
-<span class="fc" id="L38">    }</span>
+<span class="fc" id="L39">    }</span>
 
     public void acceptedOrRejectedMessage(RespuestaDeclaracion response) throws ParseException {
-<span class="fc" id="L41">        String status = translate(response.getSendStatus());</span>
+<span class="fc bfc" id="L42" title="All 2 branches covered.">        if (isAccepted(response))</span>
+<span class="fc" id="L43">            printSendStatus(response);</span>
+        else
+<span class="fc" id="L45">            printErrorMessages(response);</span>
+<span class="fc" id="L46">    }</span>
 
-<span class="fc bfc" id="L43" title="All 2 branches covered.">        if (isAccepted(response))</span>
-<span class="fc" id="L44">            LOGGER.info(&quot;The status is [{}]&quot;, status);</span>
-        else {
-<span class="fc bfc" id="L46" title="All 2 branches covered.">            for (RespuestaLinea lineResponse : response.getLineResponse()) {</span>
-<span class="fc" id="L47">                int code = lineResponse.getRecordCode();</span>
-<span class="fc" id="L48">                String errorMessage = Errors.findMessageByCode(code);</span>
-<span class="fc" id="L49">                LOGGER.info(&quot;The status is [{}] and the error is [{}]&quot;, status, errorMessage);</span>
-<span class="fc" id="L50">            }</span>
-        }
-<span class="fc" id="L52">    }</span>
+    public void printErrorMessages(RespuestaDeclaracion response) throws ParseException {
+<span class="fc" id="L49">        printSendStatus(response);</span>
+<span class="fc bfc" id="L50" title="All 2 branches covered.">        for (RespuestaLinea lineResponse : response.getLineResponse()) {</span>
+<span class="fc" id="L51">            int code = lineResponse.getRecordCode();</span>
+<span class="fc" id="L52">            String errorMessage = Errors.findMessageByCode(code);</span>
+
+<span class="fc" id="L54">            LOGGER.info(&quot;The error is [{}]&quot;, errorMessage);</span>
+<span class="fc" id="L55">        }</span>
+<span class="fc" id="L56">    }</span>
+
+    public void printSendStatus(RespuestaDeclaracion response) throws ParseException {
+<span class="fc" id="L59">        String status = translate(response.getSendStatus());</span>
+<span class="fc" id="L60">        LOGGER.info(&quot;The status is [{}]&quot;, status);</span>
+<span class="fc" id="L61">    }</span>
 
     public boolean isAccepted(RespuestaDeclaracion response) {
-<span class="fc" id="L55">        String status = response.getSendStatus();</span>
-<span class="fc bfc" id="L56" title="All 2 branches covered.">        if (status.equals(&quot;Aceptacion Completa&quot;))</span>
-<span class="fc" id="L57">            return true;</span>
-<span class="fc" id="L58">        return false;</span>
+<span class="fc" id="L64">        String status = response.getSendStatus();</span>
+<span class="fc bfc" id="L65" title="All 2 branches covered.">        if (status.equals(&quot;Aceptacion Completa&quot;))</span>
+<span class="fc" id="L66">            return true;</span>
+<span class="fc" id="L67">        return false;</span>
     }
 
     public Object getResponse(String filePath) throws ParseException, IOException, SAXException, ParserConfigurationException {
-<span class="fc" id="L62">        ParseService service = new ParseService();</span>
-<span class="fc" id="L63">        String fileContent = readFile(filePath);</span>
-<span class="fc bfc" id="L64" title="All 2 branches covered.">        if (fileContent.contains(&quot;RespuestaDeclaracion&quot;))</span>
-<span class="fc" id="L65">            return service.parseResponse(fileContent);</span>
-<span class="fc bfc" id="L66" title="All 2 branches covered.">        else if (fileContent.contains(&quot;Fault&quot;))</span>
-<span class="fc" id="L67">            return service.parseFaultResponse(fileContent);</span>
-<span class="fc bfc" id="L68" title="All 2 branches covered.">        else if (fileContent.contains(&quot;RespuestaConsultaDI&quot;))</span>
-<span class="fc" id="L69">            return service.parseConsultationResponse(fileContent);</span>
-<span class="fc bfc" id="L70" title="All 2 branches covered.">        else if (fileContent.contains(&quot;RespuestaBajaDI&quot;))</span>
-<span class="fc" id="L71">            return service.parseCancelationResponse(fileContent);</span>
-<span class="fc" id="L72">        else return new Object();</span>
+<span class="fc" id="L71">        ParseService service = new ParseService();</span>
+<span class="fc" id="L72">        String fileContent = readFile(filePath);</span>
+<span class="fc bfc" id="L73" title="All 2 branches covered.">        if (fileContent.contains(&quot;RespuestaDeclaracion&quot;))</span>
+<span class="fc" id="L74">            return service.parseResponse(fileContent);</span>
+<span class="fc bfc" id="L75" title="All 2 branches covered.">        else if (fileContent.contains(&quot;Fault&quot;))</span>
+<span class="fc" id="L76">            return service.parseFaultResponse(fileContent);</span>
+<span class="fc bfc" id="L77" title="All 2 branches covered.">        else if (fileContent.contains(&quot;RespuestaConsultaDI&quot;))</span>
+<span class="fc" id="L78">            return service.parseConsultationResponse(fileContent);</span>
+<span class="fc bfc" id="L79" title="All 2 branches covered.">        else if (fileContent.contains(&quot;RespuestaBajaDI&quot;))</span>
+<span class="fc" id="L80">            return service.parseCancelationResponse(fileContent);</span>
+<span class="fc" id="L81">        else return new Object();</span>
     }
 
     public static String readFile(String path) throws ParseException {
         byte[] encoded;
         try {
-<span class="fc" id="L78">            encoded = Files.readAllBytes(Paths.get(path));</span>
-<span class="fc" id="L79">        } catch (NoSuchFileException e) {</span>
-<span class="fc" id="L80">            throw new ParseException(&quot;File does not exist&quot;);</span>
-<span class="nc" id="L81">        } catch (IOException e) {</span>
-<span class="nc" id="L82">            throw new ParseException(&quot;IOException&quot;);</span>
-<span class="fc" id="L83">        }</span>
+<span class="fc" id="L87">            encoded = Files.readAllBytes(Paths.get(path));</span>
+<span class="fc" id="L88">        } catch (NoSuchFileException e) {</span>
+<span class="fc" id="L89">            throw new ParseException(&quot;File does not exist&quot;);</span>
+<span class="nc" id="L90">        } catch (IOException e) {</span>
+<span class="nc" id="L91">            throw new ParseException(&quot;IOException&quot;);</span>
+<span class="fc" id="L92">        }</span>
 
-<span class="fc" id="L85">        return new String(encoded);</span>
+<span class="fc" id="L94">        return new String(encoded);</span>
     }
 
     public static String translate(String wordToTranslate) throws ParseException {
-<span class="fc" id="L89">        String accepted = &quot;Fully accepted&quot;;</span>
-<span class="fc" id="L90">        String rejected = &quot;Rejected&quot;;</span>
-<span class="fc bfc" id="L91" title="All 2 branches covered.">        if (wordToTranslate.equals(&quot;Aceptacion Completa&quot;))</span>
-<span class="fc" id="L92">            return accepted;</span>
-<span class="fc bfc" id="L93" title="All 2 branches covered.">        else if (wordToTranslate.equals(&quot;Rechazo Completo&quot;))</span>
-<span class="fc" id="L94">            return rejected;</span>
-<span class="fc" id="L95">        else throw new ParseException(&quot;Word is not a correct status&quot;);</span>
+<span class="fc" id="L98">        String accepted = &quot;Fully accepted&quot;;</span>
+<span class="fc" id="L99">        String rejected = &quot;Rejected&quot;;</span>
+<span class="fc bfc" id="L100" title="All 2 branches covered.">        if (wordToTranslate.equals(&quot;Aceptacion Completa&quot;))</span>
+<span class="fc" id="L101">            return accepted;</span>
+<span class="fc bfc" id="L102" title="All 2 branches covered.">        else if (wordToTranslate.equals(&quot;Rechazo Completo&quot;))</span>
+<span class="fc" id="L103">            return rejected;</span>
+<span class="fc" id="L104">        else throw new ParseException(&quot;Word is not a correct status&quot;);</span>
 
     }
 }

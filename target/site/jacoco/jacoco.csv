@@ -1,6 +1,6 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
 JAXBDeseliarization,com.jaxb.exceptions,ParseException,0,4,0,0,0,1,0,1,0,1
-JAXBDeseliarization,com.jaxb.POJOs,RespuestaBajaDI,239,16,46,0,2,4,33,5,10,5
+JAXBDeseliarization,com.jaxb.POJOs,RespuestaBajaDI,282,16,54,0,3,4,39,5,12,5
 JAXBDeseliarization,com.jaxb.POJOs,RespuestaLinea,135,103,28,12,0,6,23,12,3,12
 JAXBDeseliarization,com.jaxb.POJOs,IDDeclarante,125,87,26,12,0,5,22,10,4,9
 JAXBDeseliarization,com.jaxb.POJOs,IDInmueble,106,3,16,0,2,1,16,1,8,1
@@ -24,7 +24,7 @@ JAXBDeseliarization,com.jaxb.POJOs,RespuestaConsultaDI,156,13,30,0,1,3,22,4,7,4
 JAXBDeseliarization,com.jaxb.POJOs,Header,30,3,6,0,0,1,7,1,4,1
 JAXBDeseliarization,com.jaxb.POJOs,Body,230,25,45,1,2,4,31,7,8,7
 JAXBDeseliarization,com.jaxb.POJOs,Envelope,112,14,22,0,1,2,16,4,5,4
-JAXBDeseliarization,com.jaxb.services,MainService,6,186,1,25,2,55,1,20,0,8
+JAXBDeseliarization,com.jaxb.services,MainService,6,199,1,27,2,61,1,23,0,10
 JAXBDeseliarization,com.jaxb.services,ParseService,0,142,0,4,0,38,0,9,0,7
 JAXBDeseliarization,com.jaxb,Errors,3,20,0,2,1,5,1,3,1,2
 JAXBDeseliarization,com.jaxb,Main,30,0,0,0,12,0,3,0,3,0

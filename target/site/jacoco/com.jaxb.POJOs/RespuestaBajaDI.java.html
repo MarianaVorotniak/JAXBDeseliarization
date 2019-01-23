@@ -7,7 +7,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
-<span class="pc bnc" id="L10" title="All 46 branches missed.">@Data</span>
+<span class="pc bnc" id="L10" title="All 54 branches missed.">@Data</span>
 @XmlType(name = &quot;RespuestaBajaDI&quot;)
 @XmlAccessorType(XmlAccessType.FIELD)
 public class RespuestaBajaDI {
@@ -26,5 +26,8 @@ public class RespuestaBajaDI {
 
     @XmlElement(name = &quot;EstadoEnvio&quot;, namespace = &quot;https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/RespuestaBajaDI.xsd&quot;)
 <span class="fc" id="L28">    private String sendStatus;</span>
+
+    @XmlElement(name = &quot;RespuestaLinea&quot;, namespace = &quot;https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/RespuestaBajaDI.xsd&quot;)
+<span class="nc" id="L31">    private RespuestaLinea lineResponse;</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>

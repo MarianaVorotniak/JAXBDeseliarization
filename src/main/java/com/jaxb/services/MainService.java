@@ -39,17 +39,25 @@ public class MainService {
     }
 
     public void acceptedOrRejectedMessage(RespuestaDeclaracion response) throws ParseException {
-        String status = translate(response.getSendStatus());
-
         if (isAccepted(response))
-            LOGGER.info("The status is [{}]", status);
-        else {
-            for (RespuestaLinea lineResponse : response.getLineResponse()) {
-                int code = lineResponse.getRecordCode();
-                String errorMessage = Errors.findMessageByCode(code);
-                LOGGER.info("The status is [{}] and the error is [{}]", status, errorMessage);
-            }
+            printSendStatus(response);
+        else
+            printErrorMessages(response);
+    }
+
+    public void printErrorMessages(RespuestaDeclaracion response) throws ParseException {
+        printSendStatus(response);
+        for (RespuestaLinea lineResponse : response.getLineResponse()) {
+            int code = lineResponse.getRecordCode();
+            String errorMessage = Errors.findMessageByCode(code);
+
+            LOGGER.info("The error is [{}]", errorMessage);
         }
+    }
+
+    public void printSendStatus(RespuestaDeclaracion response) throws ParseException {
+        String status = translate(response.getSendStatus());
+        LOGGER.info("The status is [{}]", status);
     }
 
     public boolean isAccepted(RespuestaDeclaracion response) {
