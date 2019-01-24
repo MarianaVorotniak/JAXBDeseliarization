@@ -2,8 +2,7 @@ package com.jaxb;
 
 import com.jaxb.exceptions.ParseException;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class Errors {
 
