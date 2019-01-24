@@ -1,0 +1,532 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CabeceraDI.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JAXBDeseliarization</a> &gt; <a href="index.source.html" class="el_package">com.jaxb.POJOs</a> &gt; <span class="el_source">CabeceraDI.java</span></div><h1>CabeceraDI.java</h1><pre class="source lang-java linenums">
+package com.jaxb.POJOs;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlSchemaType;
+import javax.xml.bind.annotation.XmlType;
+
+
+/**
+ *  Datos de contexto de un suministro 
+ * 
+ * &lt;p&gt;Java class for CabeceraDI complex type.
+ * 
+ * &lt;p&gt;The following schema fragment specifies the expected content contained within this class.
+ * 
+ * &lt;pre&gt;
+ * &amp;lt;complexType name=&quot;CabeceraDI&quot;&amp;gt;
+ *   &amp;lt;complexContent&amp;gt;
+ *     &amp;lt;restriction base=&quot;{http://www.w3.org/2001/XMLSchema}anyType&quot;&amp;gt;
+ *       &amp;lt;sequence&amp;gt;
+ *         &amp;lt;element name=&quot;TipoComunicacion&quot; type=&quot;{https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/DeclaracionInformativa.xsd}ClaveTipoComunicacionType&quot;/&amp;gt;
+ *         &amp;lt;element name=&quot;Modelo&quot; type=&quot;{https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/DeclaracionInformativa.xsd}ModeloType&quot;/&amp;gt;
+ *         &amp;lt;element name=&quot;Periodo&quot;&amp;gt;
+ *           &amp;lt;complexType&amp;gt;
+ *             &amp;lt;complexContent&amp;gt;
+ *               &amp;lt;restriction base=&quot;{http://www.w3.org/2001/XMLSchema}anyType&quot;&amp;gt;
+ *                 &amp;lt;sequence&amp;gt;
+ *                   &amp;lt;element name=&quot;Ejercicio&quot; type=&quot;{https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/DeclaracionInformativa.xsd}YearType&quot;/&amp;gt;
+ *                   &amp;lt;element name=&quot;Periodo&quot; type=&quot;{https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/DeclaracionInformativa.xsd}TipoPeriodoType&quot;/&amp;gt;
+ *                 &amp;lt;/sequence&amp;gt;
+ *               &amp;lt;/restriction&amp;gt;
+ *             &amp;lt;/complexContent&amp;gt;
+ *           &amp;lt;/complexType&amp;gt;
+ *         &amp;lt;/element&amp;gt;
+ *         &amp;lt;element name=&quot;IDVersionModelo&quot; type=&quot;{https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/DeclaracionInformativa.xsd}VersionModeloType&quot;/&amp;gt;
+ *         &amp;lt;element name=&quot;IDDeclarante&quot;&amp;gt;
+ *           &amp;lt;complexType&amp;gt;
+ *             &amp;lt;complexContent&amp;gt;
+ *               &amp;lt;restriction base=&quot;{http://www.w3.org/2001/XMLSchema}anyType&quot;&amp;gt;
+ *                 &amp;lt;sequence&amp;gt;
+ *                   &amp;lt;element name=&quot;NIF&quot; type=&quot;{https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/DeclaracionInformativa.xsd}NIFType&quot;/&amp;gt;
+ *                   &amp;lt;element name=&quot;NombreRazon&quot; type=&quot;{https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/DeclaracionInformativa.xsd}TextMax120Type&quot;/&amp;gt;
+ *                   &amp;lt;element name=&quot;NIFRepresentante&quot; type=&quot;{https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/DeclaracionInformativa.xsd}NIFType&quot; minOccurs=&quot;0&quot;/&amp;gt;
+ *                   &amp;lt;element name=&quot;PersonaContacto&quot; minOccurs=&quot;0&quot;&amp;gt;
+ *                     &amp;lt;complexType&amp;gt;
+ *                       &amp;lt;complexContent&amp;gt;
+ *                         &amp;lt;restriction base=&quot;{http://www.w3.org/2001/XMLSchema}anyType&quot;&amp;gt;
+ *                           &amp;lt;sequence&amp;gt;
+ *                             &amp;lt;element name=&quot;Telefono&quot; type=&quot;{https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/DeclaracionInformativa.xsd}TextMax12Type&quot;/&amp;gt;
+ *                             &amp;lt;element name=&quot;ApellidosNombre&quot; type=&quot;{https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/DeclaracionInformativa.xsd}TextMax120Type&quot;/&amp;gt;
+ *                           &amp;lt;/sequence&amp;gt;
+ *                         &amp;lt;/restriction&amp;gt;
+ *                       &amp;lt;/complexContent&amp;gt;
+ *                     &amp;lt;/complexType&amp;gt;
+ *                   &amp;lt;/element&amp;gt;
+ *                 &amp;lt;/sequence&amp;gt;
+ *               &amp;lt;/restriction&amp;gt;
+ *             &amp;lt;/complexContent&amp;gt;
+ *           &amp;lt;/complexType&amp;gt;
+ *         &amp;lt;/element&amp;gt;
+ *       &amp;lt;/sequence&amp;gt;
+ *     &amp;lt;/restriction&amp;gt;
+ *   &amp;lt;/complexContent&amp;gt;
+ * &amp;lt;/complexType&amp;gt;
+ * &lt;/pre&gt;
+ * 
+ * 
+ */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = &quot;CabeceraDI&quot;, propOrder = {
+    &quot;tipoComunicacion&quot;,
+    &quot;modelo&quot;,
+    &quot;periodo&quot;,
+    &quot;idVersionModelo&quot;,
+    &quot;idDeclarante&quot;
+})
+<span class="fc" id="L79">public class CabeceraDI {</span>
+
+    @XmlElement(name = &quot;TipoComunicacion&quot;, required = true, namespace = &quot;https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/DeclaracionInformativa.xsd&quot;)
+    @XmlSchemaType(name = &quot;string&quot;)
+    protected ClaveTipoComunicacionType tipoComunicacion;
+    @XmlElement(name = &quot;Modelo&quot;, required = true, namespace = &quot;https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/DeclaracionInformativa.xsd&quot;)
+    protected String modelo;
+    @XmlElement(name = &quot;Periodo&quot;, required = true, namespace = &quot;https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/DeclaracionInformativa.xsd&quot;)
+    protected CabeceraDI.Periodo periodo;
+    @XmlElement(name = &quot;IDVersionModelo&quot;, required = true, namespace = &quot;https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/DeclaracionInformativa.xsd&quot;)
+    protected String idVersionModelo;
+    @XmlElement(name = &quot;IDDeclarante&quot;, required = true, namespace = &quot;https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/DeclaracionInformativa.xsd&quot;)
+    protected CabeceraDI.IDDeclarante idDeclarante;
+
+    /**
+     * Gets the value of the tipoComunicacion property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link ClaveTipoComunicacionType }
+     *     
+     */
+    public ClaveTipoComunicacionType getTipoComunicacion() {
+<span class="nc" id="L102">        return tipoComunicacion;</span>
+    }
+
+    /**
+     * Sets the value of the tipoComunicacion property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link ClaveTipoComunicacionType }
+     *     
+     */
+    public void setTipoComunicacion(ClaveTipoComunicacionType value) {
+<span class="fc" id="L114">        this.tipoComunicacion = value;</span>
+<span class="fc" id="L115">    }</span>
+
+    /**
+     * Gets the value of the modelo property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getModelo() {
+<span class="nc" id="L126">        return modelo;</span>
+    }
+
+    /**
+     * Sets the value of the modelo property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setModelo(String value) {
+<span class="fc" id="L138">        this.modelo = value;</span>
+<span class="fc" id="L139">    }</span>
+
+    /**
+     * Gets the value of the periodo property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link CabeceraDI.Periodo }
+     *     
+     */
+    public CabeceraDI.Periodo getPeriodo() {
+<span class="nc" id="L150">        return periodo;</span>
+    }
+
+    /**
+     * Sets the value of the periodo property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link CabeceraDI.Periodo }
+     *     
+     */
+    public void setPeriodo(CabeceraDI.Periodo value) {
+<span class="fc" id="L162">        this.periodo = value;</span>
+<span class="fc" id="L163">    }</span>
+
+    /**
+     * Gets the value of the idVersionModelo property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getIDVersionModelo() {
+<span class="nc" id="L174">        return idVersionModelo;</span>
+    }
+
+    /**
+     * Sets the value of the idVersionModelo property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setIDVersionModelo(String value) {
+<span class="fc" id="L186">        this.idVersionModelo = value;</span>
+<span class="fc" id="L187">    }</span>
+
+    /**
+     * Gets the value of the idDeclarante property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link CabeceraDI.IDDeclarante }
+     *     
+     */
+    public CabeceraDI.IDDeclarante getIDDeclarante() {
+<span class="nc" id="L198">        return idDeclarante;</span>
+    }
+
+    /**
+     * Sets the value of the idDeclarante property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link CabeceraDI.IDDeclarante }
+     *     
+     */
+    public void setIDDeclarante(CabeceraDI.IDDeclarante value) {
+<span class="fc" id="L210">        this.idDeclarante = value;</span>
+<span class="fc" id="L211">    }</span>
+
+
+    /**
+     * &lt;p&gt;Java class for anonymous complex type.
+     * 
+     * &lt;p&gt;The following schema fragment specifies the expected content contained within this class.
+     * 
+     * &lt;pre&gt;
+     * &amp;lt;complexType&amp;gt;
+     *   &amp;lt;complexContent&amp;gt;
+     *     &amp;lt;restriction base=&quot;{http://www.w3.org/2001/XMLSchema}anyType&quot;&amp;gt;
+     *       &amp;lt;sequence&amp;gt;
+     *         &amp;lt;element name=&quot;NIF&quot; type=&quot;{https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/DeclaracionInformativa.xsd}NIFType&quot;/&amp;gt;
+     *         &amp;lt;element name=&quot;NombreRazon&quot; type=&quot;{https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/DeclaracionInformativa.xsd}TextMax120Type&quot;/&amp;gt;
+     *         &amp;lt;element name=&quot;NIFRepresentante&quot; type=&quot;{https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/DeclaracionInformativa.xsd}NIFType&quot; minOccurs=&quot;0&quot;/&amp;gt;
+     *         &amp;lt;element name=&quot;PersonaContacto&quot; minOccurs=&quot;0&quot;&amp;gt;
+     *           &amp;lt;complexType&amp;gt;
+     *             &amp;lt;complexContent&amp;gt;
+     *               &amp;lt;restriction base=&quot;{http://www.w3.org/2001/XMLSchema}anyType&quot;&amp;gt;
+     *                 &amp;lt;sequence&amp;gt;
+     *                   &amp;lt;element name=&quot;Telefono&quot; type=&quot;{https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/DeclaracionInformativa.xsd}TextMax12Type&quot;/&amp;gt;
+     *                   &amp;lt;element name=&quot;ApellidosNombre&quot; type=&quot;{https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/DeclaracionInformativa.xsd}TextMax120Type&quot;/&amp;gt;
+     *                 &amp;lt;/sequence&amp;gt;
+     *               &amp;lt;/restriction&amp;gt;
+     *             &amp;lt;/complexContent&amp;gt;
+     *           &amp;lt;/complexType&amp;gt;
+     *         &amp;lt;/element&amp;gt;
+     *       &amp;lt;/sequence&amp;gt;
+     *     &amp;lt;/restriction&amp;gt;
+     *   &amp;lt;/complexContent&amp;gt;
+     * &amp;lt;/complexType&amp;gt;
+     * &lt;/pre&gt;
+     * 
+     * 
+     */
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlType(name = &quot;&quot;, propOrder = {
+        &quot;nif&quot;,
+        &quot;nombreRazon&quot;,
+        &quot;nifRepresentante&quot;,
+        &quot;personaContacto&quot;
+    })
+<span class="fc" id="L254">    public static class IDDeclarante {</span>
+
+        @XmlElement(name = &quot;NIF&quot;, required = true, namespace = &quot;https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/DeclaracionInformativa.xsd&quot;)
+        protected String nif;
+        @XmlElement(name = &quot;NombreRazon&quot;, required = true, namespace = &quot;https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/DeclaracionInformativa.xsd&quot;)
+        protected String nombreRazon;
+        @XmlElement(name = &quot;NIFRepresentante&quot;, namespace = &quot;https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/DeclaracionInformativa.xsd&quot;)
+        protected String nifRepresentante;
+        @XmlElement(name = &quot;PersonaContacto&quot;)
+        protected CabeceraDI.IDDeclarante.PersonaContacto personaContacto;
+
+        /**
+         * Gets the value of the nif property.
+         * 
+         * @return
+         *     possible object is
+         *     {@link String }
+         *     
+         */
+        public String getNIF() {
+<span class="nc" id="L274">            return nif;</span>
+        }
+
+        /**
+         * Sets the value of the nif property.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link String }
+         *     
+         */
+        public void setNIF(String value) {
+<span class="fc" id="L286">            this.nif = value;</span>
+<span class="fc" id="L287">        }</span>
+
+        /**
+         * Gets the value of the nombreRazon property.
+         * 
+         * @return
+         *     possible object is
+         *     {@link String }
+         *     
+         */
+        public String getNombreRazon() {
+<span class="nc" id="L298">            return nombreRazon;</span>
+        }
+
+        /**
+         * Sets the value of the nombreRazon property.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link String }
+         *     
+         */
+        public void setNombreRazon(String value) {
+<span class="fc" id="L310">            this.nombreRazon = value;</span>
+<span class="fc" id="L311">        }</span>
+
+        /**
+         * Gets the value of the nifRepresentante property.
+         * 
+         * @return
+         *     possible object is
+         *     {@link String }
+         *     
+         */
+        public String getNIFRepresentante() {
+<span class="nc" id="L322">            return nifRepresentante;</span>
+        }
+
+        /**
+         * Sets the value of the nifRepresentante property.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link String }
+         *     
+         */
+        public void setNIFRepresentante(String value) {
+<span class="nc" id="L334">            this.nifRepresentante = value;</span>
+<span class="nc" id="L335">        }</span>
+
+        /**
+         * Gets the value of the personaContacto property.
+         * 
+         * @return
+         *     possible object is
+         *     {@link CabeceraDI.IDDeclarante.PersonaContacto }
+         *     
+         */
+        public CabeceraDI.IDDeclarante.PersonaContacto getPersonaContacto() {
+<span class="nc" id="L346">            return personaContacto;</span>
+        }
+
+        /**
+         * Sets the value of the personaContacto property.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link CabeceraDI.IDDeclarante.PersonaContacto }
+         *     
+         */
+        public void setPersonaContacto(CabeceraDI.IDDeclarante.PersonaContacto value) {
+<span class="nc" id="L358">            this.personaContacto = value;</span>
+<span class="nc" id="L359">        }</span>
+
+
+        /**
+         * &lt;p&gt;Java class for anonymous complex type.
+         * 
+         * &lt;p&gt;The following schema fragment specifies the expected content contained within this class.
+         * 
+         * &lt;pre&gt;
+         * &amp;lt;complexType&amp;gt;
+         *   &amp;lt;complexContent&amp;gt;
+         *     &amp;lt;restriction base=&quot;{http://www.w3.org/2001/XMLSchema}anyType&quot;&amp;gt;
+         *       &amp;lt;sequence&amp;gt;
+         *         &amp;lt;element name=&quot;Telefono&quot; type=&quot;{https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/DeclaracionInformativa.xsd}TextMax12Type&quot;/&amp;gt;
+         *         &amp;lt;element name=&quot;ApellidosNombre&quot; type=&quot;{https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/DeclaracionInformativa.xsd}TextMax120Type&quot;/&amp;gt;
+         *       &amp;lt;/sequence&amp;gt;
+         *     &amp;lt;/restriction&amp;gt;
+         *   &amp;lt;/complexContent&amp;gt;
+         * &amp;lt;/complexType&amp;gt;
+         * &lt;/pre&gt;
+         * 
+         * 
+         */
+        @XmlAccessorType(XmlAccessType.FIELD)
+        @XmlType(name = &quot;&quot;, propOrder = {
+            &quot;telefono&quot;,
+            &quot;apellidosNombre&quot;
+        })
+<span class="nc" id="L387">        public static class PersonaContacto {</span>
+
+            @XmlElement(name = &quot;Telefono&quot;, required = true, namespace = &quot;https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/DeclaracionInformativa.xsd&quot;)
+            protected String telefono;
+            @XmlElement(name = &quot;ApellidosNombre&quot;, required = true, namespace = &quot;https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/DeclaracionInformativa.xsd&quot;)
+            protected String apellidosNombre;
+
+            /**
+             * Gets the value of the telefono property.
+             * 
+             * @return
+             *     possible object is
+             *     {@link String }
+             *     
+             */
+            public String getTelefono() {
+<span class="nc" id="L403">                return telefono;</span>
+            }
+
+            /**
+             * Sets the value of the telefono property.
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link String }
+             *     
+             */
+            public void setTelefono(String value) {
+<span class="nc" id="L415">                this.telefono = value;</span>
+<span class="nc" id="L416">            }</span>
+
+            /**
+             * Gets the value of the apellidosNombre property.
+             * 
+             * @return
+             *     possible object is
+             *     {@link String }
+             *     
+             */
+            public String getApellidosNombre() {
+<span class="nc" id="L427">                return apellidosNombre;</span>
+            }
+
+            /**
+             * Sets the value of the apellidosNombre property.
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link String }
+             *     
+             */
+            public void setApellidosNombre(String value) {
+<span class="nc" id="L439">                this.apellidosNombre = value;</span>
+<span class="nc" id="L440">            }</span>
+
+        }
+
+    }
+
+
+    /**
+     *  Período al que corresponden los apuntes. todos los apuntes deben corresponder al mismo período impositivo 
+     * 
+     * &lt;p&gt;Java class for anonymous complex type.
+     * 
+     * &lt;p&gt;The following schema fragment specifies the expected content contained within this class.
+     * 
+     * &lt;pre&gt;
+     * &amp;lt;complexType&amp;gt;
+     *   &amp;lt;complexContent&amp;gt;
+     *     &amp;lt;restriction base=&quot;{http://www.w3.org/2001/XMLSchema}anyType&quot;&amp;gt;
+     *       &amp;lt;sequence&amp;gt;
+     *         &amp;lt;element name=&quot;Ejercicio&quot; type=&quot;{https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/DeclaracionInformativa.xsd}YearType&quot;/&amp;gt;
+     *         &amp;lt;element name=&quot;Periodo&quot; type=&quot;{https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/DeclaracionInformativa.xsd}TipoPeriodoType&quot;/&amp;gt;
+     *       &amp;lt;/sequence&amp;gt;
+     *     &amp;lt;/restriction&amp;gt;
+     *   &amp;lt;/complexContent&amp;gt;
+     * &amp;lt;/complexType&amp;gt;
+     * &lt;/pre&gt;
+     * 
+     * 
+     */
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlType(name = &quot;&quot;, propOrder = {
+        &quot;ejercicio&quot;,
+        &quot;periodo&quot;
+    })
+<span class="fc" id="L474">    public static class Periodo {</span>
+
+        @XmlElement(name = &quot;Ejercicio&quot;, required = true, namespace = &quot;https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/DeclaracionInformativa.xsd&quot;)
+        protected String ejercicio;
+        @XmlElement(name = &quot;Periodo&quot;, required = true, namespace = &quot;https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/DeclaracionInformativa.xsd&quot;)
+        protected String periodo;
+
+        /**
+         * Gets the value of the ejercicio property.
+         * 
+         * @return
+         *     possible object is
+         *     {@link String }
+         *     
+         */
+        public String getEjercicio() {
+<span class="nc" id="L490">            return ejercicio;</span>
+        }
+
+        /**
+         * Sets the value of the ejercicio property.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link String }
+         *     
+         */
+        public void setEjercicio(String value) {
+<span class="fc" id="L502">            this.ejercicio = value;</span>
+<span class="fc" id="L503">        }</span>
+
+        /**
+         * Gets the value of the periodo property.
+         * 
+         * @return
+         *     possible object is
+         *     {@link String }
+         *     
+         */
+        public String getPeriodo() {
+<span class="nc" id="L514">            return periodo;</span>
+        }
+
+        /**
+         * Sets the value of the periodo property.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link String }
+         *     
+         */
+        public void setPeriodo(String value) {
+<span class="fc" id="L526">            this.periodo = value;</span>
+<span class="fc" id="L527">        }</span>
+
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>

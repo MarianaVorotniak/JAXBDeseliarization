@@ -8,6 +8,8 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import java.math.BigInteger;
+
 import static org.junit.Assert.assertEquals;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -21,15 +23,15 @@ public class ErrorsTest {
 
     @Test
     public void codeIsCorrectTest() throws ParseException {
-        String message = errors.findMessageByCode(5101);
+        String message = errors.findMessageByCode(BigInteger.valueOf(5101));
         assertEquals("Incorrect value of the Key field", message);
     }
 
     @Test
     public void codeDoesNotExistInMapTest() throws ParseException {
         expectedEx.expect(ParseException.class);
-        expectedEx.expectMessage("Incorrect code");
-        errors.findMessageByCode(0);
+        expectedEx.expectMessage("Can't find code");
+        errors.findMessageByCode(BigInteger.valueOf(0));
     }
 
 }

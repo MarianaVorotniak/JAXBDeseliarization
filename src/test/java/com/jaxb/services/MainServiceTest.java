@@ -14,6 +14,7 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,17 +26,13 @@ public class MainServiceTest {
     @InjectMocks
     private MainService mainService;
     @Mock
-    private RespuestaDeclaracion responseAccepted;
+    private RespuestaDeclaracionType responseAccepted;
     @Mock
-    private RespuestaDeclaracion responseRejected;
+    private RespuestaDeclaracionType responseRejected;
     @Mock
     private Fault fault;
     @Mock
-    private RespuestaBajaDI cancelationResponse;
-    @Mock
-    private RespuestaConsultaDI consultationResponse;
-    @Mock
-    private List<RespuestaLinea> lineResponse;
+    private List<RespuestaOperacionesType> lineResponse;
     @Mock
     private Appender mockAppender;
 
@@ -48,36 +45,28 @@ public class MainServiceTest {
 
     private static String filePathWithFaultHeaderResponse;
     private static String filePathAcceptedWithOne;
-    private static String filePathConsultationResponse;
-    private static String filePathCancelationResponse;
     private static String filePathWithTestResponse;
 
     @Before
     public void init() {
-        responseAccepted = new RespuestaDeclaracion();
-        responseAccepted.setSendStatus("Aceptacion Completa");
+        responseAccepted = new RespuestaDeclaracionType();
+        responseAccepted.setEstadoEnvio(EstadoEnvioType.ACEPTACION_COMPLETA);
 
-        responseRejected= new RespuestaDeclaracion();
-        responseRejected.setSendStatus("Rechazo Completo");
+        responseRejected= new RespuestaDeclaracionType();
+        responseRejected.setEstadoEnvio(EstadoEnvioType.RECHAZO_COMPLETO);
 
         fault = new Fault();
         fault.setFaultcode("env:Client");
 
-        cancelationResponse = new RespuestaBajaDI();
-        cancelationResponse.setSendStatus("Aceptacion Completa");
-
-        consultationResponse = new RespuestaConsultaDI();
-        consultationResponse.setConsultationResult("ConDatos");
-
         lineResponse = new ArrayList<>();
-        RespuestaLinea firstElemOfLineResponseList = new RespuestaLinea();
-        firstElemOfLineResponseList.setRecordStatus("Rechazado");
-        firstElemOfLineResponseList.setRecordID("000009");
-        firstElemOfLineResponseList.setRecordCode(1106);
-        firstElemOfLineResponseList.setErrorDescription("El NIF no esta identificado. NIF: 77780619R. NOMBRE_RAZON: SunSea Costa Brava. ");
+        RespuestaOperacionesType firstElemOfLineResponseList = new RespuestaOperacionesType();
+        firstElemOfLineResponseList.setEstadoRegistro(EstadoRegistroType.RECHAZADO);
+        firstElemOfLineResponseList.setIDRegistroDeclarado("000009");
+        firstElemOfLineResponseList.setCodigoErrorRegistro(BigInteger.valueOf(1106));
+        firstElemOfLineResponseList.setDescripcionErrorRegistro("El NIF no esta identificado. NIF: 77780619R. NOMBRE_RAZON: SunSea Costa Brava. ");
         lineResponse.add(firstElemOfLineResponseList);
 
-        responseRejected.setLineResponse(lineResponse);
+        responseRejected.setRespuestaLinea(lineResponse);
 
         LogManager.getRootLogger().addAppender(mockAppender);
 
@@ -88,10 +77,8 @@ public class MainServiceTest {
         appender = new WriterAppender(layout, out);
         logger.addAppender(appender);
 
-        filePathWithFaultHeaderResponse = "src\\main\\resources\\realResponses\\registration\\rejected\\faultResponseHeaderError.xml";
-        filePathAcceptedWithOne = "src\\main\\resources\\realResponses\\registration\\accepted\\acceptedWithOneResponse.xml";
-        filePathConsultationResponse = "src\\main\\resources\\realResponses\\consultation\\consultationResponse.xml";
-        filePathCancelationResponse = "src\\main\\resources\\realResponses\\cancelation\\cancelationResponse.xml";
+        filePathWithFaultHeaderResponse = "src\\main\\resources\\responses\\faultResponseHeaderError.xml";
+        filePathAcceptedWithOne = "src\\main\\resources\\responses\\acceptedWithOneResponse.xml";
         filePathWithTestResponse = "src\\main\\resources\\testResponses\\notRecognizedResponse.xml";
     }
 
@@ -145,14 +132,10 @@ public class MainServiceTest {
 
         Object registration = mainService.getResponse(filePathAcceptedWithOne);
         Object fault = mainService.getResponse(filePathWithFaultHeaderResponse);
-        Object consultation = mainService.getResponse(filePathConsultationResponse);
-        Object cancelation = mainService.getResponse(filePathCancelationResponse);
         Object testObj = mainService.getResponse(filePathWithTestResponse);
 
-        assertTrue(registration instanceof RespuestaDeclaracion);
+        assertTrue(registration instanceof RespuestaDeclaracionType);
         assertTrue(fault instanceof  Fault);
-        assertTrue(consultation instanceof RespuestaConsultaDI);
-        assertTrue(cancelation instanceof RespuestaBajaDI);
         assertTrue(testObj.getClass().getName().contains("Object"));
     }
 
@@ -165,14 +148,6 @@ public class MainServiceTest {
         mainService.checkResponseType(fault);
         String logMsgFault = out.toString();
         assertTrue(logMsgFault.contains("env:Client"));
-
-        mainService.checkResponseType(cancelationResponse);
-        String logMsgCancelation = out.toString();
-        assertTrue(logMsgCancelation.contains("The response is"));
-
-        mainService.checkResponseType(consultationResponse);
-        String logMsgConsultation = out.toString();
-        assertTrue(logMsgConsultation.contains("The consultation result is"));
 
         mainService.checkResponseType(null);
         String logMsgNull = out.toString();

@@ -14,23 +14,19 @@ import java.io.IOException;
  */
 public class Main {
 
-    private static String filePathRejected = "src\\main\\resources\\realResponses\\registration\\rejected\\rejectedResponse.xml";
-    private static String filePathWithFaultHeaderResponse = "src\\main\\resources\\realResponses\\registration\\rejected\\faultResponseHeaderError.xml";
-    private static String filePathWithFaultTechnicalResponse = "src\\main\\resources\\realResponses\\registration\\rejected\\faultResponseTechnicalError.xml";
+    private static String filePathRejected = "src\\main\\resources\\responses\\rejectedResponse.xml";
+    private static String filePathWithFaultHeaderResponse = "src\\main\\resources\\responses\\faultResponseHeaderError.xml";
+    private static String filePathWithFaultTechnicalResponse = "src\\main\\resources\\responses\\faultResponseTechnicalError.xml";
 
-    private static String filePathAcceptedWithOne = "src\\main\\resources\\realResponses\\registration\\accepted\\acceptedWithOneResponse.xml";
-    private static String filePathAcceptedWithMany = "src\\main\\resources\\realResponses\\registration\\accepted\\acceptedWithManyResponses.xml";
-
-    private static String filePathConsultationResponse = "src\\main\\resources\\realResponses\\consultation\\consultationResponse.xml";
-
-    private static String filePathCancelationResponse = "src\\main\\resources\\realResponses\\cancelation\\cancelationResponse.xml";
+    private static String filePathAcceptedWithOne = "src\\main\\resources\\responses\\acceptedWithOneResponse.xml";
+    private static String filePathAcceptedWithMany = "src\\main\\resources\\responses\\acceptedWithManyResponses.xml";
 
 
     public static void main(String[] args) throws ParseException, ParserConfigurationException, SAXException, IOException {
 
         MainService service = new MainService();
 
-        Object objectResponse = service.getResponse(filePathCancelationResponse);
+        Object objectResponse = service.getResponse(filePathAcceptedWithMany);
 
         service.checkResponseType(objectResponse);
     }

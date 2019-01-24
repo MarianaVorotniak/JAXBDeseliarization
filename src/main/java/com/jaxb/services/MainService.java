@@ -9,73 +9,62 @@ import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
+import java.math.BigInteger;
 import java.nio.file.*;
 
 public class MainService {
 
     private static Logger LOGGER = LoggerFactory.getLogger(MainService.class);
+    private static ParseService service = new ParseService();
 
     public void checkResponseType(Object objectResponse) throws ParseException {
-        if (objectResponse instanceof RespuestaDeclaracion) {
-            RespuestaDeclaracion response = (RespuestaDeclaracion) objectResponse;
+        if (objectResponse instanceof RespuestaDeclaracionType) {
+            RespuestaDeclaracionType response = (RespuestaDeclaracionType) objectResponse;
             acceptedOrRejectedMessage(response);
         }
         else if (objectResponse instanceof Fault){
             Fault faultResponse = (Fault) objectResponse;
             LOGGER.info("The fault code is [{}]", faultResponse.getFaultcode());
-        }
-        else if (objectResponse instanceof RespuestaBajaDI) {
-            RespuestaBajaDI cancelationResponse = (RespuestaBajaDI) objectResponse;
-            LOGGER.info("The response is [{}]", cancelationResponse.getSendStatus());
-        }
-        else if (objectResponse instanceof RespuestaConsultaDI) {
-            RespuestaConsultaDI consultationResponse = (RespuestaConsultaDI) objectResponse;
-            LOGGER.info("The consultation result is [{}]", consultationResponse.getConsultationResult());
         } else if (objectResponse == null) {
             LOGGER.info("There is no response.");
         }
     }
 
-    public void acceptedOrRejectedMessage(RespuestaDeclaracion response) throws ParseException {
+    public void acceptedOrRejectedMessage(RespuestaDeclaracionType response) throws ParseException {
         if (isAccepted(response))
             printSendStatus(response);
         else
             printErrorMessages(response);
     }
 
-    public void printErrorMessages(RespuestaDeclaracion response) throws ParseException {
+    public void printErrorMessages(RespuestaDeclaracionType response) throws ParseException {
         printSendStatus(response);
-        for (RespuestaLinea lineResponse : response.getLineResponse()) {
-            int code = lineResponse.getRecordCode();
+        for (RespuestaOperacionesType lineResponse : response.getRespuestaLinea()) {
+            BigInteger code = lineResponse.getCodigoErrorRegistro();
             String errorMessage = Errors.findMessageByCode(code);
 
             LOGGER.info("The error is [{}]", errorMessage);
         }
     }
 
-    public void printSendStatus(RespuestaDeclaracion response) throws ParseException {
-        String status = translate(response.getSendStatus());
+    public void printSendStatus(RespuestaDeclaracionType response) throws ParseException {
+        String status = translate(response.getEstadoEnvio().value());
         LOGGER.info("The status is [{}]", status);
     }
 
-    public boolean isAccepted(RespuestaDeclaracion response) {
-        String status = response.getSendStatus();
+    public boolean isAccepted(RespuestaDeclaracionType response) {
+        String status = response.getEstadoEnvio().value();
         if (status.equals("Aceptacion Completa"))
             return true;
         return false;
     }
 
     public Object getResponse(String filePath) throws ParseException, IOException, SAXException, ParserConfigurationException {
-        ParseService service = new ParseService();
         String fileContent = readFile(filePath);
         if (fileContent.contains("RespuestaDeclaracion"))
             return service.parseResponse(fileContent);
         else if (fileContent.contains("Fault"))
             return service.parseFaultResponse(fileContent);
-        else if (fileContent.contains("RespuestaConsultaDI"))
-            return service.parseConsultationResponse(fileContent);
-        else if (fileContent.contains("RespuestaBajaDI"))
-            return service.parseCancelationResponse(fileContent);
         else return new Object();
     }
 

@@ -70,6 +70,26 @@
             <scope>test</scope>
         </dependency>
 
+        <dependency>
+            <groupId>org.milyn</groupId>
+            <artifactId>milyn-smooks-javabean</artifactId>
+            <version>1.5.1</version>
+            <exclusions>
+                <!---excluding older version of xerces that comes along with milyn jar by default -->
+                <exclusion>
+                    <groupId>xerces</groupId>
+                    <artifactId>xercesImpl</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- Adding the latest version of Xerces jar here -->
+        <dependency>
+            <groupId>xerces</groupId>
+            <artifactId>xercesImpl</artifactId>
+            <version>2.11.0</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -104,6 +124,33 @@
                 </executions>
             </plugin>
 
+            <!-- Plugin required to build java classes from XSD using XJC -->
+            <!--<plugin>-->
+                <!--<groupId>org.codehaus.mojo</groupId>-->
+                <!--<artifactId>jaxb2-maven-plugin</artifactId>-->
+                <!--<version>2.4</version>-->
+                <!--<executions>-->
+                    <!--<execution>-->
+                        <!--<id>xjc</id>-->
+                        <!--<goals>-->
+                            <!--<goal>xjc</goal>-->
+                        <!--</goals>-->
+                    <!--</execution>-->
+                <!--</executions>-->
+                <!--<configuration>-->
+                    <!--&lt;!&ndash; Normally want this true but cannot specify location so set to false for now &ndash;&gt;-->
+                    <!--<generateEpisode>false</generateEpisode>-->
+                    <!--<outputDirectory>${project.build.sourceDirectory}</outputDirectory>-->
+                    <!--<clearOutputDir>false</clearOutputDir>-->
+                    <!--<sources>-->
+                        <!--<source>src/main/schemas</source>-->
+                    <!--</sources>-->
+                    <!--&lt;!&ndash; The package of your generated sources &ndash;&gt;-->
+                    <!--<packageName>com.jaxb.POJOs</packageName>-->
+
+                <!--</configuration>-->
+
+            <!--</plugin>-->
         </plugins>
     </build>
 

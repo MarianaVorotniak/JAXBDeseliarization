@@ -14,6 +14,7 @@ import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,15 +30,15 @@ public class ParseServiceTest {
     @InjectMocks
     private Envelope expectedEnvelope;
     @Mock
-    private IDDeclarante idDeclarante;
+    private CabeceraDI.IDDeclarante idDeclarante;
     @Mock
-    private Periodo period;
+    private CabeceraDI.Periodo period;
     @Mock
-    private Cabecera head;
+    private CabeceraDI head;
     @Mock
-    private List<RespuestaLinea> lineResponses;
+    private List<RespuestaOperacionesType> lineResponses;
     @Mock
-    private RespuestaDeclaracion declarationResponse;
+    private RespuestaDeclaracionType declarationResponse;
     @Mock
     private Body body;
     @Mock
@@ -47,8 +48,6 @@ public class ParseServiceTest {
     public ExpectedException expectedEx = ExpectedException.none();
 
     private String filePath;
-    private String filePathForConsultation;
-    private String filePathForCancelation;
     private String filePathFault;
     private String incorrectFile;
     private String wrongXml;
@@ -56,46 +55,44 @@ public class ParseServiceTest {
     @Before
     public void init() {
 
-        idDeclarante = new IDDeclarante();
-        idDeclarante.setNif("B98156128");
-        idDeclarante.setReasonName("HomeAway");
+        idDeclarante = new CabeceraDI.IDDeclarante();
+        idDeclarante.setNIF("B98156128");
+        idDeclarante.setNombreRazon("HomeAway");
 
-        period = new Periodo();
-        period.setExerciseNumber(2018);
-        period.setPeriodCode("0A");
+        period = new CabeceraDI.Periodo();
+        period.setEjercicio("2018");
+        period.setPeriodo("0A");
 
-        head = new Cabecera();
-        head.setCommunicationType("A0");
-        head.setIdDeclaration(idDeclarante);
-        head.setModelNumber(179);
-        head.setModelVersionID("1.0");
-        head.setPeriod(period);
+        head = new CabeceraDI();
+        head.setTipoComunicacion(ClaveTipoComunicacionType.A_0);
+        head.setIDDeclarante(idDeclarante);
+        head.setModelo("179");
+        head.setIDVersionModelo("1.0");
+        head.setPeriodo(period);
 
         lineResponses =  new ArrayList<>();
-        lineResponses.add(new RespuestaLinea());
-        lineResponses.get(0).setErrorDescription("El NIF no esta identificado. NIF: 77780619R. NOMBRE_RAZON: SunSea Costa Brava. ");
-        lineResponses.get(0).setRecordCode(1106);
-        lineResponses.get(0).setRecordID("000009");
-        lineResponses.get(0).setRecordStatus("Rechazado");
+        lineResponses.add(new RespuestaOperacionesType());
+        lineResponses.get(0).setDescripcionErrorRegistro("El NIF no esta identificado. NIF: 77780619R. NOMBRE_RAZON: SunSea Costa Brava. ");
+        lineResponses.get(0).setCodigoErrorRegistro(BigInteger.valueOf(1106));
+        lineResponses.get(0).setIDRegistroDeclarado("000009");
+        lineResponses.get(0).setEstadoRegistro(EstadoRegistroType.RECHAZADO);
 
-        declarationResponse = new RespuestaDeclaracion();
+        declarationResponse = new RespuestaDeclaracionType();
         declarationResponse.setCabecera(head);
-        declarationResponse.setLineResponse(lineResponses);
-        declarationResponse.setSendStatus("Rechazo Completo");
+        declarationResponse.setRespuestaLinea(lineResponses);
+        declarationResponse.setEstadoEnvio(EstadoEnvioType.RECHAZO_COMPLETO);
 
         body = new Body();
-        body.setDeclarationResponse(declarationResponse);
+        body.setRespuestaDeclaracionType(declarationResponse);
         body.setId("Body");
 
         header = new Header();
 
         expectedEnvelope.setHeader(header);
-        expectedEnvelope.setResponseBody(body);
+        expectedEnvelope.setBody(body);
 
-        filePath = "src\\main\\resources\\realResponses\\registration\\rejected\\rejectedResponse.xml";
-        filePathForConsultation = "src\\main\\resources\\realResponses\\consultation\\consultationResponse.xml";
-        filePathForCancelation = "src\\main\\resources\\realResponses\\cancelation\\cancelationResponse.xml";
-        filePathFault = "src\\main\\resources\\realResponses\\registration\\rejected\\faultResponseHeaderError.xml";
+        filePath = "src\\main\\resources\\responses\\rejectedResponse.xml";
+        filePathFault = "src\\main\\resources\\responses\\faultResponseHeaderError.xml";
         incorrectFile = "src\\main\\resources\\testResponses\\wrongResponse.xml";
         wrongXml = "src\\main\\resources\\testResponses\\wrongXml.xml";
     }
@@ -105,59 +102,18 @@ public class ParseServiceTest {
 
         String fileContent = MainService.readFile(filePath);
 
-        RespuestaDeclaracion respuestaDeclaracion = parseService.parseResponse(fileContent);
+        RespuestaDeclaracionType respuestaDeclaracion = parseService.parseResponse(fileContent);
 
-        Body actualBody = expectedEnvelope.getResponseBody();
-        RespuestaDeclaracion actualResponse = actualBody.getDeclarationResponse();
+        Body actualBody = expectedEnvelope.getBody();
+        RespuestaDeclaracionType actualResponse = actualBody.getRespuestaDeclaracionType();
 
         assertEquals(body, actualBody);
 
-        assertEquals(head, respuestaDeclaracion.getCabecera());
-        assertEquals(head.getCommunicationType(), respuestaDeclaracion.getCabecera().getCommunicationType());
-
-        assertEquals(head.getIdDeclaration(), respuestaDeclaracion.getCabecera().getIdDeclaration());
-        assertEquals(head.getIdDeclaration().getNif(), respuestaDeclaracion.getCabecera().getIdDeclaration().getNif());
-        assertEquals(head.getIdDeclaration().getReasonName(), respuestaDeclaracion.getCabecera().getIdDeclaration().getReasonName());
-
-        assertEquals(head.getModelNumber(), respuestaDeclaracion.getCabecera().getModelNumber());
-        assertEquals(head.getModelVersionID(), respuestaDeclaracion.getCabecera().getModelVersionID());
-
-        assertEquals(head.getPeriod(), respuestaDeclaracion.getCabecera().getPeriod());
-        assertEquals(head.getPeriod().getExerciseNumber(), respuestaDeclaracion.getCabecera().getPeriod().getExerciseNumber());
-        assertEquals(head.getPeriod().getPeriodCode(), respuestaDeclaracion.getCabecera().getPeriod().getPeriodCode());
-
         assertEquals(declarationResponse, actualResponse);
-        assertEquals(declarationResponse.getSendStatus(), actualResponse.getSendStatus());
+        assertEquals(declarationResponse.getEstadoEnvio(), actualResponse.getEstadoEnvio());
         assertEquals(declarationResponse.getCabecera(), actualResponse.getCabecera());
-        assertEquals(declarationResponse.getLineResponse(), actualResponse.getLineResponse());
+        assertEquals(declarationResponse.getRespuestaLinea(), actualResponse.getRespuestaLinea());
 
-        assertEquals(lineResponses, respuestaDeclaracion.getLineResponse());
-        assertEquals(lineResponses.get(0).getErrorDescription(), respuestaDeclaracion.getLineResponse().get(0).getErrorDescription());
-        assertEquals(lineResponses.get(0).getRecordCode(), respuestaDeclaracion.getLineResponse().get(0).getRecordCode());
-        assertEquals(lineResponses.get(0).getRecordID(), respuestaDeclaracion.getLineResponse().get(0).getRecordID());
-        assertEquals(lineResponses.get(0).getRecordStatus(), respuestaDeclaracion.getLineResponse().get(0).getRecordStatus());
-
-    }
-
-    @Test
-    public void parseConsultationResponseTest() throws ParseException {
-        String fileContent = MainService.readFile(filePathForConsultation);
-
-        RespuestaConsultaDI respuestaConsultaDI = parseService.parseConsultationResponse(fileContent);
-
-        assertEquals("ConDatos", respuestaConsultaDI.getConsultationResult());
-        assertEquals("01010101M", respuestaConsultaDI.getDeclaration().getDetail().getIdAssignee().getNif());
-    }
-
-
-    @Test
-    public void parseCancelationResponseTest() throws ParseException {
-        String fileContent = MainService.readFile(filePathForCancelation);
-
-        RespuestaBajaDI respuestaBajaDI = parseService.parseCancelationResponse(fileContent);
-
-        assertEquals("DESARROLLOLOCAL0", respuestaBajaDI.getCsv());
-        assertNotEquals("88888880Ks", respuestaBajaDI.getPresentationDate().getNifPresenter());
     }
 
     @Test
@@ -172,7 +128,7 @@ public class ParseServiceTest {
     @Test
     public void parseResponseWithIncorrectFileContentTest() throws ParseException {
         String fileContent = MainService.readFile(incorrectFile);
-        RespuestaDeclaracion respuestaDeclaracion = parseService.parseResponse(fileContent);
+        RespuestaDeclaracionType respuestaDeclaracion = parseService.parseResponse(fileContent);
         assertThat(declarationResponse, is(not(respuestaDeclaracion)));
     }
 
@@ -181,85 +137,21 @@ public class ParseServiceTest {
         expectedEx.expect(ParseException.class);
         expectedEx.expectMessage("Wrong xml");
         String fileContent = MainService.readFile(wrongXml);
-        RespuestaDeclaracion respuestaDeclaracion = parseService.parseResponse(fileContent);
+        RespuestaDeclaracionType respuestaDeclaracion = parseService.parseResponse(fileContent);
     }
 
     @Test
     public void parseResponseWithEmptyContentTest() throws ParseException {
         expectedEx.expect(ParseException.class);
         expectedEx.expectMessage("File content is empty");
-        RespuestaDeclaracion respuestaDeclaracion = parseService.parseResponse("");
+        RespuestaDeclaracionType respuestaDeclaracion = parseService.parseResponse("");
     }
 
     @Test
     public void parseResponseWithNullPathTest() throws ParseException {
         expectedEx.expect(ParseException.class);
         expectedEx.expectMessage("File content is null");
-        RespuestaDeclaracion respuestaDeclaracion = parseService.parseResponse(null);
+        RespuestaDeclaracionType respuestaDeclaracion = parseService.parseResponse(null);
     }
 
-
-
-
-    @Test
-    public void parseResponseWithIncorrectFileContentTestForConsultation() throws ParseException {
-        String fileContent = MainService.readFile(incorrectFile);
-        RespuestaConsultaDI respuestaConsultaDI = parseService.parseConsultationResponse(fileContent);
-        assertThat(declarationResponse, is(not(respuestaConsultaDI)));
-    }
-
-    @Test
-    public void parseResponseWithWrongXmlTestForConsultation() throws ParseException {
-        expectedEx.expect(ParseException.class);
-        expectedEx.expectMessage("Wrong xml");
-        String fileContent = MainService.readFile(wrongXml);
-        RespuestaConsultaDI respuestaConsultaDI = parseService.parseConsultationResponse(fileContent);
-    }
-
-    @Test
-    public void parseResponseWithEmptyContentTestForConsultation() throws ParseException {
-        expectedEx.expect(ParseException.class);
-        expectedEx.expectMessage("File content is empty");
-        RespuestaConsultaDI respuestaConsultaDI = parseService.parseConsultationResponse("");
-    }
-
-    @Test
-    public void parseResponseWithNullPathTestForConsultation() throws ParseException {
-        expectedEx.expect(ParseException.class);
-        expectedEx.expectMessage("File content is null");
-        RespuestaConsultaDI respuestaConsultaDI = parseService.parseConsultationResponse(null);
-    }
-
-
-
-
-
-    @Test
-    public void parseResponseWithIncorrectFileContentTestForCancelation() throws ParseException {
-        String fileContent = MainService.readFile(incorrectFile);
-        RespuestaBajaDI respuestaBajaDI = parseService.parseCancelationResponse(fileContent);
-        assertThat(declarationResponse, is(not(respuestaBajaDI)));
-    }
-
-    @Test
-    public void parseResponseWithWrongXmlTestForCancelation() throws ParseException {
-        expectedEx.expect(ParseException.class);
-        expectedEx.expectMessage("Wrong xml");
-        String fileContent = MainService.readFile(wrongXml);
-        RespuestaBajaDI respuestaBajaDI = parseService.parseCancelationResponse(fileContent);
-    }
-
-    @Test
-    public void parseResponseWithEmptyContentTestForCancelation() throws ParseException {
-        expectedEx.expect(ParseException.class);
-        expectedEx.expectMessage("File content is empty");
-        RespuestaBajaDI respuestaBajaDI = parseService.parseCancelationResponse("");
-    }
-
-    @Test
-    public void parseResponseWithNullPathTestForCancelation() throws ParseException {
-        expectedEx.expect(ParseException.class);
-        expectedEx.expectMessage("File content is null");
-        RespuestaBajaDI respuestaBajaDI = parseService.parseCancelationResponse(null);
-    }
 }

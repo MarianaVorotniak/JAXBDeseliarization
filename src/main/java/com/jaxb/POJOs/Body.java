@@ -1,27 +1,45 @@
 package com.jaxb.POJOs;
 
-import lombok.*;
+import lombok.Data;
 
 import javax.xml.bind.annotation.*;
 
 @Data
 @XmlType(name = "Body")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Body {
+    public class Body {
 
     @XmlElement(name = "RespuestaDeclaracion", namespace = "https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/RespuestaDeclaracion.xsd")
-    private RespuestaDeclaracion declarationResponse;
+    private RespuestaDeclaracionType respuestaDeclaracionType;
 
     @XmlAttribute(name = "Id")
     private String id;
 
-    @XmlElement(name = "RespuestaConsultaDI", namespace = "https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/RespuestaConsultaDI.xsd")
-    private RespuestaConsultaDI responseConsultationDI;
-
-    @XmlElement(name = "RespuestaBajaDI", namespace = "https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/RespuestaBajaDI.xsd")
-    private RespuestaBajaDI cancelationResponseDI;
-
-    @XmlElement(name="Fault", namespace = "https://schemas.xmlsoap.org/soap/envelope/")
+    @XmlElement(name="Fault")
     private Fault fault;
 
-}
+    public RespuestaDeclaracionType getRespuestaDeclaracionType() {
+        return respuestaDeclaracionType;
+    }
+
+    public void setRespuestaDeclaracionType(RespuestaDeclaracionType respuestaDeclaracionType) {
+        this.respuestaDeclaracionType = respuestaDeclaracionType;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public Fault getFault() {
+        return fault;
+    }
+
+    public void setFault(Fault fault) {
+        this.fault = fault;
+    }
+    }
+

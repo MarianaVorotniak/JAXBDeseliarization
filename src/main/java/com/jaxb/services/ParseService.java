@@ -11,9 +11,9 @@ import java.io.*;
 
 public class ParseService {
 
-    public RespuestaDeclaracion parseResponse(String fileContent) throws ParseException {
+    public RespuestaDeclaracionType parseResponse(String fileContent) throws ParseException {
         Body bodyResponse = getResponseBody(fileContent);
-        RespuestaDeclaracion declarationResponse = bodyResponse.getDeclarationResponse();
+        RespuestaDeclaracionType declarationResponse = bodyResponse.getRespuestaDeclaracionType();
 
         return declarationResponse;
     }
@@ -38,23 +38,9 @@ public class ParseService {
         return fault;
     }
 
-    public RespuestaConsultaDI parseConsultationResponse(String fileContent) throws ParseException {
-        Body bodyResponse = getResponseBody(fileContent);
-        RespuestaConsultaDI consultationResponse = bodyResponse.getResponseConsultationDI();
-
-        return consultationResponse;
-    }
-
-    public RespuestaBajaDI parseCancelationResponse(String fileContent) throws ParseException {
-        Body bodyResponse = getResponseBody(fileContent);
-        RespuestaBajaDI cancelationResponse = bodyResponse.getCancelationResponseDI();
-
-        return cancelationResponse;
-    }
-
     public Body getResponseBody(String fileContent) throws ParseException {
         Envelope fullResponse = unmarshal(fileContent);
-        Body bodyResponse = fullResponse.getResponseBody();
+        Body bodyResponse = fullResponse.getBody();
 
         return bodyResponse;
     }

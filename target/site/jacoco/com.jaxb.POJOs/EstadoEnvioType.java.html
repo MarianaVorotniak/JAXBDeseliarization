@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>EstadoEnvioType.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JAXBDeseliarization</a> &gt; <a href="index.source.html" class="el_package">com.jaxb.POJOs</a> &gt; <span class="el_source">EstadoEnvioType.java</span></div><h1>EstadoEnvioType.java</h1><pre class="source lang-java linenums">
+package com.jaxb.POJOs;
+
+import javax.xml.bind.annotation.XmlEnum;
+import javax.xml.bind.annotation.XmlEnumValue;
+import javax.xml.bind.annotation.XmlType;
+
+
+/**
+ * &lt;p&gt;Java class for EstadoEnvioType.
+ * 
+ * &lt;p&gt;The following schema fragment specifies the expected content contained within this class.
+ * &lt;p&gt;
+ * &lt;pre&gt;
+ * &amp;lt;simpleType name=&quot;EstadoEnvioType&quot;&amp;gt;
+ *   &amp;lt;restriction base=&quot;{http://www.w3.org/2001/XMLSchema}string&quot;&amp;gt;
+ *     &amp;lt;enumeration value=&quot;Aceptacion Completa&quot;/&amp;gt;
+ *     &amp;lt;enumeration value=&quot;Aceptacion Parcial&quot;/&amp;gt;
+ *     &amp;lt;enumeration value=&quot;Rechazo Completo&quot;/&amp;gt;
+ *   &amp;lt;/restriction&amp;gt;
+ * &amp;lt;/simpleType&amp;gt;
+ * &lt;/pre&gt;
+ * 
+ */
+<span class="fc" id="L25">@XmlType(name = &quot;EstadoEnvioType&quot;, namespace = &quot;https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/RespuestaDeclaracion.xsd&quot;)</span>
+@XmlEnum
+public enum EstadoEnvioType {
+
+
+    /**
+     * Aceptacion Completa
+     * 
+     */
+<span class="fc" id="L34">    @XmlEnumValue(&quot;Aceptacion Completa&quot;)</span>
+    ACEPTACION_COMPLETA(&quot;Aceptacion Completa&quot;),
+
+    /**
+     * Aceptacion Parcial
+     * 
+     */
+<span class="fc" id="L41">    @XmlEnumValue(&quot;Aceptacion Parcial&quot;)</span>
+    ACEPTACION_PARCIAL(&quot;Aceptacion Parcial&quot;),
+
+    /**
+     * Rechazo Completo
+     * 
+     */
+<span class="fc" id="L48">    @XmlEnumValue(&quot;Rechazo Completo&quot;)</span>
+    RECHAZO_COMPLETO(&quot;Rechazo Completo&quot;);
+    private final String value;
+
+<span class="fc" id="L52">    EstadoEnvioType(String v) {</span>
+<span class="fc" id="L53">        value = v;</span>
+<span class="fc" id="L54">    }</span>
+
+    public String value() {
+<span class="fc" id="L57">        return value;</span>
+    }
+
+    public static EstadoEnvioType fromValue(String v) {
+<span class="nc bnc" id="L61" title="All 2 branches missed.">        for (EstadoEnvioType c: EstadoEnvioType.values()) {</span>
+<span class="nc bnc" id="L62" title="All 2 branches missed.">            if (c.value.equals(v)) {</span>
+<span class="nc" id="L63">                return c;</span>
+            }
+        }
+<span class="nc" id="L66">        throw new IllegalArgumentException(v);</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>
