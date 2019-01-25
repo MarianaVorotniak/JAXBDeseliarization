@@ -9,11 +9,7 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
-import org.xml.sax.SAXException;
-
-import javax.xml.parsers.ParserConfigurationException;
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
@@ -57,6 +53,7 @@ public class MainServiceTest {
 
         fault = new Fault();
         fault.setFaultcode("env:Client");
+        fault.setFaultstring("Codigo[4105].Error en la cabecera. El NIF del declarante es inválido. NIF:B98156129. NOMBRE_RAZON:HomeAway");
 
         lineResponse = new ArrayList<>();
         RespuestaOperacionesType firstElemOfLineResponseList = new RespuestaOperacionesType();
@@ -83,7 +80,7 @@ public class MainServiceTest {
     }
 
     @Test
-    public void translateTest() throws ParseException {
+    public void translateTest() {
         String actualAcceptanceTranslated = mainService.translate("Aceptacion Completa");
         assertEquals("Fully accepted", actualAcceptanceTranslated);
         assertNotEquals("Accepted", actualAcceptanceTranslated);
@@ -92,9 +89,10 @@ public class MainServiceTest {
         assertEquals("Rejected", actualRejectedTranslated);
         assertNotEquals("Accepted", actualRejectedTranslated);
 
-        expectedEx.expect(ParseException.class);
-        expectedEx.expectMessage("Word is not a correct status");
         String actualWrongTranslated = mainService.translate("Aceptacion");
+        String logMsgAccepted = out.toString();
+        assertNotNull(logMsgAccepted);
+        assertTrue(logMsgAccepted.contains("Can't translate status, because it is not correct"));
     }
 
     @Test
@@ -114,12 +112,12 @@ public class MainServiceTest {
     }
 
     @Test
-    public void acceptedOrRejectedMessageTest() throws ParseException {
+    public void acceptedOrRejectedMessageTest() {
 
         mainService.acceptedOrRejectedMessage(responseAccepted);
         String logMsgAccepted = out.toString();
         assertNotNull(logMsgAccepted);
-        assertTrue(logMsgAccepted.contains("The status is [Fully accepted]"));
+        assertTrue(logMsgAccepted.contains("The status of registration/modification is [Fully accepted]"));
 
         mainService.acceptedOrRejectedMessage(responseRejected);
         String logMsgRejected = out.toString();
@@ -128,7 +126,7 @@ public class MainServiceTest {
     }
 
     @Test
-    public void getResponseTest() throws SAXException, ParserConfigurationException, ParseException, IOException {
+    public void getResponseTest() {
 
         Object registration = mainService.getResponse(filePathAcceptedWithOne);
         Object fault = mainService.getResponse(filePathWithFaultHeaderResponse);
@@ -140,18 +138,18 @@ public class MainServiceTest {
     }
 
     @Test
-    public void checkResponseTypeTest() throws ParseException {
+    public void checkResponseTypeTest() {
         mainService.checkResponseType(responseAccepted);
         String logMsgRegistration = out.toString();
         assertTrue(logMsgRegistration.contains("[Fully accepted]"));
 
         mainService.checkResponseType(fault);
         String logMsgFault = out.toString();
-        assertTrue(logMsgFault.contains("env:Client"));
+        assertTrue(logMsgFault.contains("Codigo[4105].Error en la cabecera. El NIF del declarante es inválido. NIF:B98156129. NOMBRE_RAZON:HomeAway"));
 
         mainService.checkResponseType(null);
         String logMsgNull = out.toString();
-        assertTrue(logMsgNull.contains("There is no response."));
+        assertTrue(logMsgNull.contains("Response is null"));
     }
 
     @After

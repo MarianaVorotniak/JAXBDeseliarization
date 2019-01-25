@@ -2,10 +2,15 @@ package com.jaxb;
 
 import com.jaxb.exceptions.ParseException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.math.BigInteger;
 import java.util.*;
 
 public class Errors {
+
+    private static Logger LOGGER = LoggerFactory.getLogger(Errors.class);
 
     private static Map<BigInteger, String> mapOfErrors = new HashMap<BigInteger, String>()
     {{
@@ -78,7 +83,7 @@ public class Errors {
         String message = mapOfErrors.get(code);
 
         if (message == null)
-            throw new ParseException("Can't find code " + code);
+            throw new ParseException("Unknown error code " + code);
 
         return message;
     }

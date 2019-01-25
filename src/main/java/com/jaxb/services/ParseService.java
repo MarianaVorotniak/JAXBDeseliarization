@@ -2,6 +2,7 @@ package com.jaxb.services;
 
 import com.jaxb.POJOs.*;
 import com.jaxb.exceptions.ParseException;
+import org.slf4j.*;
 import org.w3c.dom.Document;
 import org.xml.sax.*;
 
@@ -11,6 +12,8 @@ import java.io.*;
 
 public class ParseService {
 
+    private static Logger LOGGER = LoggerFactory.getLogger(ParseService.class);
+
     public RespuestaDeclaracionType parseResponse(String fileContent) throws ParseException {
         Body bodyResponse = getResponseBody(fileContent);
         RespuestaDeclaracionType declarationResponse = bodyResponse.getRespuestaDeclaracionType();
@@ -18,22 +21,32 @@ public class ParseService {
         return declarationResponse;
     }
 
-    public Fault parseFaultResponse(String fileContent) throws ParserConfigurationException, IOException, SAXException {
-        DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-        InputSource src = new InputSource();
-        src.setCharacterStream(new StringReader(fileContent));
-
-        Document document = builder.parse(src);
-        String faultstring = document.getElementsByTagName("faultstring").item(0).getTextContent();
-        String faultcode = document.getElementsByTagName("faultcode").item(0).getTextContent();
-
-        Detail detail = new Detail();
-        detail.setCallstack(document.getElementsByTagName("callstack").item(0).getTextContent());
+    public Fault parseFaultResponse(String fileContent)  {
 
         Fault fault = new Fault();
-        fault.setFaultstring(faultstring);
-        fault.setFaultcode(faultcode);
-        fault.setDetail(detail);
+
+        try {
+            DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+            InputSource src = new InputSource();
+            src.setCharacterStream(new StringReader(fileContent));
+
+            Document document = builder.parse(src);
+            String faultstring = document.getElementsByTagName("faultstring").item(0).getTextContent();
+            String faultcode = document.getElementsByTagName("faultcode").item(0).getTextContent();
+
+            Detail detail = new Detail();
+            detail.setCallstack(document.getElementsByTagName("callstack").item(0).getTextContent());
+
+            fault.setFaultstring(faultstring);
+            fault.setFaultcode(faultcode);
+            fault.setDetail(detail);
+        } catch (ParserConfigurationException e) {
+            LOGGER.warn("ParserConfigurationException [{}]", e.getMessage());
+        } catch (IOException e) {
+            LOGGER.warn("IOException [{}]", e.getMessage());
+        } catch (SAXException e) {
+            LOGGER.warn("SAXException [{}]", e.getMessage());
+        }
 
         return fault;
     }
@@ -54,15 +67,14 @@ public class ParseService {
 
         StringReader reader = new StringReader(fileContent);
 
-        JAXBContext context;
         Envelope fullResponse;
 
         try {
-            context = JAXBContext.newInstance(Envelope.class);
+            JAXBContext context = JAXBContext.newInstance(Envelope.class);
             Unmarshaller unmarshaller = context.createUnmarshaller();
             fullResponse = (Envelope) unmarshaller.unmarshal(reader);
         } catch (JAXBException e) {
-            throw new ParseException("Wrong xml");
+                throw new ParseException("Wrong xml");
         }
 
         return fullResponse;

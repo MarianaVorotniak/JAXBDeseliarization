@@ -102,8 +102,6 @@ public class ParseServiceTest {
 
         String fileContent = MainService.readFile(filePath);
 
-        RespuestaDeclaracionType respuestaDeclaracion = parseService.parseResponse(fileContent);
-
         Body actualBody = expectedEnvelope.getBody();
         RespuestaDeclaracionType actualResponse = actualBody.getRespuestaDeclaracionType();
 
@@ -117,7 +115,7 @@ public class ParseServiceTest {
     }
 
     @Test
-    public void parseFaultResponseTest() throws ParseException, IOException, SAXException, ParserConfigurationException {
+    public void parseFaultResponseTest() throws ParseException {
         String fileContent = MainService.readFile(filePathFault);
 
         Fault fault = parseService.parseFaultResponse(fileContent);

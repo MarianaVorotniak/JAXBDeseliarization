@@ -30,7 +30,7 @@ public class ErrorsTest {
     @Test
     public void codeDoesNotExistInMapTest() throws ParseException {
         expectedEx.expect(ParseException.class);
-        expectedEx.expectMessage("Can't find code");
+        expectedEx.expectMessage("Unknown error code");
         errors.findMessageByCode(BigInteger.valueOf(0));
     }
 
