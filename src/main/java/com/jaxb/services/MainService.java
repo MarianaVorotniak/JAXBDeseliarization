@@ -13,18 +13,15 @@ public class MainService {
 
     private static Logger LOGGER = LoggerFactory.getLogger(MainService.class);
     private static ParseService service = new ParseService();
-    private static RespuestaDeclaracionType defaultResponse = new RespuestaDeclaracionType();
+    private static DefaultResponse defaultResponse = new DefaultResponse();
 
     public void checkResponseType(LoggerMessage objectResponse) {
         if (objectResponse instanceof RespuestaDeclaracionType) {
             RespuestaDeclaracionType response = (RespuestaDeclaracionType) objectResponse;
             acceptedOrRejectedMessage(response);
         }
-        else if (objectResponse instanceof Fault){
+        else
             LOGGER.info(objectResponse.getMessage());
-        } else if (objectResponse == null) {
-            LOGGER.info("Response is null");
-        }
     }
 
     public void acceptedOrRejectedMessage(RespuestaDeclaracionType response) {

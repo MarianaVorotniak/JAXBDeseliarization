@@ -26,6 +26,8 @@ public class MainServiceTest {
     @Mock
     private RespuestaDeclaracionType responseRejected;
     @Mock
+    private DefaultResponse defaultResponse;
+    @Mock
     private Fault fault;
     @Mock
     private List<RespuestaOperacionesType> lineResponse;
@@ -45,6 +47,9 @@ public class MainServiceTest {
 
     @Before
     public void init() {
+
+        defaultResponse = new DefaultResponse();
+
         responseAccepted = new RespuestaDeclaracionType();
         responseAccepted.setEstadoEnvio(EstadoEnvioType.ACEPTACION_COMPLETA);
 
@@ -135,7 +140,7 @@ public class MainServiceTest {
         assertTrue(registration instanceof RespuestaDeclaracionType);
         assertTrue(fault instanceof  Fault);
         System.out.println(testObj.getClass().getName());
-        assertTrue(testObj.getClass().getName().contains("RespuestaDeclaracionType"));
+        assertTrue(testObj.getClass().getName().contains("DefaultResponse"));
     }
 
     @Test
@@ -148,8 +153,9 @@ public class MainServiceTest {
         String logMsgFault = out.toString();
         assertTrue(logMsgFault.contains("Codigo[4105].Error en la cabecera. El NIF del declarante es inválido. NIF:B98156129. NOMBRE_RAZON:HomeAway"));
 
-        mainService.checkResponseType(null);
+        mainService.checkResponseType(defaultResponse);
         String logMsgNull = out.toString();
+        System.out.println(logMsgNull);
         assertTrue(logMsgNull.contains("Response is null"));
     }
 

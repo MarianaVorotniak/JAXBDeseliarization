@@ -22,7 +22,7 @@ public class Main {
 
         MainService service = new MainService();
 
-        LoggerMessage objectResponse = service.getResponse(filePathAcceptedWithMany);
+        LoggerMessage objectResponse = service.getResponse(filePathRejected);
 
         service.checkResponseType(objectResponse);
     }
