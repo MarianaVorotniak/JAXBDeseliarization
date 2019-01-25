@@ -134,7 +134,8 @@ public class MainServiceTest {
 
         assertTrue(registration instanceof RespuestaDeclaracionType);
         assertTrue(fault instanceof  Fault);
-        assertTrue(testObj.getClass().getName().contains("Object"));
+        System.out.println(testObj.getClass().getName());
+        assertTrue(testObj.getClass().getName().contains("RespuestaDeclaracionType"));
     }
 
     @Test

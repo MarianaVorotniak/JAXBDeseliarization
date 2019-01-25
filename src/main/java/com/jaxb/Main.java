@@ -1,11 +1,7 @@
 package com.jaxb;
 
-import com.jaxb.exceptions.ParseException;
+import com.jaxb.interfaces.LoggerMessage;
 import com.jaxb.services.MainService;
-import org.xml.sax.SAXException;
-
-import javax.xml.parsers.ParserConfigurationException;
-import java.io.IOException;
 
 /**
  * This is a program to parse XML elements from a SOAP response using JAXB.
@@ -22,11 +18,11 @@ public class Main {
     private static String filePathAcceptedWithMany = "src\\main\\resources\\responses\\acceptedWithManyResponses.xml";
 
 
-    public static void main(String[] args) throws ParseException, ParserConfigurationException, SAXException, IOException {
+    public static void main(String[] args) {
 
         MainService service = new MainService();
 
-        Object objectResponse = service.getResponse(filePathRejected);
+        LoggerMessage objectResponse = service.getResponse(filePathAcceptedWithMany);
 
         service.checkResponseType(objectResponse);
     }

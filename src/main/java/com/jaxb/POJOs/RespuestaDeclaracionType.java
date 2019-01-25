@@ -1,6 +1,9 @@
 
 package com.jaxb.POJOs;
 
+import com.jaxb.interfaces.LoggerMessage;
+import com.jaxb.services.MainService;
+
 import java.util.*;
 import javax.xml.bind.annotation.*;
 
@@ -14,7 +17,7 @@ import javax.xml.bind.annotation.*;
     "respuestaLinea"
 })
 public class RespuestaDeclaracionType
-    extends RespuestaComunAltaType
+    extends RespuestaComunAltaType implements LoggerMessage
 {
 
     @XmlElement(name = "RespuestaLinea", namespace = "https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/RespuestaDeclaracion.xsd")
@@ -42,9 +45,14 @@ public class RespuestaDeclaracionType
      */
     public List<RespuestaOperacionesType> getRespuestaLinea() {
         if (respuestaLinea == null) {
-            respuestaLinea = new ArrayList<RespuestaOperacionesType>();
+            respuestaLinea = new ArrayList<>();
         }
         return this.respuestaLinea;
+    }
+
+    public String getMessage() {
+        String status = MainService.translate(getEstadoEnvio().value());
+        return "The status of registration/modification is [" + status + "]";
     }
 
 }

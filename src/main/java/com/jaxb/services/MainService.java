@@ -3,6 +3,7 @@ package com.jaxb.services;
 import com.jaxb.Errors;
 import com.jaxb.POJOs.*;
 import com.jaxb.exceptions.ParseException;
+import com.jaxb.interfaces.LoggerMessage;
 import org.slf4j.*;
 import java.io.IOException;
 import java.math.BigInteger;
@@ -12,15 +13,15 @@ public class MainService {
 
     private static Logger LOGGER = LoggerFactory.getLogger(MainService.class);
     private static ParseService service = new ParseService();
+    private static RespuestaDeclaracionType defaultResponse = new RespuestaDeclaracionType();
 
-    public void checkResponseType(Object objectResponse) {
+    public void checkResponseType(LoggerMessage objectResponse) {
         if (objectResponse instanceof RespuestaDeclaracionType) {
             RespuestaDeclaracionType response = (RespuestaDeclaracionType) objectResponse;
             acceptedOrRejectedMessage(response);
         }
         else if (objectResponse instanceof Fault){
-            Fault faultResponse = (Fault) objectResponse;
-            LOGGER.info("Cause of the Fault response - [{}]", faultResponse.getFaultstring());
+            LOGGER.info(objectResponse.getMessage());
         } else if (objectResponse == null) {
             LOGGER.info("Response is null");
         }
@@ -28,13 +29,13 @@ public class MainService {
 
     public void acceptedOrRejectedMessage(RespuestaDeclaracionType response) {
         if (isAccepted(response))
-            printSendStatus(response);
+            LOGGER.info(response.getMessage());
         else
             printErrorMessages(response);
     }
 
     public void printErrorMessages(RespuestaDeclaracionType response) {
-        printSendStatus(response);
+        LOGGER.info(response.getMessage());
         for (RespuestaOperacionesType lineResponse : response.getRespuestaLinea()) {
             BigInteger code = lineResponse.getCodigoErrorRegistro();
             String errorMessage = null;
@@ -48,11 +49,6 @@ public class MainService {
         }
     }
 
-    public void printSendStatus(RespuestaDeclaracionType response) {
-        String status = translate(response.getEstadoEnvio().value());
-        LOGGER.info("The status of registration/modification is [{}]", status);
-    }
-
     public boolean isAccepted(RespuestaDeclaracionType response) {
         String status = response.getEstadoEnvio().value();
         if (status.equals("Aceptacion Completa"))
@@ -60,7 +56,7 @@ public class MainService {
         return false;
     }
 
-    public Object getResponse(String filePath) {
+    public LoggerMessage getResponse(String filePath) {
         try {
             String fileContent = readFile(filePath);
             if (fileContent.contains("RespuestaDeclaracion"))
@@ -71,7 +67,7 @@ public class MainService {
             LOGGER.info("File does not exist [{}]", filePath);
         }
 
-        return new Object();
+        return defaultResponse;
     }
 
     public static String readFile(String path) throws ParseException {
