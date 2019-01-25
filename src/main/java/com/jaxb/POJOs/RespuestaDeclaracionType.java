@@ -1,9 +1,13 @@
 
 package com.jaxb.POJOs;
 
-import com.jaxb.interfaces.LoggerMessage;
+import com.jaxb.Errors;
+import com.jaxb.exceptions.ParseException;
+import com.jaxb.interfaces.Responses;
 import com.jaxb.services.MainService;
+import com.jaxb.services.ParseService;
 
+import java.math.BigInteger;
 import java.util.*;
 import javax.xml.bind.annotation.*;
 
@@ -16,8 +20,7 @@ import javax.xml.bind.annotation.*;
 @XmlType(name = "RespuestaDeclaracionType", namespace = "https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/RespuestaDeclaracion.xsd", propOrder = {
     "respuestaLinea"
 })
-public class RespuestaDeclaracionType
-    extends RespuestaComunAltaType implements LoggerMessage
+public class RespuestaDeclaracionType extends RespuestaComunAltaType implements Responses
 {
 
     @XmlElement(name = "RespuestaLinea", namespace = "https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/RespuestaDeclaracion.xsd")
@@ -50,9 +53,30 @@ public class RespuestaDeclaracionType
         return this.respuestaLinea;
     }
 
+    @Override
     public String getMessage() {
-        String status = MainService.translate(getEstadoEnvio().value());
-        return "The status of registration/modification is [" + status + "]";
+        String status = getEstadoEnvio().value();
+
+        String message = "The status of registration/modification is [" + status + "]";
+
+        if (!isAccepted(status)) {
+            for (RespuestaOperacionesType lineResponse : getRespuestaLinea()) {
+                BigInteger code = lineResponse.getCodigoErrorRegistro();
+                String errorMessage = null;
+                try {
+                    errorMessage = Errors.findMessageByCode(code);
+                } catch (ParseException e) {
+                    message = "Unknown error code [" + code + "]";
+                }
+
+                message += "\nThe error is: code [" +  code + "], message [" + errorMessage + "]";
+            }
+        }
+        return message;
+    }
+
+    public boolean isAccepted(String status) {
+        return status.equals("Aceptacion Completa");
     }
 
 }

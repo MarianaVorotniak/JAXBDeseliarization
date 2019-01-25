@@ -1,3 +1,4 @@
+C:\Users\mvoro\IdeaProjects\JAXB-XSDDeseliarization\src\main\java\com\jaxb\interfaces\Responses.java
 C:\Users\mvoro\IdeaProjects\JAXB-XSDDeseliarization\src\main\java\com\jaxb\POJOs\DatosPresentacion2Type.java
 C:\Users\mvoro\IdeaProjects\JAXB-XSDDeseliarization\src\main\java\com\jaxb\POJOs\RespuestaOperacionesType.java
 C:\Users\mvoro\IdeaProjects\JAXB-XSDDeseliarization\src\main\java\com\jaxb\services\ParseService.java
@@ -5,7 +6,6 @@ C:\Users\mvoro\IdeaProjects\JAXB-XSDDeseliarization\src\main\java\com\jaxb\POJOs
 C:\Users\mvoro\IdeaProjects\JAXB-XSDDeseliarization\src\main\java\com\jaxb\services\MainService.java
 C:\Users\mvoro\IdeaProjects\JAXB-XSDDeseliarization\src\main\java\com\jaxb\POJOs\EstadoRegistroDDIIType.java
 C:\Users\mvoro\IdeaProjects\JAXB-XSDDeseliarization\src\main\java\com\jaxb\POJOs\RespuestaDeclaracionType.java
-C:\Users\mvoro\IdeaProjects\JAXB-XSDDeseliarization\src\main\java\com\jaxb\interfaces\LoggerMessage.java
 C:\Users\mvoro\IdeaProjects\JAXB-XSDDeseliarization\src\main\java\com\jaxb\POJOs\PersonaFisicaJuridicaUnicaESType.java
 C:\Users\mvoro\IdeaProjects\JAXB-XSDDeseliarization\src\main\java\com\jaxb\POJOs\CountryMiembroType.java
 C:\Users\mvoro\IdeaProjects\JAXB-XSDDeseliarization\src\main\java\com\jaxb\POJOs\EstadoEnvioType.java
@@ -30,7 +30,6 @@ C:\Users\mvoro\IdeaProjects\JAXB-XSDDeseliarization\src\main\java\com\jaxb\POJOs
 C:\Users\mvoro\IdeaProjects\JAXB-XSDDeseliarization\src\main\java\com\jaxb\POJOs\PersonaFisicaJuridicaType.java
 C:\Users\mvoro\IdeaProjects\JAXB-XSDDeseliarization\src\main\java\com\jaxb\POJOs\MacrodatoType.java
 C:\Users\mvoro\IdeaProjects\JAXB-XSDDeseliarization\src\main\java\com\jaxb\POJOs\ClaveType.java
-C:\Users\mvoro\IdeaProjects\JAXB-XSDDeseliarization\src\main\java\com\jaxb\POJOs\DefaultResponse.java
 C:\Users\mvoro\IdeaProjects\JAXB-XSDDeseliarization\src\main\java\com\jaxb\POJOs\Fault.java
 C:\Users\mvoro\IdeaProjects\JAXB-XSDDeseliarization\src\main\java\com\jaxb\POJOs\package-info.java
 C:\Users\mvoro\IdeaProjects\JAXB-XSDDeseliarization\src\main\java\com\jaxb\POJOs\Body.java

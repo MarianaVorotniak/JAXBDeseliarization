@@ -51,14 +51,14 @@ public class ParseService {
         return fault;
     }
 
-    public Body getResponseBody(String fileContent) throws ParseException {
+    public static Body getResponseBody(String fileContent) throws ParseException {
         Envelope fullResponse = unmarshal(fileContent);
         Body bodyResponse = fullResponse.getBody();
 
         return bodyResponse;
     }
 
-    public Envelope unmarshal(String fileContent) throws ParseException {
+    public static Envelope unmarshal(String fileContent) throws ParseException {
 
         if (fileContent == null)
             throw new ParseException("File content is null");

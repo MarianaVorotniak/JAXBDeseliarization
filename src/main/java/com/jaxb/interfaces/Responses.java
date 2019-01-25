@@ -1,6 +1,6 @@
 package com.jaxb.interfaces;
 
-public interface LoggerMessage {
+public interface Responses {
 
     String getMessage();
 }

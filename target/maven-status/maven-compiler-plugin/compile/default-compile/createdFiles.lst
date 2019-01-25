@@ -14,6 +14,7 @@ com\jaxb\POJOs\RespuestaDeclaracionType.class
 com\jaxb\POJOs\EstadoRegistroType.class
 com\jaxb\POJOs\DeclaradoType$Detalle.class
 com\jaxb\POJOs\DeclaradoType$Detalle$IDInmueble$DatosInmueble.class
+com\jaxb\interfaces\Responses.class
 com\jaxb\POJOs\DeclaradoType$Detalle$DesgloseOperacion$MedioPago.class
 com\jaxb\Errors$1.class
 com\jaxb\exceptions\ParseException.class
@@ -31,14 +32,12 @@ com\jaxb\POJOs\ClaveType.class
 com\jaxb\POJOs\IDOtroType.class
 com\jaxb\POJOs\DeclaracionInformativa.class
 com\jaxb\POJOs\DeclaradoType$Detalle$IDCesionario.class
-com\jaxb\interfaces\LoggerMessage.class
 com\jaxb\services\MainService.class
 com\jaxb\POJOs\ClaveTipoComunicacionType.class
 com\jaxb\POJOs\RespuestaComunAltaType.class
 com\jaxb\POJOs\ObjectFactory.class
 com\jaxb\POJOs\Header.class
 com\jaxb\POJOs\CabeceraDI.class
-com\jaxb\POJOs\DefaultResponse.class
 com\jaxb\POJOs\EstadoRegistroDDIIType.class
 com\jaxb\Main.class
 com\jaxb\POJOs\CabeceraDI$IDDeclarante$PersonaContacto.class

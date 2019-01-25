@@ -26,8 +26,6 @@ public class MainServiceTest {
     @Mock
     private RespuestaDeclaracionType responseRejected;
     @Mock
-    private DefaultResponse defaultResponse;
-    @Mock
     private Fault fault;
     @Mock
     private List<RespuestaOperacionesType> lineResponse;
@@ -47,8 +45,6 @@ public class MainServiceTest {
 
     @Before
     public void init() {
-
-        defaultResponse = new DefaultResponse();
 
         responseAccepted = new RespuestaDeclaracionType();
         responseAccepted.setEstadoEnvio(EstadoEnvioType.ACEPTACION_COMPLETA);
@@ -85,76 +81,24 @@ public class MainServiceTest {
     }
 
     @Test
-    public void translateTest() {
-        String actualAcceptanceTranslated = mainService.translate("Aceptacion Completa");
-        assertEquals("Fully accepted", actualAcceptanceTranslated);
-        assertNotEquals("Accepted", actualAcceptanceTranslated);
-
-        String actualRejectedTranslated = mainService.translate("Rechazo Completo");
-        assertEquals("Rejected", actualRejectedTranslated);
-        assertNotEquals("Accepted", actualRejectedTranslated);
-
-        String actualWrongTranslated = mainService.translate("Aceptacion");
-        String logMsgAccepted = out.toString();
-        assertNotNull(logMsgAccepted);
-        assertTrue(logMsgAccepted.contains("Can't translate status, because it is not correct"));
-    }
-
-    @Test
     public void readFileTest() throws ParseException {
         expectedEx.expect(ParseException.class);
         expectedEx.expectMessage("File does not exist");
-        String fileContent = mainService.readFile("file");
+        mainService.readFile("file");
     }
 
     @Test
-    public void isAcceptedTest() {
-        boolean isAccepted = mainService.isAccepted(responseAccepted);
-        assertEquals(true, isAccepted);
-
-        boolean isPartiallyAccepted = mainService.isAccepted(responseRejected);
-        assertEquals(false, isPartiallyAccepted);
-    }
-
-    @Test
-    public void acceptedOrRejectedMessageTest() {
-
-        mainService.acceptedOrRejectedMessage(responseAccepted);
-        String logMsgAccepted = out.toString();
-        assertNotNull(logMsgAccepted);
-        assertTrue(logMsgAccepted.contains("The status of registration/modification is [Fully accepted]"));
-
-        mainService.acceptedOrRejectedMessage(responseRejected);
-        String logMsgRejected = out.toString();
-        assertNotNull(logMsgRejected);
-        assertTrue(logMsgRejected.contains("[Rejected]"));
-    }
-
-    @Test
-    public void getResponseTest() {
+    public void getResponseTest() throws ParseException {
 
         Object registration = mainService.getResponse(filePathAcceptedWithOne);
         Object fault = mainService.getResponse(filePathWithFaultHeaderResponse);
-        Object testObj = mainService.getResponse(filePathWithTestResponse);
+
+        expectedEx.expect(ParseException.class);
+        expectedEx.expectMessage("Error in file path");
+        mainService.getResponse(filePathWithTestResponse);
 
         assertTrue(registration instanceof RespuestaDeclaracionType);
         assertTrue(fault instanceof Fault);
-        assertTrue(testObj.getClass().getName().contains("DefaultResponse"));
-    }
-
-    @Test
-    public void checkResponseTypeTest() {
-        mainService.checkResponseType(responseAccepted);
-        String logMsgRegistration = out.toString();
-        assertTrue(logMsgRegistration.contains("[Fully accepted]"));
-
-        mainService.checkResponseType(fault);
-        String logMsgFault = out.toString();
-        assertTrue(logMsgFault.contains("Codigo[4105]"));
-
-        mainService.checkResponseType(defaultResponse);
-        String logMsgNull = out.toString();
-        assertTrue(logMsgNull.contains("Response is null"));
     }
 
     @After

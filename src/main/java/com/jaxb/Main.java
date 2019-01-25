@@ -1,6 +1,7 @@
 package com.jaxb;
 
-import com.jaxb.interfaces.LoggerMessage;
+import com.jaxb.exceptions.ParseException;
+import com.jaxb.interfaces.Responses;
 import com.jaxb.services.MainService;
 
 /**
@@ -18,13 +19,13 @@ public class Main {
     private static String filePathAcceptedWithMany = "src\\main\\resources\\responses\\acceptedWithManyResponses.xml";
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParseException {
 
         MainService service = new MainService();
 
-        LoggerMessage objectResponse = service.getResponse(filePathRejected);
+        Responses objectResponse = service.getResponse(filePathRejected);
 
-        service.checkResponseType(objectResponse);
+        service.printResponse(objectResponse);
     }
 
 }
