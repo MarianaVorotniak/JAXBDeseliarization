@@ -66,7 +66,7 @@ public class MainServiceTest {
         firstElemOfLineResponseList.setDescripcionErrorRegistro("El NIF no esta identificado. NIF: 77780619R. NOMBRE_RAZON: SunSea Costa Brava. ");
         lineResponse.add(firstElemOfLineResponseList);
 
-        responseRejected.setRespuestaLinea(lineResponse);
+        responseRejected.getRespuestaLinea().add(firstElemOfLineResponseList);
 
         LogManager.getRootLogger().addAppender(mockAppender);
 

@@ -1,49 +1,31 @@
 
 package com.jaxb.POJOs;
 
-import javax.xml.bind.annotation.XmlEnum;
-import javax.xml.bind.annotation.XmlEnumValue;
-import javax.xml.bind.annotation.XmlType;
+import lombok.AllArgsConstructor;
+
+import javax.xml.bind.annotation.*;
 
 
 /**
- * <p>Java class for EstadoRegistroDDIIType.
- * 
- * <p>The following schema fragment specifies the expected content contained within this class.
- * <p>
- * <pre>
- * &lt;simpleType name="EstadoRegistroDDIIType"&gt;
- *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string"&gt;
- *     &lt;enumeration value="Aceptado"/&gt;
- *     &lt;enumeration value="DeBaja"/&gt;
- *   &lt;/restriction&gt;
- * &lt;/simpleType&gt;
- * </pre>
- * 
+ * Java class for EstadoRegistroDDIIType.
  */
+@AllArgsConstructor
 @XmlType(name = "EstadoRegistroDDIIType")
 @XmlEnum
 public enum EstadoRegistroDDIIType {
 
-
     /**
-     * El registro se almacenado sin errores
-     * 
+     * The record was stored without errors
      */
     @XmlEnumValue("Aceptado")
     ACEPTADO("Aceptado"),
 
     /**
-     * El registro almacenado ha sido dado de baja
-     * 
+     * The stored record has been discharged
      */
     @XmlEnumValue("DeBaja")
     DE_BAJA("DeBaja");
     private final String value;
-
-    EstadoRegistroDDIIType(String v) {
-        value = v;
-    }
 
     public String value() {
         return value;

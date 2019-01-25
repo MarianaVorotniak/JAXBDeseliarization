@@ -1,62 +1,39 @@
 
 package com.jaxb.POJOs;
 
-import javax.xml.bind.annotation.XmlEnum;
-import javax.xml.bind.annotation.XmlEnumValue;
-import javax.xml.bind.annotation.XmlType;
+import lombok.AllArgsConstructor;
 
+import javax.xml.bind.annotation.*;
 
 /**
- * <p>Java class for TipoNumeracionType.
- * 
- * <p>The following schema fragment specifies the expected content contained within this class.
- * <p>
- * <pre>
- * &lt;simpleType name="TipoNumeracionType"&gt;
- *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string"&gt;
- *     &lt;enumeration value="NUM"/&gt;
- *     &lt;enumeration value="KM"/&gt;
- *     &lt;enumeration value="S/N"/&gt;
- *     &lt;enumeration value="OTR"/&gt;
- *   &lt;/restriction&gt;
- * &lt;/simpleType&gt;
- * </pre>
- * 
+ * Java class for TipoNumeracionType.
  */
+@AllArgsConstructor
 @XmlType(name = "TipoNumeracionType")
 @XmlEnum
 public enum TipoNumeracionType {
 
-
     /**
-     * Número 
-     * 
+     * Number
      */
     NUM("NUM"),
 
     /**
-     * Kilómetro 
-     * 
+     * Kilometer
      */
     KM("KM"),
 
     /**
-     * Sin número 
-     * 
+     * Without number
      */
     @XmlEnumValue("S/N")
     S_N("S/N"),
 
     /**
-     * Otro 
-     * 
+     * Other
      */
     OTR("OTR");
     private final String value;
-
-    TipoNumeracionType(String v) {
-        value = v;
-    }
 
     public String value() {
         return value;

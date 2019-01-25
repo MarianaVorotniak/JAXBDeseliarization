@@ -26,7 +26,7 @@ public class Main {
 
         MainService service = new MainService();
 
-        Object objectResponse = service.getResponse(filePathAcceptedWithMany);
+        Object objectResponse = service.getResponse(filePathRejected);
 
         service.checkResponseType(objectResponse);
     }

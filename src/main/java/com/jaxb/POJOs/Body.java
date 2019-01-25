@@ -18,28 +18,5 @@ import javax.xml.bind.annotation.*;
     @XmlElement(name="Fault")
     private Fault fault;
 
-    public RespuestaDeclaracionType getRespuestaDeclaracionType() {
-        return respuestaDeclaracionType;
-    }
-
-    public void setRespuestaDeclaracionType(RespuestaDeclaracionType respuestaDeclaracionType) {
-        this.respuestaDeclaracionType = respuestaDeclaracionType;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public Fault getFault() {
-        return fault;
-    }
-
-    public void setFault(Fault fault) {
-        this.fault = fault;
-    }
-    }
+}
 

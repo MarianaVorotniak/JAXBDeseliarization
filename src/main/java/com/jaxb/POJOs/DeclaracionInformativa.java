@@ -1,35 +1,13 @@
 
 package com.jaxb.POJOs;
 
-import java.util.ArrayList;
-import java.util.List;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
+import lombok.*;
 
+import java.util.*;
+import javax.xml.bind.annotation.*;
 
 /**
- *  Ddii - Suministro Inmediato de Declaraciones Informativas. 
- * 
- * <p>Java class for DeclaracionInformativa complex type.
- * 
- * <p>The following schema fragment specifies the expected content contained within this class.
- * 
- * <pre>
- * &lt;complexType name="DeclaracionInformativa"&gt;
- *   &lt;complexContent&gt;
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
- *       &lt;sequence&gt;
- *         &lt;element name="Cabecera" type="{https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/DeclaracionInformativa.xsd}CabeceraDI"/&gt;
- *         &lt;element name="Declarado" type="{https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/DeclaracionInformativa.xsd}DeclaradoType" maxOccurs="10000"/&gt;
- *       &lt;/sequence&gt;
- *     &lt;/restriction&gt;
- *   &lt;/complexContent&gt;
- * &lt;/complexType&gt;
- * </pre>
- * 
- * 
+ *  Ddii - Suministro Inmediato de Declaraciones Informativas.
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "DeclaracionInformativa", propOrder = {
@@ -38,34 +16,13 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class DeclaracionInformativa {
 
+    @Getter
+    @Setter
     @XmlElement(name = "Cabecera", required = true, namespace = "https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/DeclaracionInformativa.xsd")
     protected CabeceraDI cabecera;
+
     @XmlElement(name = "Declarado", required = true, namespace = "https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/DeclaracionInformativa.xsd")
     protected List<DeclaradoType> declarado;
-
-    /**
-     * Gets the value of the cabecera property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link CabeceraDI }
-     *     
-     */
-    public CabeceraDI getCabecera() {
-        return cabecera;
-    }
-
-    /**
-     * Sets the value of the cabecera property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link CabeceraDI }
-     *     
-     */
-    public void setCabecera(CabeceraDI value) {
-        this.cabecera = value;
-    }
 
     /**
      * Gets the value of the declarado property.

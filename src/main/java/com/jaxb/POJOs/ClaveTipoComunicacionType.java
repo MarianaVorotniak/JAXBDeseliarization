@@ -1,49 +1,31 @@
 
 package com.jaxb.POJOs;
 
-import javax.xml.bind.annotation.XmlEnum;
-import javax.xml.bind.annotation.XmlEnumValue;
-import javax.xml.bind.annotation.XmlType;
+import lombok.AllArgsConstructor;
 
+import javax.xml.bind.annotation.*;
 
 /**
- * <p>Java class for ClaveTipoComunicacionType.
- * 
- * <p>The following schema fragment specifies the expected content contained within this class.
- * <p>
- * <pre>
- * &lt;simpleType name="ClaveTipoComunicacionType"&gt;
- *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string"&gt;
- *     &lt;enumeration value="A0"/&gt;
- *     &lt;enumeration value="A1"/&gt;
- *   &lt;/restriction&gt;
- * &lt;/simpleType&gt;
- * </pre>
- * 
+ * Java class for ClaveTipoComunicacionType.
  */
+@AllArgsConstructor
 @XmlType(name = "ClaveTipoComunicacionType")
 @XmlEnum
 public enum ClaveTipoComunicacionType {
 
-
     /**
-     *  A0 Alta (Se añade al libro un registro una nueva factura)
-     * 
+     *  A0 Registration (A record is added to the book)
      */
     @XmlEnumValue("A0")
     A_0("A0"),
 
     /**
-     *  A1 Modificación (La información que se comunica sustituye a la existente relacionada)
-     * 
+     *  A1 Modification (The information is replaced by the existing)
      */
     @XmlEnumValue("A1")
     A_1("A1");
-    private final String value;
 
-    ClaveTipoComunicacionType(String v) {
-        value = v;
-    }
+    private final String value;
 
     public String value() {
         return value;

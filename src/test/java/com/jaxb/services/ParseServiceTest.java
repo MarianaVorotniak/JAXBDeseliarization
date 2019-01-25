@@ -56,7 +56,7 @@ public class ParseServiceTest {
     public void init() {
 
         idDeclarante = new CabeceraDI.IDDeclarante();
-        idDeclarante.setNIF("B98156128");
+        idDeclarante.setNif("B98156128");
         idDeclarante.setNombreRazon("HomeAway");
 
         period = new CabeceraDI.Periodo();
@@ -65,9 +65,9 @@ public class ParseServiceTest {
 
         head = new CabeceraDI();
         head.setTipoComunicacion(ClaveTipoComunicacionType.A_0);
-        head.setIDDeclarante(idDeclarante);
+        head.setIdDeclarante(idDeclarante);
         head.setModelo("179");
-        head.setIDVersionModelo("1.0");
+        head.setIdVersionModelo("1.0");
         head.setPeriodo(period);
 
         lineResponses =  new ArrayList<>();
@@ -79,7 +79,7 @@ public class ParseServiceTest {
 
         declarationResponse = new RespuestaDeclaracionType();
         declarationResponse.setCabecera(head);
-        declarationResponse.setRespuestaLinea(lineResponses);
+        declarationResponse.getRespuestaLinea().add(lineResponses.get(0));
         declarationResponse.setEstadoEnvio(EstadoEnvioType.RECHAZO_COMPLETO);
 
         body = new Body();
