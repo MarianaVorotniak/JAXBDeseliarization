@@ -1,39 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RespuestaOperacionesType.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JAXBDeseliarization</a> &gt; <a href="index.source.html" class="el_package">com.jaxb.POJOs</a> &gt; <span class="el_source">RespuestaOperacionesType.java</span></div><h1>RespuestaOperacionesType.java</h1><pre class="source lang-java linenums">
 package com.jaxb.POJOs;
 
-import java.math.BigInteger;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlSchemaType;
-import javax.xml.bind.annotation.XmlType;
+import lombok.Data;
 
+import java.math.BigInteger;
+import javax.xml.bind.annotation.*;
 
 /**
- *  Respuesta a un envío Ddii 
+ *  Response of sending Ddii
  * 
- * &lt;p&gt;Java class for RespuestaOperacionesType complex type.
- * 
- * &lt;p&gt;The following schema fragment specifies the expected content contained within this class.
- * 
- * &lt;pre&gt;
- * &amp;lt;complexType name=&quot;RespuestaOperacionesType&quot;&amp;gt;
- *   &amp;lt;complexContent&amp;gt;
- *     &amp;lt;restriction base=&quot;{http://www.w3.org/2001/XMLSchema}anyType&quot;&amp;gt;
- *       &amp;lt;sequence&amp;gt;
- *         &amp;lt;element name=&quot;IDRegistroDeclarado&quot; type=&quot;{https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/DeclaracionInformativa.xsd}TextMax20Type&quot;/&amp;gt;
- *         &amp;lt;element name=&quot;EstadoRegistro&quot; type=&quot;{https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/RespuestaDeclaracion.xsd}EstadoRegistroType&quot;/&amp;gt;
- *         &amp;lt;element name=&quot;CodigoErrorRegistro&quot; type=&quot;{https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/RespuestaDeclaracion.xsd}ErrorDetalleType&quot; minOccurs=&quot;0&quot;/&amp;gt;
- *         &amp;lt;element name=&quot;DescripcionErrorRegistro&quot; type=&quot;{https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/DeclaracionInformativa.xsd}TextMax500Type&quot; minOccurs=&quot;0&quot;/&amp;gt;
- *         &amp;lt;element name=&quot;CSV&quot; type=&quot;{http://www.w3.org/2001/XMLSchema}string&quot; minOccurs=&quot;0&quot;/&amp;gt;
- *       &amp;lt;/sequence&amp;gt;
- *     &amp;lt;/restriction&amp;gt;
- *   &amp;lt;/complexContent&amp;gt;
- * &amp;lt;/complexType&amp;gt;
- * &lt;/pre&gt;
- * 
- * 
+ * Java class for RespuestaOperacionesType complex type.
  */
+<span class="pc bnc" id="L14" title="All 46 branches missed.">@Data</span>
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = &quot;RespuestaOperacionesType&quot;, namespace = &quot;https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/RespuestaDeclaracion.xsd&quot;, propOrder = {
     &quot;idRegistroDeclarado&quot;,
@@ -42,139 +20,23 @@ import javax.xml.bind.annotation.XmlType;
     &quot;descripcionErrorRegistro&quot;,
     &quot;csv&quot;
 })
-<span class="fc" id="L45">public class RespuestaOperacionesType {</span>
+public class RespuestaOperacionesType {
 
     @XmlElement(name = &quot;IDRegistroDeclarado&quot;, required = true, namespace = &quot;https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/DeclaracionInformativa.xsd&quot;)
-    protected String idRegistroDeclarado;
+<span class="nc" id="L26">    protected String idRegistroDeclarado;</span>
+
     @XmlElement(name = &quot;EstadoRegistro&quot;, required = true, namespace = &quot;https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/RespuestaDeclaracion.xsd&quot;)
     @XmlSchemaType(name = &quot;string&quot;)
-    protected EstadoRegistroType estadoRegistro;
+<span class="nc" id="L30">    protected EstadoRegistroType estadoRegistro;</span>
+
     @XmlElement(name = &quot;CodigoErrorRegistro&quot;, namespace = &quot;https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/RespuestaDeclaracion.xsd&quot;)
-    protected BigInteger codigoErrorRegistro;
+<span class="fc" id="L33">    protected BigInteger codigoErrorRegistro;</span>
+
     @XmlElement(name = &quot;DescripcionErrorRegistro&quot;, namespace = &quot;https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/DeclaracionInformativa.xsd&quot;)
-    protected String descripcionErrorRegistro;
+<span class="nc" id="L36">    protected String descripcionErrorRegistro;</span>
+
     @XmlElement(name = &quot;CSV&quot;)
-    protected String csv;
-
-    /**
-     * Gets the value of the idRegistroDeclarado property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getIDRegistroDeclarado() {
-<span class="nc" id="L68">        return idRegistroDeclarado;</span>
-    }
-
-    /**
-     * Sets the value of the idRegistroDeclarado property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setIDRegistroDeclarado(String value) {
-<span class="fc" id="L80">        this.idRegistroDeclarado = value;</span>
-<span class="fc" id="L81">    }</span>
-
-    /**
-     * Gets the value of the estadoRegistro property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link EstadoRegistroType }
-     *     
-     */
-    public EstadoRegistroType getEstadoRegistro() {
-<span class="nc" id="L92">        return estadoRegistro;</span>
-    }
-
-    /**
-     * Sets the value of the estadoRegistro property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link EstadoRegistroType }
-     *     
-     */
-    public void setEstadoRegistro(EstadoRegistroType value) {
-<span class="fc" id="L104">        this.estadoRegistro = value;</span>
-<span class="fc" id="L105">    }</span>
-
-    /**
-     * Gets the value of the codigoErrorRegistro property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link BigInteger }
-     *     
-     */
-    public BigInteger getCodigoErrorRegistro() {
-<span class="fc" id="L116">        return codigoErrorRegistro;</span>
-    }
-
-    /**
-     * Sets the value of the codigoErrorRegistro property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link BigInteger }
-     *     
-     */
-    public void setCodigoErrorRegistro(BigInteger value) {
-<span class="fc" id="L128">        this.codigoErrorRegistro = value;</span>
-<span class="fc" id="L129">    }</span>
-
-    /**
-     * Gets the value of the descripcionErrorRegistro property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getDescripcionErrorRegistro() {
-<span class="nc" id="L140">        return descripcionErrorRegistro;</span>
-    }
-
-    /**
-     * Sets the value of the descripcionErrorRegistro property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setDescripcionErrorRegistro(String value) {
-<span class="fc" id="L152">        this.descripcionErrorRegistro = value;</span>
-<span class="fc" id="L153">    }</span>
-
-    /**
-     * Gets the value of the csv property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getCSV() {
-<span class="nc" id="L164">        return csv;</span>
-    }
-
-    /**
-     * Sets the value of the csv property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setCSV(String value) {
-<span class="nc" id="L176">        this.csv = value;</span>
-<span class="nc" id="L177">    }</span>
+<span class="nc" id="L39">    protected String csv;</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>

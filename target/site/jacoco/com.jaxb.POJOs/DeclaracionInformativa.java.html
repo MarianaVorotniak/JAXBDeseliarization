@@ -1,71 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DeclaracionInformativa.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JAXBDeseliarization</a> &gt; <a href="index.source.html" class="el_package">com.jaxb.POJOs</a> &gt; <span class="el_source">DeclaracionInformativa.java</span></div><h1>DeclaracionInformativa.java</h1><pre class="source lang-java linenums">
 package com.jaxb.POJOs;
 
-import java.util.ArrayList;
-import java.util.List;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
+import lombok.*;
 
+import java.util.*;
+import javax.xml.bind.annotation.*;
 
 /**
- *  Ddii - Suministro Inmediato de Declaraciones Informativas. 
- * 
- * &lt;p&gt;Java class for DeclaracionInformativa complex type.
- * 
- * &lt;p&gt;The following schema fragment specifies the expected content contained within this class.
- * 
- * &lt;pre&gt;
- * &amp;lt;complexType name=&quot;DeclaracionInformativa&quot;&amp;gt;
- *   &amp;lt;complexContent&amp;gt;
- *     &amp;lt;restriction base=&quot;{http://www.w3.org/2001/XMLSchema}anyType&quot;&amp;gt;
- *       &amp;lt;sequence&amp;gt;
- *         &amp;lt;element name=&quot;Cabecera&quot; type=&quot;{https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/DeclaracionInformativa.xsd}CabeceraDI&quot;/&amp;gt;
- *         &amp;lt;element name=&quot;Declarado&quot; type=&quot;{https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/DeclaracionInformativa.xsd}DeclaradoType&quot; maxOccurs=&quot;10000&quot;/&amp;gt;
- *       &amp;lt;/sequence&amp;gt;
- *     &amp;lt;/restriction&amp;gt;
- *   &amp;lt;/complexContent&amp;gt;
- * &amp;lt;/complexType&amp;gt;
- * &lt;/pre&gt;
- * 
- * 
+ *  Ddii - Suministro Inmediato de Declaraciones Informativas.
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = &quot;DeclaracionInformativa&quot;, propOrder = {
     &quot;cabecera&quot;,
     &quot;declarado&quot;
 })
-<span class="nc" id="L39">public class DeclaracionInformativa {</span>
+<span class="nc" id="L17">public class DeclaracionInformativa {</span>
 
+<span class="nc" id="L19">    @Getter</span>
+<span class="nc" id="L20">    @Setter</span>
     @XmlElement(name = &quot;Cabecera&quot;, required = true, namespace = &quot;https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/DeclaracionInformativa.xsd&quot;)
     protected CabeceraDI cabecera;
+
     @XmlElement(name = &quot;Declarado&quot;, required = true, namespace = &quot;https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/DeclaracionInformativa.xsd&quot;)
     protected List&lt;DeclaradoType&gt; declarado;
-
-    /**
-     * Gets the value of the cabecera property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link CabeceraDI }
-     *     
-     */
-    public CabeceraDI getCabecera() {
-<span class="nc" id="L55">        return cabecera;</span>
-    }
-
-    /**
-     * Sets the value of the cabecera property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link CabeceraDI }
-     *     
-     */
-    public void setCabecera(CabeceraDI value) {
-<span class="nc" id="L67">        this.cabecera = value;</span>
-<span class="nc" id="L68">    }</span>
 
     /**
      * Gets the value of the declarado property.
@@ -90,10 +47,10 @@ import javax.xml.bind.annotation.XmlType;
      * 
      */
     public List&lt;DeclaradoType&gt; getDeclarado() {
-<span class="nc bnc" id="L93" title="All 2 branches missed.">        if (declarado == null) {</span>
-<span class="nc" id="L94">            declarado = new ArrayList&lt;DeclaradoType&gt;();</span>
+<span class="nc bnc" id="L50" title="All 2 branches missed.">        if (declarado == null) {</span>
+<span class="nc" id="L51">            declarado = new ArrayList&lt;DeclaradoType&gt;();</span>
         }
-<span class="nc" id="L96">        return this.declarado;</span>
+<span class="nc" id="L53">        return this.declarado;</span>
     }
 
 }

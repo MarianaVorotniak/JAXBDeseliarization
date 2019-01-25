@@ -74,7 +74,7 @@ public class ParseServiceTest {
         lineResponses.add(new RespuestaOperacionesType());
         lineResponses.get(0).setDescripcionErrorRegistro("El NIF no esta identificado. NIF: 77780619R. NOMBRE_RAZON: SunSea Costa Brava. ");
         lineResponses.get(0).setCodigoErrorRegistro(BigInteger.valueOf(1106));
-        lineResponses.get(0).setIDRegistroDeclarado("000009");
+        lineResponses.get(0).setIdRegistroDeclarado("000009");
         lineResponses.get(0).setEstadoRegistro(EstadoRegistroType.RECHAZADO);
 
         declarationResponse = new RespuestaDeclaracionType();

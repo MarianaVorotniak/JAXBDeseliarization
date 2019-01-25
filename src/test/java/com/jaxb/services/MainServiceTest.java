@@ -61,7 +61,7 @@ public class MainServiceTest {
         lineResponse = new ArrayList<>();
         RespuestaOperacionesType firstElemOfLineResponseList = new RespuestaOperacionesType();
         firstElemOfLineResponseList.setEstadoRegistro(EstadoRegistroType.RECHAZADO);
-        firstElemOfLineResponseList.setIDRegistroDeclarado("000009");
+        firstElemOfLineResponseList.setIdRegistroDeclarado("000009");
         firstElemOfLineResponseList.setCodigoErrorRegistro(BigInteger.valueOf(1106));
         firstElemOfLineResponseList.setDescripcionErrorRegistro("El NIF no esta identificado. NIF: 77780619R. NOMBRE_RAZON: SunSea Costa Brava. ");
         lineResponse.add(firstElemOfLineResponseList);

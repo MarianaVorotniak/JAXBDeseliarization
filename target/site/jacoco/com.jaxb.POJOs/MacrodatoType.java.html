@@ -1,38 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MacrodatoType.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JAXBDeseliarization</a> &gt; <a href="index.source.html" class="el_package">com.jaxb.POJOs</a> &gt; <span class="el_source">MacrodatoType.java</span></div><h1>MacrodatoType.java</h1><pre class="source lang-java linenums">
 package com.jaxb.POJOs;
 
-import javax.xml.bind.annotation.XmlEnum;
-import javax.xml.bind.annotation.XmlType;
-
+import javax.xml.bind.annotation.*;
 
 /**
- * &lt;p&gt;Java class for MacrodatoType.
- * 
- * &lt;p&gt;The following schema fragment specifies the expected content contained within this class.
- * &lt;p&gt;
- * &lt;pre&gt;
- * &amp;lt;simpleType name=&quot;MacrodatoType&quot;&amp;gt;
- *   &amp;lt;restriction base=&quot;{http://www.w3.org/2001/XMLSchema}string&quot;&amp;gt;
- *     &amp;lt;enumeration value=&quot;S&quot;/&amp;gt;
- *     &amp;lt;enumeration value=&quot;N&quot;/&amp;gt;
- *   &amp;lt;/restriction&amp;gt;
- * &amp;lt;/simpleType&amp;gt;
- * &lt;/pre&gt;
- * 
+ * Java class for MacrodatoType.
  */
-<span class="nc" id="L23">@XmlType(name = &quot;MacrodatoType&quot;)</span>
+<span class="nc" id="L9">@XmlType(name = &quot;MacrodatoType&quot;)</span>
 @XmlEnum
 public enum MacrodatoType {
 
-<span class="nc" id="L27">    S,</span>
-<span class="nc" id="L28">    N;</span>
+<span class="nc" id="L13">    S,</span>
+<span class="nc" id="L14">    N;</span>
 
     public String value() {
-<span class="nc" id="L31">        return name();</span>
+<span class="nc" id="L17">        return name();</span>
     }
 
     public static MacrodatoType fromValue(String v) {
-<span class="nc" id="L35">        return valueOf(v);</span>
+<span class="nc" id="L21">        return valueOf(v);</span>
     }
 
 }

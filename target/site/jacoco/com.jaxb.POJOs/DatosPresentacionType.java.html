@@ -1,91 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DatosPresentacionType.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JAXBDeseliarization</a> &gt; <a href="index.source.html" class="el_package">com.jaxb.POJOs</a> &gt; <span class="el_source">DatosPresentacionType.java</span></div><h1>DatosPresentacionType.java</h1><pre class="source lang-java linenums">
 package com.jaxb.POJOs;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
+import lombok.Data;
 
+import javax.xml.bind.annotation.*;
 
 /**
- * &lt;p&gt;Java class for DatosPresentacionType complex type.
- * 
- * &lt;p&gt;The following schema fragment specifies the expected content contained within this class.
- * 
- * &lt;pre&gt;
- * &amp;lt;complexType name=&quot;DatosPresentacionType&quot;&amp;gt;
- *   &amp;lt;complexContent&amp;gt;
- *     &amp;lt;restriction base=&quot;{http://www.w3.org/2001/XMLSchema}anyType&quot;&amp;gt;
- *       &amp;lt;sequence&amp;gt;
- *         &amp;lt;element name=&quot;NIFPresentador&quot; type=&quot;{https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/DeclaracionInformativa.xsd}NIFType&quot;/&amp;gt;
- *         &amp;lt;element name=&quot;TimestampPresentacion&quot; type=&quot;{https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/DeclaracionInformativa.xsd}Timestamp&quot;/&amp;gt;
- *       &amp;lt;/sequence&amp;gt;
- *     &amp;lt;/restriction&amp;gt;
- *   &amp;lt;/complexContent&amp;gt;
- * &amp;lt;/complexType&amp;gt;
- * &lt;/pre&gt;
- * 
- * 
+ * Java class for DatosPresentacionType complex type.
  */
+<span class="nc bnc" id="L11" title="All 22 branches missed.">@Data</span>
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = &quot;DatosPresentacionType&quot;, propOrder = {
     &quot;nifPresentador&quot;,
     &quot;timestampPresentacion&quot;
 })
-<span class="nc" id="L35">public class DatosPresentacionType {</span>
+public class DatosPresentacionType {
 
     @XmlElement(name = &quot;NIFPresentador&quot;, required = true, namespace = &quot;https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/DeclaracionInformativa.xsd&quot;)
-    protected String nifPresentador;
+<span class="nc" id="L20">    protected String nifPresentador;</span>
+
     @XmlElement(name = &quot;TimestampPresentacion&quot;, required = true, namespace = &quot;https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/DeclaracionInformativa.xsd&quot;)
-    protected String timestampPresentacion;
-
-    /**
-     * Gets the value of the nifPresentador property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getNIFPresentador() {
-<span class="nc" id="L51">        return nifPresentador;</span>
-    }
-
-    /**
-     * Sets the value of the nifPresentador property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setNIFPresentador(String value) {
-<span class="nc" id="L63">        this.nifPresentador = value;</span>
-<span class="nc" id="L64">    }</span>
-
-    /**
-     * Gets the value of the timestampPresentacion property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getTimestampPresentacion() {
-<span class="nc" id="L75">        return timestampPresentacion;</span>
-    }
-
-    /**
-     * Sets the value of the timestampPresentacion property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setTimestampPresentacion(String value) {
-<span class="nc" id="L87">        this.timestampPresentacion = value;</span>
-<span class="nc" id="L88">    }</span>
+<span class="nc" id="L23">    protected String timestampPresentacion;</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>

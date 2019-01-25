@@ -1,36 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RespuestaComunAltaType.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JAXBDeseliarization</a> &gt; <a href="index.source.html" class="el_package">com.jaxb.POJOs</a> &gt; <span class="el_source">RespuestaComunAltaType.java</span></div><h1>RespuestaComunAltaType.java</h1><pre class="source lang-java linenums">
 package com.jaxb.POJOs;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlSchemaType;
-import javax.xml.bind.annotation.XmlSeeAlso;
-import javax.xml.bind.annotation.XmlType;
+import lombok.Data;
 
+import javax.xml.bind.annotation.*;
 
 /**
- * &lt;p&gt;Java class for RespuestaComunAltaType complex type.
- * 
- * &lt;p&gt;The following schema fragment specifies the expected content contained within this class.
- * 
- * &lt;pre&gt;
- * &amp;lt;complexType name=&quot;RespuestaComunAltaType&quot;&amp;gt;
- *   &amp;lt;complexContent&amp;gt;
- *     &amp;lt;restriction base=&quot;{http://www.w3.org/2001/XMLSchema}anyType&quot;&amp;gt;
- *       &amp;lt;sequence&amp;gt;
- *         &amp;lt;element name=&quot;CSV&quot; type=&quot;{http://www.w3.org/2001/XMLSchema}string&quot; minOccurs=&quot;0&quot;/&amp;gt;
- *         &amp;lt;element name=&quot;DatosPresentacion&quot; type=&quot;{https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/DeclaracionInformativa.xsd}DatosPresentacionType&quot; minOccurs=&quot;0&quot;/&amp;gt;
- *         &amp;lt;element name=&quot;Cabecera&quot; type=&quot;{https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/DeclaracionInformativa.xsd}CabeceraDI&quot;/&amp;gt;
- *         &amp;lt;element name=&quot;EstadoEnvio&quot; type=&quot;{https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/RespuestaDeclaracion.xsd}EstadoEnvioType&quot;/&amp;gt;
- *       &amp;lt;/sequence&amp;gt;
- *     &amp;lt;/restriction&amp;gt;
- *   &amp;lt;/complexContent&amp;gt;
- * &amp;lt;/complexType&amp;gt;
- * &lt;/pre&gt;
- * 
- * 
+ * Java class for RespuestaComunAltaType complex type.
  */
+<span class="pc bpc" id="L11" title="28 of 38 branches missed.">@Data</span>
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = &quot;RespuestaComunAltaType&quot;, namespace = &quot;https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/RespuestaDeclaracion.xsd&quot;, propOrder = {
     &quot;csv&quot;,
@@ -41,113 +19,20 @@ import javax.xml.bind.annotation.XmlType;
 @XmlSeeAlso({
     RespuestaDeclaracionType.class
 })
-<span class="fc" id="L44">public class RespuestaComunAltaType {</span>
+public class RespuestaComunAltaType {
 
     @XmlElement(name = &quot;CSV&quot;)
-    protected String csv;
+<span class="fc" id="L25">    protected String csv;</span>
+
     @XmlElement(name = &quot;DatosPresentacion&quot;, namespace = &quot;https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/DeclaracionInformativa.xsd&quot;)
-    protected DatosPresentacionType datosPresentacion;
+<span class="fc" id="L28">    protected DatosPresentacionType datosPresentacion;</span>
+
     @XmlElement(name = &quot;Cabecera&quot;, required = true, namespace = &quot;https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/DeclaracionInformativa.xsd&quot;)
-    protected CabeceraDI cabecera;
+<span class="fc" id="L31">    protected CabeceraDI cabecera;</span>
+
     @XmlElement(name = &quot;EstadoEnvio&quot;, required = true, namespace = &quot;https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/RespuestaDeclaracion.xsd&quot;)
     @XmlSchemaType(name = &quot;string&quot;)
-    protected EstadoEnvioType estadoEnvio;
-
-    /**
-     * Gets the value of the csv property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getCSV() {
-<span class="nc" id="L65">        return csv;</span>
-    }
-
-    /**
-     * Sets the value of the csv property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setCSV(String value) {
-<span class="nc" id="L77">        this.csv = value;</span>
-<span class="nc" id="L78">    }</span>
-
-    /**
-     * Gets the value of the datosPresentacion property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link DatosPresentacionType }
-     *     
-     */
-    public DatosPresentacionType getDatosPresentacion() {
-<span class="nc" id="L89">        return datosPresentacion;</span>
-    }
-
-    /**
-     * Sets the value of the datosPresentacion property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link DatosPresentacionType }
-     *     
-     */
-    public void setDatosPresentacion(DatosPresentacionType value) {
-<span class="nc" id="L101">        this.datosPresentacion = value;</span>
-<span class="nc" id="L102">    }</span>
-
-    /**
-     * Gets the value of the cabecera property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link CabeceraDI }
-     *     
-     */
-    public CabeceraDI getCabecera() {
-<span class="fc" id="L113">        return cabecera;</span>
-    }
-
-    /**
-     * Sets the value of the cabecera property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link CabeceraDI }
-     *     
-     */
-    public void setCabecera(CabeceraDI value) {
-<span class="fc" id="L125">        this.cabecera = value;</span>
-<span class="fc" id="L126">    }</span>
-
-    /**
-     * Gets the value of the estadoEnvio property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link EstadoEnvioType }
-     *     
-     */
-    public EstadoEnvioType getEstadoEnvio() {
-<span class="fc" id="L137">        return estadoEnvio;</span>
-    }
-
-    /**
-     * Sets the value of the estadoEnvio property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link EstadoEnvioType }
-     *     
-     */
-    public void setEstadoEnvio(EstadoEnvioType value) {
-<span class="fc" id="L149">        this.estadoEnvio = value;</span>
-<span class="fc" id="L150">    }</span>
+<span class="fc" id="L35">    protected EstadoEnvioType estadoEnvio;</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>

@@ -65,9 +65,9 @@
     <property name="sun.cpu.isalist" value="pentium_pro+mmx pentium_pro pentium+mmx pentium i486 i386 i86"/>
   </properties>
   <testcase classname="com.jaxb.services.ParseServiceTest" name="parseResponseTest" time="0.047"/>
-  <testcase classname="com.jaxb.services.ParseServiceTest" name="parseResponseWithWrongXmlTest" time="0.062"/>
+  <testcase classname="com.jaxb.services.ParseServiceTest" name="parseResponseWithWrongXmlTest" time="0.063"/>
   <testcase classname="com.jaxb.services.ParseServiceTest" name="parseResponseWithNullPathTest" time="0"/>
   <testcase classname="com.jaxb.services.ParseServiceTest" name="parseFaultResponseTest" time="0"/>
   <testcase classname="com.jaxb.services.ParseServiceTest" name="parseResponseWithEmptyContentTest" time="0"/>
-  <testcase classname="com.jaxb.services.ParseServiceTest" name="parseResponseWithIncorrectFileContentTest" time="0.047"/>
+  <testcase classname="com.jaxb.services.ParseServiceTest" name="parseResponseWithIncorrectFileContentTest" time="0.046"/>
 </testsuite>
