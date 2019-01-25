@@ -38,6 +38,7 @@ com\jaxb\POJOs\RespuestaComunAltaType.class
 com\jaxb\POJOs\ObjectFactory.class
 com\jaxb\POJOs\Header.class
 com\jaxb\POJOs\CabeceraDI.class
+com\jaxb\POJOs\DefaultResponse.class
 com\jaxb\POJOs\EstadoRegistroDDIIType.class
 com\jaxb\Main.class
 com\jaxb\POJOs\CabeceraDI$IDDeclarante$PersonaContacto.class

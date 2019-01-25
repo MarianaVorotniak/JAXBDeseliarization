@@ -138,8 +138,7 @@ public class MainServiceTest {
         Object testObj = mainService.getResponse(filePathWithTestResponse);
 
         assertTrue(registration instanceof RespuestaDeclaracionType);
-        assertTrue(fault instanceof  Fault);
-        System.out.println(testObj.getClass().getName());
+        assertTrue(fault instanceof Fault);
         assertTrue(testObj.getClass().getName().contains("DefaultResponse"));
     }
 
@@ -151,11 +150,10 @@ public class MainServiceTest {
 
         mainService.checkResponseType(fault);
         String logMsgFault = out.toString();
-        assertTrue(logMsgFault.contains("Codigo[4105].Error en la cabecera. El NIF del declarante es inválido. NIF:B98156129. NOMBRE_RAZON:HomeAway"));
+        assertTrue(logMsgFault.contains("Codigo[4105]"));
 
         mainService.checkResponseType(defaultResponse);
         String logMsgNull = out.toString();
-        System.out.println(logMsgNull);
         assertTrue(logMsgNull.contains("Response is null"));
     }
 
