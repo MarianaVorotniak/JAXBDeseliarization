@@ -3,8 +3,7 @@ package com.jaxb.POJOs;
 
 import com.jaxb.Errors;
 import com.jaxb.exceptions.ParseException;
-import com.jaxb.interfaces.Responses;
-import com.jaxb.services.ParseService;
+import com.jaxb.interfaces.Message;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,7 +20,7 @@ import javax.xml.bind.annotation.*;
 @XmlType(name = "RespuestaDeclaracionType", namespace = "https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/RespuestaDeclaracion.xsd", propOrder = {
     "respuestaLinea"
 })
-public class RespuestaDeclaracionType extends RespuestaComunAltaType implements Responses
+public class RespuestaDeclaracionType extends RespuestaComunAltaType implements Message
 {
 
     private static Logger LOGGER = LoggerFactory.getLogger(RespuestaDeclaracionType.class);
@@ -57,7 +56,7 @@ public class RespuestaDeclaracionType extends RespuestaComunAltaType implements 
     }
 
     @Override
-    public String getMessage(){
+    public void getMessage(){
         String status = getEstadoEnvio().value();
 
         String message = "The status of registration/modification is [" + status + "]\n";
@@ -75,7 +74,7 @@ public class RespuestaDeclaracionType extends RespuestaComunAltaType implements 
                     message += getFinalErrorMessage(errorMessage, lineResponse);
                 }
         }
-        return message;
+       LOGGER.info(message);
     }
 
     private String getFinalErrorMessage(String errorMessage, RespuestaOperacionesType lineResponse) {

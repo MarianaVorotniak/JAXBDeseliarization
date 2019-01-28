@@ -1,26 +1,17 @@
 package com.jaxb.POJOs;
 
-import com.jaxb.exceptions.ParseException;
-import com.jaxb.interfaces.Responses;
-import com.jaxb.services.ParseService;
-import lombok.Data;
+import com.jaxb.interfaces.Message;
+import lombok.Getter;
+import lombok.Setter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.w3c.dom.Document;
-import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
 
 import javax.xml.bind.annotation.*;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import java.io.IOException;
-import java.io.StringReader;
 
-@Data
-@XmlType(name = "Fault")
+@Getter
+@Setter
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Fault implements Responses {
+public class Fault extends MessageDecorator {
 
     private static Logger LOGGER = LoggerFactory.getLogger(Fault.class);
 
@@ -33,7 +24,17 @@ public class Fault implements Responses {
     @XmlElement
     private Detail detail;
 
-    public String getMessage() {
+    public Fault(Message message) {
+        super(message);
+    }
+
+    @Override
+    public void getMessage() {
+        super.getMessage();
+        LOGGER.info(getFaultMessage());
+    }
+
+    private String getFaultMessage() {
         return "Cause of the Fault response - [" + getFaultstring() + "]";
     }
 

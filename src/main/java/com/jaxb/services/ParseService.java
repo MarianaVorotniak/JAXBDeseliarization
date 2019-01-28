@@ -14,18 +14,17 @@ public class ParseService {
 
     private static Logger LOGGER = LoggerFactory.getLogger(ParseService.class);
 
-    public RespuestaDeclaracionType parseResponse(String fileContent) throws ParseException {
+    protected RespuestaDeclaracionType parseResponse(String fileContent) throws ParseException {
         Body bodyResponse = getResponseBody(fileContent);
-        RespuestaDeclaracionType declarationResponse = bodyResponse.getRespuestaDeclaracionType();
 
-        return declarationResponse;
+        return bodyResponse.getRespuestaDeclaracionType();
     }
 
-    public Fault parseFaultResponse(String fileContent) throws ParseException {
+    protected Fault parseFaultResponse(String fileContent) throws ParseException {
 
         checkFileContent(fileContent);
 
-        Fault fault = new Fault();
+        Fault fault = new Fault(new BasicMessage());
 
         try {
             DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
@@ -53,14 +52,13 @@ public class ParseService {
         return fault;
     }
 
-    public static Body getResponseBody(String fileContent) throws ParseException {
+    private static Body getResponseBody(String fileContent) throws ParseException {
         Envelope fullResponse = unmarshal(fileContent);
-        Body bodyResponse = fullResponse.getBody();
 
-        return bodyResponse;
+        return fullResponse.getBody();
     }
 
-    public static Envelope unmarshal(String fileContent) throws ParseException {
+    private static Envelope unmarshal(String fileContent) throws ParseException {
 
         checkFileContent(fileContent);
 
@@ -79,7 +77,7 @@ public class ParseService {
         return fullResponse;
     }
 
-    public static void checkFileContent(String fileContent) throws ParseException {
+    private static void checkFileContent(String fileContent) throws ParseException {
         if (fileContent == null)
             throw new ParseException("File content is null");
         else if (fileContent.isEmpty())

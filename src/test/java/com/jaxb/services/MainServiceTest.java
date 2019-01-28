@@ -52,7 +52,7 @@ public class MainServiceTest {
         responseRejected= new RespuestaDeclaracionType();
         responseRejected.setEstadoEnvio(EstadoEnvioType.RECHAZO_COMPLETO);
 
-        fault = new Fault();
+        fault = new Fault(new BasicMessage());
         fault.setFaultcode("env:Client");
         fault.setFaultstring("Codigo[4105].Error en la cabecera. El NIF del declarante es inválido. NIF:B98156129. NOMBRE_RAZON:HomeAway");
 
