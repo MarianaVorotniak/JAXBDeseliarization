@@ -4,8 +4,9 @@ package com.jaxb.POJOs;
 import com.jaxb.Errors;
 import com.jaxb.exceptions.ParseException;
 import com.jaxb.interfaces.Responses;
-import com.jaxb.services.MainService;
 import com.jaxb.services.ParseService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.math.BigInteger;
 import java.util.*;
@@ -22,6 +23,8 @@ import javax.xml.bind.annotation.*;
 })
 public class RespuestaDeclaracionType extends RespuestaComunAltaType implements Responses
 {
+
+    private static Logger LOGGER = LoggerFactory.getLogger(RespuestaDeclaracionType.class);
 
     @XmlElement(name = "RespuestaLinea", namespace = "https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/RespuestaDeclaracion.xsd")
     protected List<RespuestaOperacionesType> respuestaLinea;
@@ -54,29 +57,40 @@ public class RespuestaDeclaracionType extends RespuestaComunAltaType implements 
     }
 
     @Override
-    public String getMessage() {
+    public String getMessage(){
         String status = getEstadoEnvio().value();
 
-        String message = "The status of registration/modification is [" + status + "]";
+        String message = "The status of registration/modification is [" + status + "]\n";
 
         if (!isAccepted(status)) {
-            for (RespuestaOperacionesType lineResponse : getRespuestaLinea()) {
-                BigInteger code = lineResponse.getCodigoErrorRegistro();
-                String errorMessage = null;
-                try {
-                    errorMessage = Errors.findMessageByCode(code);
-                } catch (ParseException e) {
-                    message = "Unknown error code [" + code + "]";
+            for (RespuestaOperacionesType lineResponse : getRespuestaLinea())
+                if (isLineResponseRejected(lineResponse)) {
+                    BigInteger code = lineResponse.getCodigoErrorRegistro();
+                    String errorMessage = null;
+                    try {
+                        errorMessage = Errors.findMessageByCode(code);
+                    } catch (ParseException e) {
+                        LOGGER.warn("Problem while finding message for code [" + code + "]");
+                    }
+                    message += getFinalErrorMessage(errorMessage, lineResponse);
                 }
-
-                message += "\nThe error is: code [" +  code + "], message [" + errorMessage + "]";
-            }
         }
         return message;
     }
 
-    public boolean isAccepted(String status) {
+    private String getFinalErrorMessage(String errorMessage, RespuestaOperacionesType lineResponse) {
+        if (errorMessage == null)
+            return "\nUnknown error code [" + lineResponse.getCodigoErrorRegistro() + "], message: " + lineResponse.getDescripcionErrorRegistro() + ", DeclarationID: " + lineResponse.getIdRegistroDeclarado() + "\n";
+
+        return "\nThe error is: code [" + lineResponse.getCodigoErrorRegistro() + "], message: " + errorMessage + " (" + lineResponse.getDescripcionErrorRegistro() + "), DeclarationID: " + lineResponse.getIdRegistroDeclarado() + "\n";
+    }
+
+    private boolean isAccepted(String status) {
         return status.equals("Aceptacion Completa");
+    }
+
+    private boolean isLineResponseRejected(RespuestaOperacionesType lineResponse) {
+        return lineResponse.getEstadoRegistro() == EstadoRegistroType.RECHAZADO;
     }
 
 }

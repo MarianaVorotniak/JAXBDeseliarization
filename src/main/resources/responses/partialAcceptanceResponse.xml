@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<env:Envelope xmlns:env="http://schemas.xmlsoap.org/soap/envelope/">
+    <env:Header/>
+    <env:Body Id="Body">
+<ddiiR:RespuestaDeclaracion
+        xmlns:ddiiR="https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/RespuestaDeclaracion.xsd"
+        xmlns:ddii="https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/DeclaracionInformativa.xsd">
+    <ddiiR:CSV>CGG6L8SAASEWYQRJ</ddiiR:CSV>
+    <ddiiR:DatosPresentacion>
+        <ddii:NIFPresentador>N6060470I</ddii:NIFPresentador>
+        <ddii:TimestampPresentacion>24-01-2019 18:25:31</ddii:TimestampPresentacion>
+    </ddiiR:DatosPresentacion>
+    <ddiiR:Cabecera>
+        <ddii:TipoComunicacion>A0</ddii:TipoComunicacion>
+        <ddii:Modelo>179</ddii:Modelo>
+        <ddii:Periodo>
+            <ddii:Ejercicio>2018</ddii:Ejercicio>
+            <ddii:Periodo>0A</ddii:Periodo>
+        </ddii:Periodo>
+        <ddii:IDVersionModelo>1.0</ddii:IDVersionModelo>
+        <ddii:IDDeclarante>
+            <ddii:NIF>N6060470I</ddii:NIF>
+            <ddii:NombreRazon>HomeAway UK Ltd</ddii:NombreRazon>
+        </ddii:IDDeclarante>
+    </ddiiR:Cabecera>
+    <ddiiR:EstadoEnvio>Aceptacion Parcial</ddiiR:EstadoEnvio>
+    <ddiiR:RespuestaLinea>
+        <ddiiR:IDRegistroDeclarado>206</ddiiR:IDRegistroDeclarado>
+        <ddiiR:EstadoRegistro>Rechazado</ddiiR:EstadoRegistro>
+        <ddiiR:CodigoErrorRegistro>1106</ddiiR:CodigoErrorRegistro>
+        <ddiiR:DescripcionErrorRegistro>El NIF no esta identificado. NIF Cedente: 50874160T. NOMBRE_RAZON: Michelle 'Chelle' Taylor. </ddiiR:DescripcionErrorRegistro>
+    </ddiiR:RespuestaLinea>
+    <ddiiR:RespuestaLinea>
+        <ddiiR:IDRegistroDeclarado>207</ddiiR:IDRegistroDeclarado>
+        <ddiiR:EstadoRegistro>Aceptado</ddiiR:EstadoRegistro>
+    </ddiiR:RespuestaLinea>
+    <ddiiR:RespuestaLinea>
+        <ddiiR:IDRegistroDeclarado>208</ddiiR:IDRegistroDeclarado>
+        <ddiiR:EstadoRegistro>Aceptado</ddiiR:EstadoRegistro>
+    </ddiiR:RespuestaLinea>
+    <ddiiR:RespuestaLinea>
+        <ddiiR:IDRegistroDeclarado>209</ddiiR:IDRegistroDeclarado>
+        <ddiiR:EstadoRegistro>Aceptado</ddiiR:EstadoRegistro>
+    </ddiiR:RespuestaLinea>
+    <ddiiR:RespuestaLinea>
+        <ddiiR:IDRegistroDeclarado>210</ddiiR:IDRegistroDeclarado>
+        <ddiiR:EstadoRegistro>Aceptado</ddiiR:EstadoRegistro>
+    </ddiiR:RespuestaLinea>
+    <ddiiR:RespuestaLinea>
+        <ddiiR:IDRegistroDeclarado>211</ddiiR:IDRegistroDeclarado>
+        <ddiiR:EstadoRegistro>Aceptado</ddiiR:EstadoRegistro>
+    </ddiiR:RespuestaLinea>
+    <ddiiR:RespuestaLinea>
+        <ddiiR:IDRegistroDeclarado>212</ddiiR:IDRegistroDeclarado>
+        <ddiiR:EstadoRegistro>Aceptado</ddiiR:EstadoRegistro>
+    </ddiiR:RespuestaLinea>
+    <ddiiR:RespuestaLinea>
+        <ddiiR:IDRegistroDeclarado>213</ddiiR:IDRegistroDeclarado>
+        <ddiiR:EstadoRegistro>Aceptado</ddiiR:EstadoRegistro>
+    </ddiiR:RespuestaLinea>
+    <ddiiR:RespuestaLinea>
+        <ddiiR:IDRegistroDeclarado>214</ddiiR:IDRegistroDeclarado>
+        <ddiiR:EstadoRegistro>Aceptado</ddiiR:EstadoRegistro>
+    </ddiiR:RespuestaLinea>
+    <ddiiR:RespuestaLinea>
+        <ddiiR:IDRegistroDeclarado>215</ddiiR:IDRegistroDeclarado>
+        <ddiiR:EstadoRegistro>Aceptado</ddiiR:EstadoRegistro>
+    </ddiiR:RespuestaLinea>
+</ddiiR:RespuestaDeclaracion>
+        </env:Body>
+        </env:Envelope>

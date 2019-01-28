@@ -80,10 +80,11 @@ public class Errors {
     }};
 
     public static String findMessageByCode(BigInteger code) throws ParseException {
-        String message = mapOfErrors.get(code);
 
-        if (message == null)
-            throw new ParseException("Unknown error code " + code);
+        if (code == null)
+            throw new ParseException("The code is " + code);
+
+        String message = mapOfErrors.get(code);
 
         return message;
     }

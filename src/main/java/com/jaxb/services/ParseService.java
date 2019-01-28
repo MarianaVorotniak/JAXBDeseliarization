@@ -21,7 +21,9 @@ public class ParseService {
         return declarationResponse;
     }
 
-    public Fault parseFaultResponse(String fileContent)  {
+    public Fault parseFaultResponse(String fileContent) throws ParseException {
+
+        checkFileContent(fileContent);
 
         Fault fault = new Fault();
 
@@ -60,10 +62,7 @@ public class ParseService {
 
     public static Envelope unmarshal(String fileContent) throws ParseException {
 
-        if (fileContent == null)
-            throw new ParseException("File content is null");
-        else if (fileContent.isEmpty())
-            throw new ParseException("File content is empty");
+        checkFileContent(fileContent);
 
         StringReader reader = new StringReader(fileContent);
 
@@ -74,10 +73,17 @@ public class ParseService {
             Unmarshaller unmarshaller = context.createUnmarshaller();
             fullResponse = (Envelope) unmarshaller.unmarshal(reader);
         } catch (JAXBException e) {
-                throw new ParseException("Wrong xml");
+                throw new ParseException("Wrong xml. Can't unmarshal file. Cause: " + e.getMessage());
         }
 
         return fullResponse;
+    }
+
+    public static void checkFileContent(String fileContent) throws ParseException {
+        if (fileContent == null)
+            throw new ParseException("File content is null");
+        else if (fileContent.isEmpty())
+            throw new ParseException("File content is empty");
     }
 
 }

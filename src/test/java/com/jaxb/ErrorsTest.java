@@ -29,9 +29,8 @@ public class ErrorsTest {
 
     @Test
     public void codeDoesNotExistInMapTest() throws ParseException {
-        expectedEx.expect(ParseException.class);
-        expectedEx.expectMessage("Unknown error code");
-        errors.findMessageByCode(BigInteger.valueOf(0));
+        String message = errors.findMessageByCode(BigInteger.valueOf(0));
+        assertEquals(message, null);
     }
 
 }

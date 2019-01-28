@@ -1,5 +1,6 @@
 package com.jaxb.POJOs;
 
+import com.jaxb.exceptions.ParseException;
 import com.jaxb.interfaces.Responses;
 import com.jaxb.services.ParseService;
 import lombok.Data;

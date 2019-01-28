@@ -94,7 +94,7 @@ public class MainServiceTest {
         Object fault = mainService.getResponse(filePathWithFaultHeaderResponse);
 
         expectedEx.expect(ParseException.class);
-        expectedEx.expectMessage("Error in file path");
+        expectedEx.expectMessage("Error in file");
         mainService.getResponse(filePathWithTestResponse);
 
         assertTrue(registration instanceof RespuestaDeclaracionType);

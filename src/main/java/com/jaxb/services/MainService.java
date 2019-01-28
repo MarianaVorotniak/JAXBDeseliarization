@@ -2,19 +2,13 @@ package com.jaxb.services;
 
 import com.jaxb.exceptions.ParseException;
 import com.jaxb.interfaces.Responses;
-import org.slf4j.*;
+
 import java.io.IOException;
 import java.nio.file.*;
 
 public class MainService {
 
-    private static Logger LOGGER = LoggerFactory.getLogger(MainService.class);
     private static ParseService service = new ParseService();
-
-    public void printResponse(Responses objectResponse) {
-
-        LOGGER.info(objectResponse.getMessage());
-    }
 
     public Responses getResponse(String filePath) throws ParseException {
 
@@ -24,7 +18,7 @@ public class MainService {
         else if (fileContent.contains("Fault"))
             return service.parseFaultResponse(fileContent);
 
-        throw new ParseException("Error in file path " + filePath);
+        throw new ParseException("Error in file " + filePath + ", it's content: " + fileContent);
     }
 
     public static String readFile(String path) throws ParseException {
@@ -45,4 +39,5 @@ public class MainService {
 
         return new String(encoded);
     }
+
 }
