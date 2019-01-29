@@ -1,19 +1,12 @@
 package com.jaxb.POJOs;
 
-import com.jaxb.interfaces.Message;
-import lombok.Getter;
-import lombok.Setter;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.Data;
 
 import javax.xml.bind.annotation.*;
 
-@Getter
-@Setter
+@Data
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Fault extends MessageDecorator {
-
-    private static Logger LOGGER = LoggerFactory.getLogger(Fault.class);
+public class Fault {
 
     @XmlElement
     private String faultcode;
@@ -23,19 +16,5 @@ public class Fault extends MessageDecorator {
 
     @XmlElement
     private Detail detail;
-
-    public Fault(Message message) {
-        super(message);
-    }
-
-    @Override
-    public void printMessage() {
-        super.printMessage();
-        LOGGER.info(getFaultMessage());
-    }
-
-    public String getFaultMessage() {
-        return "Cause of the Fault response - [" + getFaultstring() + "]";
-    }
 
 }

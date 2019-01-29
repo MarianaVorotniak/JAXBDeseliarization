@@ -9,9 +9,7 @@ com\jaxb\POJOs\ErrorEnvioType.class
 com\jaxb\POJOs\CabeceraDI$Periodo.class
 com\jaxb\POJOs\Body.class
 com\jaxb\POJOs\DeclaradoType$IDDeclarado.class
-com\jaxb\interfaces\Message.class
 com\jaxb\POJOs\Envelope.class
-com\jaxb\POJOs\BasicMessage.class
 com\jaxb\POJOs\RespuestaDeclaracionType.class
 com\jaxb\POJOs\EstadoRegistroType.class
 com\jaxb\POJOs\DeclaradoType$Detalle.class
@@ -24,7 +22,6 @@ com\jaxb\POJOs\EstadoEnvioType.class
 com\jaxb\POJOs\PersonaFisicaJuridicaESType.class
 com\jaxb\POJOs\RespuestaOperacionesType.class
 com\jaxb\POJOs\DeclaradoType$Detalle$IDInmueble.class
-com\jaxb\POJOs\MessageDecorator.class
 com\jaxb\POJOs\DatosPresentacion2Type.class
 com\jaxb\POJOs\CountryMiembroType.class
 com\jaxb\POJOs\CountryType2.class

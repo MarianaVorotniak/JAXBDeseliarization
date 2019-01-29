@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="2" failures="0" name="com.jaxb.services.MainServiceTest" time="0.423" errors="0" skipped="0">
+<testsuite tests="4" failures="0" name="com.jaxb.services.MainServiceTest" time="0.359" errors="0" skipped="0">
   <properties>
     <property name="idea.version" value="2018.3.2"/>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
@@ -64,6 +64,8 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="pentium_pro+mmx pentium_pro pentium+mmx pentium i486 i386 i86"/>
   </properties>
-  <testcase classname="com.jaxb.services.MainServiceTest" name="getResponseTest" time="0.423"/>
-  <testcase classname="com.jaxb.services.MainServiceTest" name="readFileTest" time="0"/>
+  <testcase classname="com.jaxb.services.MainServiceTest" name="getResponseTest" time="0.359"/>
+  <testcase classname="com.jaxb.services.MainServiceTest" name="readFileEmptyTest" time="0"/>
+  <testcase classname="com.jaxb.services.MainServiceTest" name="readFileNullTest" time="0"/>
+  <testcase classname="com.jaxb.services.MainServiceTest" name="readFileNotExistsTest" time="0"/>
 </testsuite>

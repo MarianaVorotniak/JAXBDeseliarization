@@ -1,10 +1,7 @@
 package com.jaxb;
 
-import com.jaxb.POJOs.BasicMessage;
-import com.jaxb.POJOs.Fault;
-import com.jaxb.POJOs.MessageDecorator;
+import com.jaxb.POJOs.ResponseUtil;
 import com.jaxb.exceptions.ParseException;
-import com.jaxb.interfaces.Message;
 import com.jaxb.services.MainService;
 
 /**
@@ -29,8 +26,10 @@ public class Main {
 
         MainService service = new MainService();
 
-        Message objectResponse = service.getResponse(filePathRejectedWithMany);
+        Object objectResponse = service.getResponse(filePathWithFaultTechnicalResponse);
 
-        objectResponse.printMessage();
+        String message  = ResponseUtil.getMessage(objectResponse);
+
+        System.out.println(message);
     }
 }

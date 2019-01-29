@@ -44,7 +44,7 @@ public class MainServiceTest {
         responseRejected= new RespuestaDeclaracionType();
         responseRejected.setEstadoEnvio(EstadoEnvioType.RECHAZO_COMPLETO);
 
-        fault = new Fault(new BasicMessage());
+        fault = new Fault();
         fault.setFaultcode("env:Client");
         fault.setFaultstring("Codigo[4105].Error en la cabecera. El NIF del declarante es inválido. NIF:B98156129. NOMBRE_RAZON:HomeAway");
 
@@ -66,13 +66,19 @@ public class MainServiceTest {
     }
 
     @Test
-    public void readFileTest() throws ParseException {
+    public void readFileEmptyTest() throws ParseException {
         expectedEx.expectMessage("File path is empty");
         mainService.readFile("");
+    }
 
+    @Test
+    public void readFileNullTest() throws ParseException {
         expectedEx.expectMessage("File path is null");
         mainService.readFile(null);
+    }
 
+    @Test
+    public void readFileNotExistsTest() throws ParseException {
         expectedEx.expectMessage("File does not exist");
         mainService.readFile("file");
     }

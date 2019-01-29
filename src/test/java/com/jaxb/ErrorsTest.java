@@ -33,4 +33,12 @@ public class ErrorsTest {
         assertEquals(message, null);
     }
 
+    @Test
+    public void findMessageByNullCode() throws ParseException {
+        expectedEx.expect(ParseException.class);
+        expectedEx.expectMessage("The code is null");
+
+        errors.findMessageByCode(null);
+    }
+
 }

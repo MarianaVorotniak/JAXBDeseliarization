@@ -1,7 +1,6 @@
 package com.jaxb.services;
 
 import com.jaxb.exceptions.ParseException;
-import com.jaxb.interfaces.Message;
 
 import java.io.IOException;
 import java.nio.file.*;
@@ -10,7 +9,7 @@ public class MainService {
 
     private static ParseService service = new ParseService();
 
-    public Message getResponse(String filePath) throws ParseException {
+    public Object getResponse(String filePath) throws ParseException {
 
         String fileContent = readFile(filePath);
         if (fileContent.contains("RespuestaDeclaracion"))
@@ -23,10 +22,10 @@ public class MainService {
 
     public static String readFile(String path) throws ParseException {
 
-        if (path.isEmpty())
-            throw new ParseException("File path is empty");
         if (path == null)
             throw new ParseException("File path is null");
+        if (path.isEmpty())
+            throw new ParseException("File path is empty");
 
         byte[] encoded;
         try {

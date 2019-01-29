@@ -21,7 +21,7 @@ public class ParseService {
 
         checkFileContent(fileContent);
 
-        Fault fault = new Fault(new BasicMessage());
+        Fault fault = new Fault();
 
         try {
             DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
