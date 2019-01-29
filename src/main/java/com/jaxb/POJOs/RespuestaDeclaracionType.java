@@ -56,7 +56,7 @@ public class RespuestaDeclaracionType extends RespuestaComunAltaType implements 
     }
 
     @Override
-    public void getMessage(){
+    public void printMessage(){
         String status = getEstadoEnvio().value();
 
         String message = "The status of registration/modification is [" + status + "]\n";
@@ -77,18 +77,18 @@ public class RespuestaDeclaracionType extends RespuestaComunAltaType implements 
        LOGGER.info(message);
     }
 
-    private String getFinalErrorMessage(String errorMessage, RespuestaOperacionesType lineResponse) {
+    public String getFinalErrorMessage(String errorMessage, RespuestaOperacionesType lineResponse) {
         if (errorMessage == null)
             return "\nUnknown error code [" + lineResponse.getCodigoErrorRegistro() + "], message: " + lineResponse.getDescripcionErrorRegistro() + ", DeclarationID: " + lineResponse.getIdRegistroDeclarado() + "\n";
 
         return "\nThe error is: code [" + lineResponse.getCodigoErrorRegistro() + "], message: " + errorMessage + " (" + lineResponse.getDescripcionErrorRegistro() + "), DeclarationID: " + lineResponse.getIdRegistroDeclarado() + "\n";
     }
 
-    private boolean isAccepted(String status) {
+    public boolean isAccepted(String status) {
         return status.equals("Aceptacion Completa");
     }
 
-    private boolean isLineResponseRejected(RespuestaOperacionesType lineResponse) {
+    public boolean isLineResponseRejected(RespuestaOperacionesType lineResponse) {
         return lineResponse.getEstadoRegistro() == EstadoRegistroType.RECHAZADO;
     }
 

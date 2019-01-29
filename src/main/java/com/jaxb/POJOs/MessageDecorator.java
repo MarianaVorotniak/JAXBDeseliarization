@@ -2,7 +2,7 @@ package com.jaxb.POJOs;
 
 import com.jaxb.interfaces.Message;
 
-public abstract class MessageDecorator implements Message {
+public class MessageDecorator implements Message {
 
     protected Message message;
 
@@ -11,7 +11,7 @@ public abstract class MessageDecorator implements Message {
     }
 
     @Override
-    public void getMessage() {
-        this.message.getMessage();
+    public void printMessage() {
+        this.message.printMessage();
     }
 }

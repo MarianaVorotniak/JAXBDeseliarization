@@ -21,7 +21,7 @@ public class MainService {
         throw new ParseException("Error in file " + filePath + ", it's content: " + fileContent);
     }
 
-    private static String readFile(String path) throws ParseException {
+    public static String readFile(String path) throws ParseException {
 
         if (path.isEmpty())
             throw new ParseException("File path is empty");

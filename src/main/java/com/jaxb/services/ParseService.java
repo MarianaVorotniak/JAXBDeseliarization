@@ -2,7 +2,6 @@ package com.jaxb.services;
 
 import com.jaxb.POJOs.*;
 import com.jaxb.exceptions.ParseException;
-import org.slf4j.*;
 import org.w3c.dom.Document;
 import org.xml.sax.*;
 
@@ -11,8 +10,6 @@ import javax.xml.parsers.*;
 import java.io.*;
 
 public class ParseService {
-
-    private static Logger LOGGER = LoggerFactory.getLogger(ParseService.class);
 
     protected RespuestaDeclaracionType parseResponse(String fileContent) throws ParseException {
         Body bodyResponse = getResponseBody(fileContent);
@@ -42,11 +39,11 @@ public class ParseService {
             fault.setFaultcode(faultcode);
             fault.setDetail(detail);
         } catch (ParserConfigurationException e) {
-            LOGGER.warn("ParserConfigurationException [{}]", e.getMessage());
+            throw new ParseException("ParserConfigurationException [{}]" + e.getMessage());
         } catch (IOException e) {
-            LOGGER.warn("IOException [{}]", e.getMessage());
+            throw new ParseException("IOException [{}]" + e.getMessage());
         } catch (SAXException e) {
-            LOGGER.warn("SAXException [{}]", e.getMessage());
+            throw new ParseException("SAXException [{}]" + e.getMessage());
         }
 
         return fault;

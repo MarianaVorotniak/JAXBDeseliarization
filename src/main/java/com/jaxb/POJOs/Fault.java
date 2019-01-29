@@ -29,12 +29,12 @@ public class Fault extends MessageDecorator {
     }
 
     @Override
-    public void getMessage() {
-        super.getMessage();
+    public void printMessage() {
+        super.printMessage();
         LOGGER.info(getFaultMessage());
     }
 
-    private String getFaultMessage() {
+    public String getFaultMessage() {
         return "Cause of the Fault response - [" + getFaultstring() + "]";
     }
 

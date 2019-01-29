@@ -11,7 +11,7 @@ public class BasicMessage implements Message {
     private static Logger LOGGER = LoggerFactory.getLogger(BasicMessage.class);
 
     @Override
-    public void getMessage() {
+    public void printMessage() {
         LOGGER.info("SOAP Response: ");
     }
 

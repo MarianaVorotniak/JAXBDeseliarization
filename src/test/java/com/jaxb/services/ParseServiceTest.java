@@ -10,6 +10,7 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
+
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
@@ -94,9 +95,7 @@ public class ParseServiceTest {
     }
 
     @Test
-    public void parseResponseTest() throws ParseException {
-
-        String fileContent = MainService.readFile(filePath);
+    public void parseResponseTest() {
 
         Body actualBody = expectedEnvelope.getBody();
         RespuestaDeclaracionType actualResponse = actualBody.getRespuestaDeclaracionType();
@@ -117,6 +116,7 @@ public class ParseServiceTest {
         Fault fault = parseService.parseFaultResponse(fileContent);
 
         assertEquals("env:Client", fault.getFaultcode());
+        assertTrue(fault.getFaultstring().contains("Codigo[4105].Error en la cabecera."));
     }
 
     @Test
