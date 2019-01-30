@@ -19,7 +19,7 @@ public class DeclaradoType {
 
     @Getter
     @Setter
-    @XmlElement(name = "IDRegistroDeclarado", required = true, namespace = "https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/DeclaracionInformativa.xsd")
+    @XmlElement(name = "IDRegistroDeclarado", required = true, namespace = "https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/RespuestaDeclaracion.xsd")
     protected String idRegistroDeclarado;
 
     @XmlElement(name = "IDDeclarado", required = true)
@@ -116,7 +116,8 @@ public class DeclaradoType {
          * 
          * Java class for anonymous complex type.
          */
-        @Data
+        @Getter
+        @Setter
         @XmlAccessorType(XmlAccessType.FIELD)
         @XmlType(name = "", propOrder = {
             "periodoCesion",
@@ -138,7 +139,8 @@ public class DeclaradoType {
             /**
              * Java class for anonymous complex type.
              */
-            @Data
+            @Getter
+            @Setter
             @XmlAccessorType(XmlAccessType.FIELD)
             @XmlType(name = "", propOrder = {
                 "claveMedioPago",
@@ -156,7 +158,8 @@ public class DeclaradoType {
             /**
              * Java class for anonymous complex type.
              */
-            @Data
+            @Getter
+            @Setter
             @XmlAccessorType(XmlAccessType.FIELD)
             @XmlType(name = "", propOrder = {
                 "fechaIntermediacion",
@@ -181,7 +184,8 @@ public class DeclaradoType {
          * 
          * Java class for anonymous complex type.
          */
-        @Data
+        @Getter
+        @Setter
         @XmlAccessorType(XmlAccessType.FIELD)
         @XmlType(name = "", propOrder = {
             "nombreRazon",
@@ -205,7 +209,8 @@ public class DeclaradoType {
         /**
          *  Property information
          */
-        @Data
+        @Getter
+        @Setter
         @XmlAccessorType(XmlAccessType.FIELD)
         @XmlType(name = "", propOrder = {
             "situacionInmueble",
@@ -221,7 +226,8 @@ public class DeclaradoType {
             /**
              * Java class for anonymous complex type.
              */
-            @Data
+            @Getter
+            @Setter
             @XmlAccessorType(XmlAccessType.FIELD)
             @XmlType(name = "", propOrder = {
                 "referenciaCatastral",
@@ -237,7 +243,8 @@ public class DeclaradoType {
                 /**
                  * Java class for anonymous complex type.
                  */
-                @Data
+                @Getter
+                @Setter
                 @XmlAccessorType(XmlAccessType.FIELD)
                 @XmlType(name = "", propOrder = {
                     "nombreMunicipio",
@@ -300,7 +307,8 @@ public class DeclaradoType {
      * 
      * Java class for anonymous complex type.
      */
-    @Data
+    @Getter
+    @Setter
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = {
         "clave",

@@ -1,9 +1,6 @@
 package com.jaxb;
 
-import com.jaxb.exceptions.ParseException;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
@@ -18,27 +15,22 @@ public class ErrorsTest {
     @Mock
     private Errors errors;
 
-    @Rule
-    public ExpectedException expectedEx = ExpectedException.none();
-
     @Test
-    public void codeIsCorrectTest() throws ParseException {
+    public void codeIsCorrectTest() {
         String message = errors.findMessageByCode(BigInteger.valueOf(5101));
-        assertEquals("Incorrect value of the Key field", message);
+        assertEquals(", message: Incorrect value of the Key field", message);
     }
 
     @Test
-    public void codeDoesNotExistInMapTest() throws ParseException {
+    public void codeDoesNotExistInMapTest() {
         String message = errors.findMessageByCode(BigInteger.valueOf(0));
-        assertEquals(message, null);
+        assertEquals(". Unknown error code [0]", message);
     }
 
     @Test
-    public void findMessageByNullCode() throws ParseException {
-        expectedEx.expect(ParseException.class);
-        expectedEx.expectMessage("The code is null");
-
-        errors.findMessageByCode(null);
+    public void findMessageByNullCode() {
+        String message = errors.findMessageByCode(null);
+        assertEquals(". Unknown error code [null]", message);
     }
 
 }

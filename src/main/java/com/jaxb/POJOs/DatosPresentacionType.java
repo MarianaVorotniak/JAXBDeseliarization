@@ -1,16 +1,17 @@
-
 package com.jaxb.POJOs;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.xml.bind.annotation.*;
 
 /**
  * Java class for DatosPresentacionType complex type.
  */
-@Data
+@Getter
+@Setter
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "DatosPresentacionType", propOrder = {
+@XmlType(name = "DatosPresentacionType", namespace = "https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/DeclaracionInformativa.xsd", propOrder = {
     "nifPresentador",
     "timestampPresentacion"
 })

@@ -1,7 +1,5 @@
 package com.jaxb;
 
-import com.jaxb.exceptions.ParseException;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -79,12 +77,12 @@ public class Errors {
         put(BigInteger.valueOf(5108), "Incorrect value of the Payment Method field");
     }};
 
-    public static String findMessageByCode(BigInteger code) throws ParseException {
+    public static String findMessageByCode(BigInteger code) {
+        String message = ", message: " + mapOfErrors.get(code);
 
-        if (code == null)
-            throw new ParseException("The code is " + code);
-
-        String message = mapOfErrors.get(code);
+        if (mapOfErrors.get(code) == null) {
+            message = ". Unknown error code [" + code + "]";
+        }
 
         return message;
     }

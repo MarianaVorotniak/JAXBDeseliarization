@@ -1,7 +1,8 @@
 
 package com.jaxb.POJOs;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.xml.bind.annotation.*;
 
@@ -10,7 +11,8 @@ import javax.xml.bind.annotation.*;
  * 
  * Java class for CabeceraDI complex type.
  */
-@Data
+@Getter
+@Setter
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "CabeceraDI", propOrder = {
     "tipoComunicacion",
@@ -40,7 +42,8 @@ public class CabeceraDI {
     /**
      * Java class for anonymous complex type.
      */
-    @Data
+    @Getter
+    @Setter
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = {
         "nif",
@@ -62,7 +65,8 @@ public class CabeceraDI {
         /**
          * Java class for anonymous complex type.
          */
-        @Data
+        @Getter
+        @Setter
         @XmlAccessorType(XmlAccessType.FIELD)
         @XmlType(name = "", propOrder = {
             "telefono",
@@ -84,7 +88,8 @@ public class CabeceraDI {
      * 
      * Java class for anonymous complex type.
      */
-    @Data
+    @Getter
+    @Setter
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = {
         "ejercicio",

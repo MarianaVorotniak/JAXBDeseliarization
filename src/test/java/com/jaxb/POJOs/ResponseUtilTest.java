@@ -17,12 +17,10 @@ import static org.junit.Assert.assertTrue;
 @RunWith(MockitoJUnitRunner.class)
 public class ResponseUtilTest {
 
-    @InjectMocks
+    @Mock
     private RespuestaDeclaracionType respuestaDeclaracionType;
-
     @Mock
     private List<RespuestaOperacionesType> respuestaLinea;
-
     @Mock
     private static ResponseUtil responseUtil;
     @Mock
@@ -65,7 +63,7 @@ public class ResponseUtilTest {
         assertTrue(messageFault.contains("Cause of the Fault response - [" + fault.getFaultstring() + "]"));
 
         String messageResponse = responseUtil.getMessage(responseOb);
-        assertTrue(messageResponse.contains("The status of registration/modification is [" + respuestaDeclaracionType.getEstadoEnvio().value() + "]\n"));
+        assertTrue(messageResponse.contains("The status of registration/modification is [Aceptacion Parcial]."));
         assertTrue(messageResponse.contains("El NIF no esta identificado. NIF Cedente: 50874160T. NOMBRE_RAZON: Michelle 'Chelle' Taylor. "));
     }
 
@@ -73,37 +71,20 @@ public class ResponseUtilTest {
     public void getMessageTest() {
         String message = responseUtil.getMessage(respuestaDeclaracionType);
 
-        assertTrue(message.contains("The status of registration/modification is [" + respuestaDeclaracionType.getEstadoEnvio().value() + "]\n"));
+        assertTrue(message.contains("The status of registration/modification is [Aceptacion Parcial]."));
         assertTrue(message.contains("El NIF no esta identificado. NIF Cedente: 50874160T. NOMBRE_RAZON: Michelle 'Chelle' Taylor. "));
-    }
-
-    @Test
-    public void getFinalErrorMessageTest() {
-        RespuestaOperacionesType firstElemOfList = respuestaLinea.get(0);
-        String finalMessageWithNull = responseUtil.getFinalErrorMessage(null, firstElemOfList);
-        assertEquals(finalMessageWithNull, "\nUnknown error code [" + firstElemOfList.getCodigoErrorRegistro() + "], message: " + firstElemOfList.getDescripcionErrorRegistro() + ", DeclarationID: " + firstElemOfList.getIdRegistroDeclarado() + "\n");
-
-        String finalMessage = responseUtil.getFinalErrorMessage("", firstElemOfList);
-        assertEquals(finalMessage, "\nThe error is: code [" + firstElemOfList.getCodigoErrorRegistro() + "], message: " + "" + " (" + firstElemOfList.getDescripcionErrorRegistro() + "), DeclarationID: " + firstElemOfList.getIdRegistroDeclarado() + "\n");
-    }
-
-    @Test
-    public void isAcceptedTest() {
-        String status = respuestaDeclaracionType.getEstadoEnvio().value();
-        boolean isAccepted = responseUtil.isAccepted(status);
-        assertEquals(false, isAccepted);
-    }
-
-    @Test
-    public void isLineResponseRejectedTest() {
-        boolean isRejected = responseUtil.isLineResponseRejected(respuestaLinea.get(0));
-        assertEquals(true, isRejected);
     }
 
     @Test
     public void getFaultMessageTest() {
         String message = responseUtil.getMessage(fault);
         assertEquals(message, "Cause of the Fault response - [" + fault.getFaultstring() + "]");
+    }
+
+    @Test
+    public void isLineResponseRejectedTest() {
+        boolean isRejected = responseUtil.isLineResponseRejected(respuestaLinea.get(0));
+        assertEquals(true, isRejected);
     }
 
 }

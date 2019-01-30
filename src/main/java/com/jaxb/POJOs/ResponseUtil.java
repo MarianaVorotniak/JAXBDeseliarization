@@ -1,18 +1,13 @@
 package com.jaxb.POJOs;
 
 import com.jaxb.Errors;
-import com.jaxb.exceptions.ParseException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.math.BigInteger;
 
 public class ResponseUtil{
 
-    private static Logger LOGGER = LoggerFactory.getLogger(ResponseUtil.class);
-
     public static String getMessage(Object objectResponse) {
-        if (objectResponse.getClass() == Fault.class)
+        if (objectResponse instanceof Fault)
             return getMessage((Fault)objectResponse);
         return getMessage((RespuestaDeclaracionType)objectResponse);
     }
@@ -24,33 +19,19 @@ public class ResponseUtil{
     public static String getMessage(RespuestaDeclaracionType response){
         String status = response.getEstadoEnvio().value();
 
-        String message = "The status of registration/modification is [" + status + "]\n";
+        StringBuilder message = new StringBuilder();
+        message.append("The status of registration/modification is [" + status + "]. Quantity of responses - " + response.getRespuestaLinea().size() + "\n");
 
-        if (!isAccepted(status)) {
-            for (RespuestaOperacionesType lineResponse : response.getRespuestaLinea())
+            for (RespuestaOperacionesType lineResponse : response.getRespuestaLinea()) {
+                message.append("\nIDRegistroDeclarado [" + lineResponse.getIdRegistroDeclarado() + "], EstadoRegistro [" + lineResponse.getEstadoRegistro() + "]");
                 if (isLineResponseRejected(lineResponse)) {
                     BigInteger code = lineResponse.getCodigoErrorRegistro();
-                    String errorMessage = null;
-                    try {
-                        errorMessage = Errors.findMessageByCode(code);
-                    } catch (ParseException e) {
-                        LOGGER.warn("Problem while finding message for code [" + code + "]");
-                    }
-                    message += getFinalErrorMessage(errorMessage, lineResponse);
+                    message.append(Errors.findMessageByCode(code));
+                    message.append(", spanish message: " + lineResponse.getDescripcionErrorRegistro());
                 }
-        }
-       return message;
-    }
+            }
 
-    public static String getFinalErrorMessage(String errorMessage, RespuestaOperacionesType lineResponse) {
-        if (errorMessage == null)
-            return "\nUnknown error code [" + lineResponse.getCodigoErrorRegistro() + "], message: " + lineResponse.getDescripcionErrorRegistro() + ", DeclarationID: " + lineResponse.getIdRegistroDeclarado() + "\n";
-
-        return "\nThe error is: code [" + lineResponse.getCodigoErrorRegistro() + "], message: " + errorMessage + " (" + lineResponse.getDescripcionErrorRegistro() + "), DeclarationID: " + lineResponse.getIdRegistroDeclarado() + "\n";
-    }
-
-    public static boolean isAccepted(String status) {
-        return status.equals("Aceptacion Completa");
+       return message.toString();
     }
 
     public static boolean isLineResponseRejected(RespuestaOperacionesType lineResponse) {

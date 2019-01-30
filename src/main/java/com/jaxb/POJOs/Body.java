@@ -1,10 +1,12 @@
 package com.jaxb.POJOs;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.xml.bind.annotation.*;
 
-@Data
+@Getter
+@Setter
 @XmlType(name = "Body")
 @XmlAccessorType(XmlAccessType.FIELD)
     public class Body {

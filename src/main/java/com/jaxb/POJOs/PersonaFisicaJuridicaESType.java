@@ -1,7 +1,8 @@
 
 package com.jaxb.POJOs;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.xml.bind.annotation.*;
 
@@ -10,7 +11,8 @@ import javax.xml.bind.annotation.*;
  * 
  * Java class for PersonaFisicaJuridicaESType complex type.
  */
-@Data
+@Getter
+@Setter
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "PersonaFisicaJuridicaESType", propOrder = {
     "nombreRazon",

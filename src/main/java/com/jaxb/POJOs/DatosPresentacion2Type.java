@@ -1,14 +1,15 @@
-
 package com.jaxb.POJOs;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.xml.bind.annotation.*;
 
 /**
  * Java class for DatosPresentacion2Type complex type.
  */
-@Data
+@Getter
+@Setter
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "DatosPresentacion2Type", propOrder = {
     "nifPresentador",

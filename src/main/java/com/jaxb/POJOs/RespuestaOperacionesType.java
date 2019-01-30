@@ -1,7 +1,8 @@
 
 package com.jaxb.POJOs;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.math.BigInteger;
 import javax.xml.bind.annotation.*;
@@ -11,7 +12,8 @@ import javax.xml.bind.annotation.*;
  * 
  * Java class for RespuestaOperacionesType complex type.
  */
-@Data
+@Getter
+@Setter
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "RespuestaOperacionesType", namespace = "https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/RespuestaDeclaracion.xsd", propOrder = {
     "idRegistroDeclarado",
