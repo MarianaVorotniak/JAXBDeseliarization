@@ -3,7 +3,6 @@ package com.jaxb.POJOs;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
@@ -11,7 +10,6 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
-import static junit.framework.TestCase.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -55,7 +53,7 @@ public class ResponseUtilTest {
     }
 
     @Test
-    public void getMessageByObj() {
+    public void getMessageTest() {
         Object faultOb = fault;
         Object responseOb = respuestaDeclaracionType;
 
@@ -65,26 +63,6 @@ public class ResponseUtilTest {
         String messageResponse = responseUtil.getMessage(responseOb);
         assertTrue(messageResponse.contains("The status of registration/modification is [Aceptacion Parcial]."));
         assertTrue(messageResponse.contains("El NIF no esta identificado. NIF Cedente: 50874160T. NOMBRE_RAZON: Michelle 'Chelle' Taylor. "));
-    }
-
-    @Test
-    public void getMessageTest() {
-        String message = responseUtil.getMessage(respuestaDeclaracionType);
-
-        assertTrue(message.contains("The status of registration/modification is [Aceptacion Parcial]."));
-        assertTrue(message.contains("El NIF no esta identificado. NIF Cedente: 50874160T. NOMBRE_RAZON: Michelle 'Chelle' Taylor. "));
-    }
-
-    @Test
-    public void getFaultMessageTest() {
-        String message = responseUtil.getMessage(fault);
-        assertEquals(message, "Cause of the Fault response - [" + fault.getFaultstring() + "]");
-    }
-
-    @Test
-    public void isLineResponseRejectedTest() {
-        boolean isRejected = responseUtil.isLineResponseRejected(respuestaLinea.get(0));
-        assertEquals(true, isRejected);
     }
 
 }

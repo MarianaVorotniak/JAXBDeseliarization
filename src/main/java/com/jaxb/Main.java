@@ -6,6 +6,9 @@ import com.jaxb.services.MainService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * This is a program to parse XML elements from a SOAP response using JAXB.
  *
@@ -25,15 +28,24 @@ public class Main {
     private static final String filePathAcceptedWithOne = "src\\main\\resources\\responses\\acceptedWithOneResponse.xml";
     private static final String filePathAcceptedWithMany = "src\\main\\resources\\responses\\acceptedWithManyResponses.xml";
 
+    private static final List<String> listOfFiles = Arrays.asList(filePathRejected, filePathRejectedWithMany, filePathFaultHeaderResponse, filePathFaultTechnicalResponse,
+            filePathPartialAcceptance, filePathAcceptedWithOne, filePathAcceptedWithMany);
 
     public static void main(String[] args) throws ParseException {
 
         MainService service = new MainService();
 
-        Object objectResponse = service.getResponse(filePathAcceptedWithMany);
+         processResponses(listOfFiles, service);
 
-        String message  = ResponseUtil.getMessage(objectResponse);
+    }
 
-        LOGGER.info(message);
+    public static void processResponses(List<String> responses, MainService service) throws ParseException {
+        Object objectResponse;
+        StringBuilder message = new StringBuilder();
+        for (String response : responses) {
+            objectResponse = service.getResponse(response);
+            message.append(ResponseUtil.getMessage(objectResponse) + "\n\n\n");
+        }
+        LOGGER.info(message.toString());
     }
 }

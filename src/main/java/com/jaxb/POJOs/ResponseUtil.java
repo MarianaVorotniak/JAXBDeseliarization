@@ -12,11 +12,11 @@ public class ResponseUtil{
         return getMessage((RespuestaDeclaracionType)objectResponse);
     }
 
-    public static String getMessage(Fault fault) {
+    private static String getMessage(Fault fault) {
         return "Cause of the Fault response - [" + fault.getFaultstring() + "]";
     }
 
-    public static String getMessage(RespuestaDeclaracionType response){
+    private static String getMessage(RespuestaDeclaracionType response){
         String status = response.getEstadoEnvio().value();
 
         StringBuilder message = new StringBuilder();
@@ -34,7 +34,7 @@ public class ResponseUtil{
        return message.toString();
     }
 
-    public static boolean isLineResponseRejected(RespuestaOperacionesType lineResponse) {
+    private static boolean isLineResponseRejected(RespuestaOperacionesType lineResponse) {
         return lineResponse.getEstadoRegistro() == EstadoRegistroType.RECHAZADO;
     }
 
