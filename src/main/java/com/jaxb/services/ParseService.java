@@ -28,22 +28,33 @@ public class ParseService {
             InputSource src = new InputSource();
             src.setCharacterStream(new StringReader(fileContent));
 
-            Document document = builder.parse(src);
-            String faultstring = document.getElementsByTagName("faultstring").item(0).getTextContent();
-            String faultcode = document.getElementsByTagName("faultcode").item(0).getTextContent();
-
+            String faultcode = "";
+            String faultstring = "";
             Detail detail = new Detail();
-            detail.setCallstack(document.getElementsByTagName("callstack").item(0).getTextContent());
 
+            Document document = builder.parse(src);
+
+            try {
+                faultstring = document.getElementsByTagName("faultstring").item(0).getTextContent();
+            }catch (NullPointerException e) {}
             fault.setFaultstring(faultstring);
+
+            try {
+                faultcode = document.getElementsByTagName("faultcode").item(0).getTextContent();
+            }catch (NullPointerException e) {}
             fault.setFaultcode(faultcode);
+
+            try {
+                detail.setCallstack(document.getElementsByTagName("callstack").item(0).getTextContent());
+            }catch (NullPointerException e) {}
             fault.setDetail(detail);
+
         } catch (ParserConfigurationException e) {
-            throw new ParseException("ParserConfigurationException: " + e.getMessage());
+            throw new ParseException("ParserConfigurationException: " + e.getMessage() + "\n");
         } catch (IOException e) {
-            throw new ParseException("IOException: " + e.getMessage());
+            throw new ParseException("IOException: " + e.getMessage() + "\n");
         } catch (SAXException e) {
-            throw new ParseException("SAXException: " + e.getMessage());
+            throw new ParseException("SAXException: " + e.getMessage() + "\n");
         }
 
         return fault;
@@ -69,7 +80,7 @@ public class ParseService {
             fullResponse = (Envelope) unmarshaller.unmarshal(reader);
         } catch (JAXBException e) {
             e.printStackTrace();
-            throw new ParseException("Wrong xml. Can't unmarshal file.");
+            throw new ParseException("Wrong xml. Can't unmarshal file.\n");
         }
 
         return fullResponse;
@@ -77,11 +88,11 @@ public class ParseService {
 
     public static void checkFileContent(String fileContent) throws ParseException {
         if (fileContent == null)
-            throw new ParseException("File content is null");
+            throw new ParseException("File content is null\n");
         else if (fileContent.isEmpty())
-            throw new ParseException("File content is empty");
+            throw new ParseException("File content is empty\n");
         else if (!(fileContent.contains("RespuestaDeclaracion") || fileContent.contains("Fault")))
-            throw new ParseException("File content is is not [RespuestaDeclaracion] or [Fault] type: " + fileContent);
+            throw new ParseException("File content is not [RespuestaDeclaracion] or [Fault] type: " + fileContent + "\n");
     }
 
 }

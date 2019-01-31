@@ -1,3 +1,5 @@
 com\jaxb\services\ParseServiceTest.class
+com\jaxb\MainTest.class
 com\jaxb\ErrorsTest.class
 com\jaxb\services\MainServiceTest.class
+com\jaxb\POJOs\ResponseUtilTest.class

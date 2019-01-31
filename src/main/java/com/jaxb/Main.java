@@ -18,12 +18,12 @@ public class Main {
 
     private static Logger LOGGER = LoggerFactory.getLogger(Main.class);
 
-    private static final String filePathRejected = "src\\main\\resources\\responses\\rejectedResponse.xml";
-    private static final String filePathRejectedWithMany = "src\\main\\resources\\responses\\rejectedWithManyResponse.xml";
-    private static final String filePathFaultHeaderResponse = "src\\main\\resources\\responses\\faultResponseHeaderError.xml";
-    private static final String filePathFaultTechnicalResponse = "src\\main\\resources\\responses\\faultResponseTechnicalError.xml";
+    private static final String filePathRejected = "src\\main\\resources\\testResponses\\faultWithoutCallstack.xml";
+    private static final String filePathRejectedWithMany = null;
+    private static final String filePathFaultHeaderResponse = "";
+    private static final String filePathFaultTechnicalResponse = "src\\main\\resources\\responses\\faultResponseTechnicalEror.xml";
 
-    private static final String filePathPartialAcceptance = "src\\main\\resources\\responses\\partialAcceptanceResponse.xml";
+    private static final String filePathPartialAcceptance = "src\\main\\resources\\testResponses\\notRecognizedResponse.xml";
 
     private static final String filePathAcceptedWithOne = "src\\main\\resources\\responses\\acceptedWithOneResponse.xml";
     private static final String filePathAcceptedWithMany = "src\\main\\resources\\responses\\acceptedWithManyResponses.xml";
@@ -31,7 +31,7 @@ public class Main {
     private static final List<String> listOfFiles = Arrays.asList(filePathRejected, filePathRejectedWithMany, filePathFaultHeaderResponse, filePathFaultTechnicalResponse,
             filePathPartialAcceptance, filePathAcceptedWithOne, filePathAcceptedWithMany);
 
-    public static void main(String[] args) throws ParseException {
+    public static void main(String[] args) {
 
         MainService service = new MainService();
 
@@ -39,13 +39,18 @@ public class Main {
 
     }
 
-    public static void processResponses(List<String> responses, MainService service) throws ParseException {
+    public static void processResponses(List<String> listOfFilePaths, MainService service){
         Object objectResponse;
-        StringBuilder message = new StringBuilder();
-        for (String response : responses) {
-            objectResponse = service.getResponse(response);
-            message.append(ResponseUtil.getMessage(objectResponse) + "\n\n\n");
+        String message = "";
+        for (String filePath : listOfFilePaths) {
+            try {
+                LOGGER.info("Reading file [{}]", filePath);
+                objectResponse = service.getResponse(filePath);
+                message = ResponseUtil.getMessage(objectResponse) + "\n\n";
+                LOGGER.info("File successfully read!\n" + message);
+            } catch (ParseException e) {
+                LOGGER.info(e.getMessage());
+            }
         }
-        LOGGER.info(message.toString());
     }
 }

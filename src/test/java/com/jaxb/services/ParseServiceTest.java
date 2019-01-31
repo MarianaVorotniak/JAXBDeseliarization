@@ -48,6 +48,10 @@ public class ParseServiceTest {
     private String filePathFault;
     private String incorrectFile;
     private String wrongXml;
+    private String filePathFaultWithoutCallstack;
+    private String filePathFaultWithoutCode;
+    private String filePathFaultWithoutString;
+
     private String rejectedContent;
     private String rejectedContentWithErrors;
     private String rejectedContentWithoutCabecera;
@@ -95,6 +99,8 @@ public class ParseServiceTest {
         filePathFault = "src\\main\\resources\\responses\\faultResponseHeaderError.xml";
         incorrectFile = "src\\main\\resources\\testResponses\\wrongResponse.xml";
         wrongXml = "src\\main\\resources\\testResponses\\wrongXml.xml";
+        filePathFaultWithoutCallstack = "src\\main\\resources\\testResponses\\faultWithoutCallstack.xml";
+        filePathFaultWithoutCode = "src\\main\\resources\\testResponses\\faultWithoutFaultCode.xml";
 
         rejectedContent = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
                 "<env:Envelope xmlns:env=\"http://schemas.xmlsoap.org/soap/envelope/\">\n" +
@@ -195,9 +201,19 @@ public class ParseServiceTest {
         assertEquals("env:Client", fault.getFaultcode());
         assertTrue(fault.getFaultstring().contains("Codigo[4105].Error en la cabecera."));
         assertNotNull(fault.getDetail().getCallstack());
-        assertTrue(fault.getDetail().getCallstack().contains("Error en la cabecera. El NIF del declarante es inválido. NIF:B98156129. NOMBRE_RAZON:HomeAway\n" +
-                "                    WSExcepcion [faultcode=null, detailMap=null, version=0, faultstring=null, faultactor=null, faultSubCode=null, reasonText=null, detail=null, nameSpaceUriDetail=null]"));
+    }
 
+    @Test
+    public void parseFaultResponseWithoutCallstackTest() throws ParseException {
+        String fileContent2 = MainService.readFile(filePathFaultWithoutCallstack);
+        Fault fault = parseService.parseFaultResponse(fileContent2);
+        assertEquals(fault.getDetail().getCallstack(), null);
+    }
+
+    public void parseFaultResponseWithoutCode() throws ParseException {
+        String fileContent3 = MainService.readFile(filePathFaultWithoutCode);
+        Fault fault = parseService.parseFaultResponse(fileContent3);
+        assertEquals(fault.getFaultcode(), "");
     }
 
     @Test

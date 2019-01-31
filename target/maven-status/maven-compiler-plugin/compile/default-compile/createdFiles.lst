@@ -31,6 +31,7 @@ com\jaxb\POJOs\ClaveType.class
 com\jaxb\POJOs\IDOtroType.class
 com\jaxb\POJOs\DeclaracionInformativa.class
 com\jaxb\POJOs\DeclaradoType$Detalle$IDCesionario.class
+com\jaxb\POJOs\ResponseUtil.class
 com\jaxb\services\MainService.class
 com\jaxb\POJOs\ClaveTipoComunicacionType.class
 com\jaxb\POJOs\RespuestaComunAltaType.class

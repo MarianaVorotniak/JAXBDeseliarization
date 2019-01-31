@@ -17,23 +17,23 @@ public class MainService {
         else if (fileContent.contains("Fault"))
             return service.parseFaultResponse(fileContent);
 
-        throw new ParseException("Error in file " + filePath + ", it's content: " + fileContent);
+        throw new ParseException("Error in file " + filePath + ", it's content: " + fileContent + "\n");
     }
 
     public static String readFile(String path) throws ParseException {
 
         if (path == null)
-            throw new ParseException("File path is null");
+            throw new ParseException("File path is null\n");
         if (path.isEmpty())
-            throw new ParseException("File path is empty");
+            throw new ParseException("File path is empty\n");
 
         byte[] encoded;
         try {
             encoded = Files.readAllBytes(Paths.get(path));
         } catch (NoSuchFileException e) {
-            throw new ParseException("File does not exist :" +  path);
+            throw new ParseException("File does not exist\n");
         } catch (IOException e) {
-            throw new ParseException("IOException: " + e.getMessage());
+            throw new ParseException("IOException: " + e.getMessage() + "\n");
         }
 
         return new String(encoded);
