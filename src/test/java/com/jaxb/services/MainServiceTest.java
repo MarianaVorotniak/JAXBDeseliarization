@@ -61,39 +61,55 @@ public class MainServiceTest {
         filePathWithFaultHeaderResponse = "src\\main\\resources\\responses\\faultResponseHeaderError.xml";
         filePathAcceptedWithOne = "src\\main\\resources\\responses\\acceptedWithOneResponse.xml";
         filePathWithTestResponse = "src\\main\\resources\\testResponses\\notRecognizedResponse.xml";
-
-        expectedEx.expect(ParseException.class);
     }
 
     @Test
     public void readFileEmptyTest() throws ParseException {
+        expectedEx.expect(ParseException.class);
         expectedEx.expectMessage("File path is empty");
         mainService.readFile("");
     }
 
     @Test
     public void readFileNullTest() throws ParseException {
+        expectedEx.expect(ParseException.class);
         expectedEx.expectMessage("File path is null");
         mainService.readFile(null);
     }
 
     @Test
     public void readFileNotExistsTest() throws ParseException {
+        expectedEx.expect(ParseException.class);
         expectedEx.expectMessage("File does not exist");
         mainService.readFile("file");
     }
 
     @Test
     public void getResponseTest() throws ParseException {
+        expectedEx.expect(ParseException.class);
 
         Object registration = mainService.getResponse(filePathAcceptedWithOne);
-        Object fault = mainService.getResponse(filePathWithFaultHeaderResponse);
+        Object faultObj = mainService.getResponse(filePathWithFaultHeaderResponse);
 
-        expectedEx.expectMessage("Error in file");
+        expectedEx.expectMessage("Error in file src\\main\\resources\\testResponses\\notRecognizedResponse.xml");
         mainService.getResponse(filePathWithTestResponse);
 
         assertTrue(registration instanceof RespuestaDeclaracionType);
-        assertTrue(fault instanceof Fault);
+        assertTrue(faultObj instanceof Fault);
+
+        Fault faultNotObj = (Fault) faultObj;
+
+        assertEquals(faultNotObj.getFaultcode(), fault.getFaultcode());
+        assertEquals(faultNotObj.getFaultstring(), fault.getFaultstring());
+        assertEquals(faultNotObj.getDetail().getCallstack(), fault.getDetail().getCallstack());
+
+        RespuestaDeclaracionType registrationNotObj = (RespuestaDeclaracionType) registration;
+
+        assertEquals(registrationNotObj.getCabecera().getModelo(), responseAccepted.getCabecera().getModelo());
+        assertEquals(registrationNotObj.getRespuestaLinea().size(), responseAccepted.getRespuestaLinea().size());
+
+        expectedEx.expectMessage("IOException: src\\main\\resources\\testResponses");
+        mainService.getResponse("src\\main\\resources\\testResponses");
     }
 
 }

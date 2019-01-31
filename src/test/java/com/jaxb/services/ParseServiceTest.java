@@ -48,6 +48,9 @@ public class ParseServiceTest {
     private String filePathFault;
     private String incorrectFile;
     private String wrongXml;
+    private String rejectedContent;
+    private String rejectedContentWithErrors;
+    private String rejectedContentWithoutCabecera;
 
     @Before
     public void init() {
@@ -92,6 +95,80 @@ public class ParseServiceTest {
         filePathFault = "src\\main\\resources\\responses\\faultResponseHeaderError.xml";
         incorrectFile = "src\\main\\resources\\testResponses\\wrongResponse.xml";
         wrongXml = "src\\main\\resources\\testResponses\\wrongXml.xml";
+
+        rejectedContent = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
+                "<env:Envelope xmlns:env=\"http://schemas.xmlsoap.org/soap/envelope/\">\n" +
+                "    <env:Header/>\n" +
+                "    <env:Body Id=\"Body\">\n" +
+                "        <ddiiR:RespuestaDeclaracion xmlns:ddiiR=\"https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/RespuestaDeclaracion.xsd\" xmlns:ddii=\"https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/DeclaracionInformativa.xsd\">\n" +
+                "            <ddiiR:Cabecera>\n" +
+                "                <ddii:TipoComunicacion>A0</ddii:TipoComunicacion>\n" +
+                "                <ddii:Modelo>179</ddii:Modelo>\n" +
+                "                <ddii:Periodo>\n" +
+                "                    <ddii:Ejercicio>2018</ddii:Ejercicio>\n" +
+                "                    <ddii:Periodo>0A</ddii:Periodo>\n" +
+                "                </ddii:Periodo>\n" +
+                "                <ddii:IDVersionModelo>1.0</ddii:IDVersionModelo>\n" +
+                "                <ddii:IDDeclarante>\n" +
+                "                    <ddii:NIF>B98156128</ddii:NIF>\n" +
+                "                    <ddii:NombreRazon>HomeAway</ddii:NombreRazon>\n" +
+                "                </ddii:IDDeclarante>\n" +
+                "            </ddiiR:Cabecera>\n" +
+                "            <ddiiR:EstadoEnvio>Rechazo Completo</ddiiR:EstadoEnvio>\n" +
+                "            <ddiiR:RespuestaLinea>\n" +
+                "                <ddiiR:IDRegistroDeclarado>000009</ddiiR:IDRegistroDeclarado>\n" +
+                "                <ddiiR:EstadoRegistro>Rechazado</ddiiR:EstadoRegistro>\n" +
+                "                <ddiiR:CodigoErrorRegistro>1106</ddiiR:CodigoErrorRegistro>\n" +
+                "                <ddiiR:DescripcionErrorRegistro>El NIF no esta identificado. NIF: 77780619R. NOMBRE_RAZON: SunSea Costa Brava. </ddiiR:DescripcionErrorRegistro>\n" +
+                "            </ddiiR:RespuestaLinea>\n" +
+                "        </ddiiR:RespuestaDeclaracion>\n" +
+                "    </env:Body>\n" +
+                "</env:Envelope>";
+
+        rejectedContentWithErrors = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
+                "<env:Envelope xmln:env=\"http://schemas.xmlsoap.org/soap/envelope/\">\n" +
+                "    <env:Header/>\n" +
+                "    <env:Body Id=\"Body\">\n" +
+                "        <ddiiR:RespuestaDeclaracion xmlns:ddiiR=\"https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/RespuestaDeclaracion.xsd\" xmlns:ddii=\"https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/DeclaracionInformativa.xsd\">\n" +
+                "            <ddiiR:Cabecera>\n" +
+                "                <ddii:TipoComunicacion>A0</ddii:TipoComunicacion>\n" +
+                "                <ddii:Modelo>179</ddii:Modelo>\n" +
+                "                <ddii:Periodo>\n" +
+                "                    <ddii:Ejercicio>2018</ddii:Ejercicio>\n" +
+                "                    <ddii:Periodo>0A</ddii:Periodo>\n" +
+                "                </ddii:Periodo>\n" +
+                "                <ddii:IDVersionModelo>1.0</ddii:IDVersionModelo>\n" +
+                "                <ddii:IDDeclarante>\n" +
+                "                    <ddii:NIF>B98156128</ddii:NIF>\n" +
+                "                    <ddii:NombreRazon>HomeAway</ddii:NombreRazon>\n" +
+                "                </ddii:IDDeclarante>\n" +
+                "            </ddiiR:Cabecera>\n" +
+                "            <ddiiR:EstadoEnvio>Rechazo Completo</ddiiR:EstadoEnvio>\n" +
+                "            <ddiiR:RespuestaLinea>\n" +
+                "                <ddiiR:IDRegistroDeclarado>000009</ddiiR:IDRegistroDeclarado>\n" +
+                "                <ddiiR:EstadoRegistro>Rechazado</ddiiR:EstadoRegistro>\n" +
+                "                <ddiiR:CodigoErrorRegistro>1106</ddiiR:CodigoErrorRegistro>\n" +
+                "                <ddiiR:DescripcionErrorRegistro>El NIF no esta identificado. NIF: 77780619R. NOMBRE_RAZON: SunSea Costa Brava. </ddiiR:DescripcionErrorRegistro>\n" +
+                "            </ddiiR:RespuestaLinea>\n" +
+                "        </ddiiR:RespuestaDeclaracion>\n" +
+                "    </env:Body>\n" +
+                "</env:Envelope>";
+
+        rejectedContentWithoutCabecera = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
+                "<env:Envelope xmlns:env=\"http://schemas.xmlsoap.org/soap/envelope/\">\n" +
+                "    <env:Header/>\n" +
+                "    <env:Body Id=\"Body\">\n" +
+                "        <ddiiR:RespuestaDeclaracion xmlns:ddiiR=\"https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/RespuestaDeclaracion.xsd\" xmlns:ddii=\"https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ddii/enol/ws/DeclaracionInformativa.xsd\">\n" +
+                "            <ddiiR:EstadoEnvio>Rechazo Completo</ddiiR:EstadoEnvio>\n" +
+                "            <ddiiR:RespuestaLinea>\n" +
+                "                <ddiiR:IDRegistroDeclarado>000009</ddiiR:IDRegistroDeclarado>\n" +
+                "                <ddiiR:EstadoRegistro>Rechazado</ddiiR:EstadoRegistro>\n" +
+                "                <ddiiR:CodigoErrorRegistro>1106</ddiiR:CodigoErrorRegistro>\n" +
+                "                <ddiiR:DescripcionErrorRegistro>El NIF no esta identificado. NIF: 77780619R. NOMBRE_RAZON: SunSea Costa Brava. </ddiiR:DescripcionErrorRegistro>\n" +
+                "            </ddiiR:RespuestaLinea>\n" +
+                "        </ddiiR:RespuestaDeclaracion>\n" +
+                "    </env:Body>\n" +
+                "</env:Envelope>";
     }
 
     @Test
@@ -117,6 +194,10 @@ public class ParseServiceTest {
 
         assertEquals("env:Client", fault.getFaultcode());
         assertTrue(fault.getFaultstring().contains("Codigo[4105].Error en la cabecera."));
+        assertNotNull(fault.getDetail().getCallstack());
+        assertTrue(fault.getDetail().getCallstack().contains("Error en la cabecera. El NIF del declarante es inválido. NIF:B98156129. NOMBRE_RAZON:HomeAway\n" +
+                "                    WSExcepcion [faultcode=null, detailMap=null, version=0, faultstring=null, faultactor=null, faultSubCode=null, reasonText=null, detail=null, nameSpaceUriDetail=null]"));
+
     }
 
     @Test
@@ -146,6 +227,56 @@ public class ParseServiceTest {
         expectedEx.expect(ParseException.class);
         expectedEx.expectMessage("File content is null");
         RespuestaDeclaracionType respuestaDeclaracion = parseService.parseResponse(null);
+    }
+
+    @Test
+    public void checkFileContentTest() throws ParseException {
+        expectedEx.expect(ParseException.class);
+        expectedEx.expectMessage("File content is null");
+        parseService.checkFileContent(null);
+
+        expectedEx.expect(ParseException.class);
+        expectedEx.expectMessage("File content is is not [RespuestaDeclaracion] or [Fault] type: <Test>This is a test</Test>");
+        parseService.checkFileContent("<Test>This is a test</Test>");
+
+        expectedEx.expect(ParseException.class);
+        expectedEx.expectMessage("File content is empty");
+        parseService.checkFileContent("");
+    }
+
+    @Test
+    public void unmarshalTest() throws ParseException {
+        Envelope envelope = parseService.unmarshal(rejectedContent);
+
+        assertEquals(envelope.getBody().getFault(), null);
+        System.out.println();
+        assertTrue(envelope.getBody().getRespuestaDeclaracionType().getDatosPresentacion() == declarationResponse.getDatosPresentacion());
+        assertEquals(envelope.getBody().getRespuestaDeclaracionType().getCsv(), null);
+        assertEquals(envelope.getBody().getRespuestaDeclaracionType().getCabecera().getPeriodo().getPeriodo(), head.getPeriodo().getPeriodo());
+        assertEquals(envelope.getBody().getRespuestaDeclaracionType().getCabecera().getModelo(), "179");
+
+        expectedEx.expect(ParseException.class);
+        expectedEx.expectMessage("Wrong xml. Can't unmarshal file.");
+        envelope = parseService.unmarshal(rejectedContentWithErrors);
+
+        envelope = parseService.unmarshal(rejectedContentWithoutCabecera);
+        assertEquals(envelope.getBody().getRespuestaDeclaracionType().getCabecera().getModelo(), null);
+
+    }
+
+    @Test
+    public void getResponseBodyTest() throws ParseException {
+        Body body = parseService.getResponseBody(rejectedContent);
+
+        assertEquals(body.getFault(), null);
+        assertEquals(body.getRespuestaDeclaracionType().getEstadoEnvio().value(), "Rechazo Completo");
+
+        body = parseService.getResponseBody(rejectedContentWithoutCabecera);
+        assertNull(body.getRespuestaDeclaracionType().getCabecera());
+
+        expectedEx.expect(ParseException.class);
+        expectedEx.expectMessage("Wrong xml. Can't unmarshal file.");
+        body = parseService.getResponseBody(rejectedContentWithErrors);
     }
 
 }

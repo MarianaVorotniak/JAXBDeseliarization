@@ -11,13 +11,13 @@ import java.io.*;
 
 public class ParseService {
 
-    protected RespuestaDeclaracionType parseResponse(String fileContent) throws ParseException {
+    public RespuestaDeclaracionType parseResponse(String fileContent) throws ParseException {
         Body bodyResponse = getResponseBody(fileContent);
 
         return bodyResponse.getRespuestaDeclaracionType();
     }
 
-    protected Fault parseFaultResponse(String fileContent) throws ParseException {
+    public Fault parseFaultResponse(String fileContent) throws ParseException {
 
         checkFileContent(fileContent);
 
@@ -39,23 +39,23 @@ public class ParseService {
             fault.setFaultcode(faultcode);
             fault.setDetail(detail);
         } catch (ParserConfigurationException e) {
-            throw new ParseException("ParserConfigurationException [{}]" + e.getMessage());
+            throw new ParseException("ParserConfigurationException: " + e.getMessage());
         } catch (IOException e) {
-            throw new ParseException("IOException [{}]" + e.getMessage());
+            throw new ParseException("IOException: " + e.getMessage());
         } catch (SAXException e) {
-            throw new ParseException("SAXException [{}]" + e.getMessage());
+            throw new ParseException("SAXException: " + e.getMessage());
         }
 
         return fault;
     }
 
-    private static Body getResponseBody(String fileContent) throws ParseException {
+    public static Body getResponseBody(String fileContent) throws ParseException {
         Envelope fullResponse = unmarshal(fileContent);
 
         return fullResponse.getBody();
     }
 
-    private static Envelope unmarshal(String fileContent) throws ParseException {
+    public static Envelope unmarshal(String fileContent) throws ParseException {
 
         checkFileContent(fileContent);
 
@@ -68,17 +68,20 @@ public class ParseService {
             Unmarshaller unmarshaller = context.createUnmarshaller();
             fullResponse = (Envelope) unmarshaller.unmarshal(reader);
         } catch (JAXBException e) {
-                throw new ParseException("Wrong xml. Can't unmarshal file. Cause: " + e.getMessage());
+            e.printStackTrace();
+            throw new ParseException("Wrong xml. Can't unmarshal file.");
         }
 
         return fullResponse;
     }
 
-    private static void checkFileContent(String fileContent) throws ParseException {
+    public static void checkFileContent(String fileContent) throws ParseException {
         if (fileContent == null)
             throw new ParseException("File content is null");
         else if (fileContent.isEmpty())
             throw new ParseException("File content is empty");
+        else if (!(fileContent.contains("RespuestaDeclaracion") || fileContent.contains("Fault")))
+            throw new ParseException("File content is is not [RespuestaDeclaracion] or [Fault] type: " + fileContent);
     }
 
 }
