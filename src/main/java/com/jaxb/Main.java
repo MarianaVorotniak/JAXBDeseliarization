@@ -19,14 +19,14 @@ public class Main {
     private static Logger LOGGER = LoggerFactory.getLogger(Main.class);
 
     private static final String filePathRejected = "src\\main\\resources\\testResponses\\faultWithoutFaultCode.xml";
-    private static final String filePathRejectedWithMany = null;
-    private static final String filePathFaultHeaderResponse = "";
+    private static final String filePathRejectedWithMany = "src\\main\\resources\\testResponses\\responseWithFaultInContent.xml";;
+    private static final String filePathFaultHeaderResponse = null;
     private static final String filePathFaultTechnicalResponse = "src\\main\\resources\\responses\\faultResponseTechnicalEror.xml";
 
     private static final String filePathPartialAcceptance = "src\\main\\resources\\testResponses\\notRecognizedResponse.xml";
 
-    private static final String filePathAcceptedWithOne = "src\\main\\resources\\responses\\acceptedWithOneResponse.xml";
-    private static final String filePathAcceptedWithMany = "src\\main\\resources\\responses\\acceptedWithManyResponses.xml";
+    private static final String filePathAcceptedWithOne = "src\\main\\resources\\responses";
+    private static final String filePathAcceptedWithMany = "src\\main\\resources\\responses\\partialAcceptanceResponse.xml";
 
     private static final List<String> listOfFiles = Arrays.asList(filePathRejected, filePathRejectedWithMany, filePathFaultHeaderResponse, filePathFaultTechnicalResponse,
             filePathPartialAcceptance, filePathAcceptedWithOne, filePathAcceptedWithMany);

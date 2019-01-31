@@ -12,9 +12,9 @@ public class MainService {
     public Object getResponse(String filePath) throws ParseException {
 
         String fileContent = readFile(filePath);
-        if (fileContent.contains("RespuestaDeclaracion"))
+        if (fileContent.contains("</ddiiR:RespuestaDeclaracion>"))
             return service.parseResponse(fileContent);
-        else if (fileContent.contains("Fault"))
+        else if (fileContent.contains("<env:Fault>"))
             return service.parseFaultResponse(fileContent);
 
         throw new ParseException("Error in file " + filePath + ", it's content: " + fileContent + "\n");

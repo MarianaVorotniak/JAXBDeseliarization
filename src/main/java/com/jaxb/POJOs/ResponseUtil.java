@@ -13,11 +13,19 @@ public class ResponseUtil{
     }
 
     private static String getMessage(Fault fault) {
-        if (!fault.getFaultstring().equals(""))
+        if (isFaultStringNotEmpty(fault))
             return "Cause of the Fault response - [" + fault.getFaultstring() + "]";
-        else if (fault.getDetail().getCallstack() != null)
+        else if (isFaultDetailNotNull(fault))
             return "Cause of the Fault response - [" + fault.getDetail().getCallstack() + "]";
         return "Fault code is " + fault.getFaultcode();
+    }
+
+    private static boolean isFaultStringNotEmpty(Fault fault) {
+        return !fault.getFaultstring().equals("");
+    }
+
+    private static boolean isFaultDetailNotNull(Fault fault) {
+        return fault.getDetail().getCallstack() != null;
     }
 
     private static String getMessage(RespuestaDeclaracionType response){
