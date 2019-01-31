@@ -13,7 +13,11 @@ public class ResponseUtil{
     }
 
     private static String getMessage(Fault fault) {
-        return "Cause of the Fault response - [" + fault.getFaultstring() + "]";
+        if (!fault.getFaultstring().equals(""))
+            return "Cause of the Fault response - [" + fault.getFaultstring() + "]";
+        else if (fault.getDetail().getCallstack() != null)
+            return "Cause of the Fault response - [" + fault.getDetail().getCallstack() + "]";
+        return "Fault code is " + fault.getFaultcode();
     }
 
     private static String getMessage(RespuestaDeclaracionType response){

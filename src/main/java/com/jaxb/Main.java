@@ -18,7 +18,7 @@ public class Main {
 
     private static Logger LOGGER = LoggerFactory.getLogger(Main.class);
 
-    private static final String filePathRejected = "src\\main\\resources\\testResponses\\faultWithoutCallstack.xml";
+    private static final String filePathRejected = "src\\main\\resources\\testResponses\\faultWithoutFaultCode.xml";
     private static final String filePathRejectedWithMany = null;
     private static final String filePathFaultHeaderResponse = "";
     private static final String filePathFaultTechnicalResponse = "src\\main\\resources\\responses\\faultResponseTechnicalEror.xml";

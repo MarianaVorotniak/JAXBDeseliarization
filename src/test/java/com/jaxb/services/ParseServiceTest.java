@@ -258,6 +258,10 @@ public class ParseServiceTest {
         expectedEx.expect(ParseException.class);
         expectedEx.expectMessage("File content is empty");
         parseService.checkFileContent("");
+
+        expectedEx.expect(ParseException.class);
+        expectedEx.expectMessage("File content is not [RespuestaDeclaracion] or [Fault] type: ");
+        parseService.checkFileContent("Respuesta");
     }
 
     @Test

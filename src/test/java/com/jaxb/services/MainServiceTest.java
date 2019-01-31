@@ -85,6 +85,12 @@ public class MainServiceTest {
     }
 
     @Test
+    public void readFileThrowsIOException() throws ParseException {
+        expectedEx.expectMessage("IOException: src\\main\\resources\\testResponses");
+        mainService.readFile("src\\main\\resources\\testResponses");
+    }
+
+    @Test
     public void getResponseTest() throws ParseException {
         expectedEx.expect(ParseException.class);
 

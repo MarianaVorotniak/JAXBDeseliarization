@@ -25,6 +25,7 @@ public class MainTest {
 
     private static MainService service;
     private static List<String> listOfFiles;
+    private static List<String> listOfWrongFiles;
 
     private static Logger logger;
     private static ByteArrayOutputStream out;
@@ -35,8 +36,11 @@ public class MainTest {
         service = new MainService();
 
         listOfFiles = new ArrayList<>();
+        listOfWrongFiles = new ArrayList<>();
 
         listOfFiles = Arrays.asList("src\\main\\resources\\responses\\rejectedResponse.xml", "src\\main\\resources\\responses\\rejectedWithManyResponse.xml");
+        listOfWrongFiles = Arrays.asList(null, "src\\main\\resources\\testResponses\\notRecognizedResponse.xml");
+
 
         LogManager.getRootLogger().addAppender(mockAppender);
 
@@ -49,7 +53,7 @@ public class MainTest {
     }
 
     @Test
-    public void processResponsesTest() throws ParseException {
+    public void processResponsesTest() {
         Main.processResponses(listOfFiles, service);
 
         String logMsg = out.toString();
@@ -57,6 +61,16 @@ public class MainTest {
         assertTrue(logMsg.contains("IDRegistroDeclarado [000009], EstadoRegistro [RECHAZADO], message: The Tax ID is not identified, spanish message: El NIF no esta identificado. NIF: 77780619R. NOMBRE_RAZON: SunSea Costa Brava. "));
         assertTrue(logMsg.contains("IDRegistroDeclarado [653], EstadoRegistro [RECHAZADO]. Unknown error code [1200], spanish message: Campo sin valor o fomato incorrecto: NombreVia"));
         assertFalse(logMsg.contains("Error en la cabecera. El NIF del declarante es inválido. NIF:B98156129. NOMBRE_RAZON:HomeAway]"));
+    }
+
+    @Test
+    public void processResponsesByWrongPathsTest() {
+        Main.processResponses(listOfWrongFiles, service);
+
+        String logMsg = out.toString();
+        assertNotNull(logMsg);
+        assertTrue(logMsg.contains("Reading file [null]"));
+        assertTrue(logMsg.contains("Error in file src\\main\\resources\\testResponses\\notRecognizedResponse.xml"));
     }
 
     @After
